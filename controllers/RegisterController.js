@@ -4,6 +4,16 @@ const { sendVerifySMS } = require('../utils');
 
 module.exports = {
 
+    index: async function (req, res) {
+        const ip = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim();
+    
+        const country = await utils.getCountry(ip);
+        return res.render('register', {
+            country
+        })
+    },
+
+
     store: async function(req, res) {
         const { error , value } = userSchema.validate(req.body, {
             abortEarly: false

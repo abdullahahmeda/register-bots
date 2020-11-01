@@ -6,14 +6,7 @@ router.get('/', async (req, res) => {
     return res.render('home');
 })
 
-router.get('/register', async (req, res) => {
-    const ip = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim();
-
-    const country = await utils.getCountry(ip);
-    return res.render('register', {
-        country
-    })
-})
+router.get('/register', RegisterController.index)
 
 router.post('/register', RegisterController.store);
 
