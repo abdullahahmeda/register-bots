@@ -1,6 +1,6 @@
 const userSchema = require('../validation/userSchema');
 const User = require('../models/User');
-const { sendVerifySMS } = require('../utils');
+const utils = require('../utils');
 
 module.exports = {
 
