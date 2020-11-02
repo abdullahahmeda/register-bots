@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const userSchema = Joi.object({
+const userRegisterSchema = Joi.object({
     accept_tos: Joi.boolean()
         .truthy('on'),
     name: Joi.string()
@@ -21,7 +21,8 @@ const userSchema = Joi.object({
         }),
 
     telegramId: Joi.string()
-        .required(),
+        .required()
+        .pattern(/^[0-9]+$/),
 
     phone: Joi.string()
         .required()
@@ -39,4 +40,4 @@ const userSchema = Joi.object({
         })
 });
 
-module.exports = userSchema;
+module.exports = userRegisterSchema;

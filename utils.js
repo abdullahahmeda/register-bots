@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const telegram = require('./telegram')
 
 async function getCountry(ip) {
     return new Promise((resolve, reject) => {
@@ -13,7 +14,18 @@ function sendVerifySMS(to, text) {
     
 }
 
+async function isInChat(telegramId) {
+    try {
+        const user = await telegram.getChatMember(process.env.TELEGRAM_CHAT_ID, telegramId);
+        return user.status === 'member';
+    }
+    catch(e) {
+        return false;
+    }
+}
+
 module.exports = {
     getCountry,
-    sendVerifySMS
+    sendVerifySMS,
+    isInChat
 }

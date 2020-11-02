@@ -13,324 +13,327 @@
         {% endif %}
     </div>
 
-    <div class="container mx-auto bg-white p-4 max-w-4xl rounded-md shadow-md">
+    <div class="container mx-auto mb-4">
         
-        <form action="/register" method="POST">
-            <div class="mb-4 md:flex md:items-center">
-                <label for="name" class="md:w-40 md:inline-block block mb-2 md:mb-0">الاسم</label>
-                <div class="block">
-                    <input type="text" class="border rounded-md border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].name }}" name="name" id="name" required>
-                    {% if flash.errors[0].name %}
-                        <p class="text-red-600 text-sm">{{ flash.errors[0].name }}</p>
-                    {% endif %}
+        <div class="bg-white p-4 max-w-2xl rounded-md shadow-md mx-auto">
+            <form action="/register" method="POST">
+                <input type="hidden" name="_csrf" value="{{ _csrf }}">
+                <div class="mb-4 md:flex md:items-center">
+                    <label for="name" class="md:w-40 md:inline-block block mb-1 md:mb-0">الاسم</label>
+                    <div class="block">
+                        <input type="text" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].name }}" name="name" id="name" required>
+                        {% if flash.errors[0].name %}
+                            <p class="text-red-600 text-sm">{{ flash.errors[0].name }}</p>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        
-            <div class="mb-4 md:flex md:items-center">
-                <label for="name" class="md:w-40 md:inline-block block mb-2 md:mb-0">البلد</label>
-                <div class="block">
-                    <select type="text" class="border rounded-md border-gray-600 outline-none focus:border-gray-900 p-2 w-full" name="country" required>
-                        <option value="AF" {% if flash.old[0].country %} {% if flash.old[0].country == "AF" %} selected {% endif %} {% else %} {% if country == "AF" %} selected {% endif %}  {% endif %}>Afghanistan</option>
-                        <option value="AX" {% if flash.old[0].country %} {% if flash.old[0].country == "AX" %} selected {% endif %} {% else %} {% if country == "AX" %} selected {% endif %}  {% endif %}>Åland Islands</option>
-                        <option value="AL" {% if flash.old[0].country %} {% if flash.old[0].country == "AL" %} selected {% endif %} {% else %} {% if country == "AL" %} selected {% endif %}  {% endif %}>Albania</option>
-                        <option value="DZ" {% if flash.old[0].country %} {% if flash.old[0].country == "DZ" %} selected {% endif %} {% else %} {% if country == "DZ" %} selected {% endif %}  {% endif %}>Algeria</option>
-                        <option value="AS" {% if flash.old[0].country %} {% if flash.old[0].country == "AS" %} selected {% endif %} {% else %} {% if country == "AS" %} selected {% endif %}  {% endif %}>American Samoa</option>
-                        <option value="AD" {% if flash.old[0].country %} {% if flash.old[0].country == "AD" %} selected {% endif %} {% else %} {% if country == "AD" %} selected {% endif %}  {% endif %}>Andorra</option>
-                        <option value="AO" {% if flash.old[0].country %} {% if flash.old[0].country == "AO" %} selected {% endif %} {% else %} {% if country == "AO" %} selected {% endif %}  {% endif %}>Angola</option>
-                        <option value="AI" {% if flash.old[0].country %} {% if flash.old[0].country == "AI" %} selected {% endif %} {% else %} {% if country == "AI" %} selected {% endif %}  {% endif %}>Anguilla</option>
-                        <option value="AQ" {% if flash.old[0].country %} {% if flash.old[0].country == "AQ" %} selected {% endif %} {% else %} {% if country == "AQ" %} selected {% endif %}  {% endif %}>Antarctica</option>
-                        <option value="AG" {% if flash.old[0].country %} {% if flash.old[0].country == "AG" %} selected {% endif %} {% else %} {% if country == "AG" %} selected {% endif %}  {% endif %}>Antigua and Barbuda</option>
-                        <option value="AR" {% if flash.old[0].country %} {% if flash.old[0].country == "AR" %} selected {% endif %} {% else %} {% if country == "AR" %} selected {% endif %}  {% endif %}>Argentina</option>
-                        <option value="AM" {% if flash.old[0].country %} {% if flash.old[0].country == "AM" %} selected {% endif %} {% else %} {% if country == "AM" %} selected {% endif %}  {% endif %}>Armenia</option>
-                        <option value="AW" {% if flash.old[0].country %} {% if flash.old[0].country == "AW" %} selected {% endif %} {% else %} {% if country == "AW" %} selected {% endif %}  {% endif %}>Aruba</option>
-                        <option value="AU" {% if flash.old[0].country %} {% if flash.old[0].country == "AU" %} selected {% endif %} {% else %} {% if country == "AU" %} selected {% endif %}  {% endif %}>Australia</option>
-                        <option value="AT" {% if flash.old[0].country %} {% if flash.old[0].country == "AT" %} selected {% endif %} {% else %} {% if country == "AT" %} selected {% endif %}  {% endif %}>Austria</option>
-                        <option value="AZ" {% if flash.old[0].country %} {% if flash.old[0].country == "AZ" %} selected {% endif %} {% else %} {% if country == "AZ" %} selected {% endif %}  {% endif %}>Azerbaijan</option>
-                        <option value="BS" {% if flash.old[0].country %} {% if flash.old[0].country == "BS" %} selected {% endif %} {% else %} {% if country == "BS" %} selected {% endif %}  {% endif %}>Bahamas</option>
-                        <option value="BH" {% if flash.old[0].country %} {% if flash.old[0].country == "BH" %} selected {% endif %} {% else %} {% if country == "BH" %} selected {% endif %}  {% endif %}>Bahrain</option>
-                        <option value="BD" {% if flash.old[0].country %} {% if flash.old[0].country == "BD" %} selected {% endif %} {% else %} {% if country == "BD" %} selected {% endif %}  {% endif %}>Bangladesh</option>
-                        <option value="BB" {% if flash.old[0].country %} {% if flash.old[0].country == "BB" %} selected {% endif %} {% else %} {% if country == "BB" %} selected {% endif %}  {% endif %}>Barbados</option>
-                        <option value="BY" {% if flash.old[0].country %} {% if flash.old[0].country == "BY" %} selected {% endif %} {% else %} {% if country == "BY" %} selected {% endif %}  {% endif %}>Belarus</option>
-                        <option value="BE" {% if flash.old[0].country %} {% if flash.old[0].country == "BE" %} selected {% endif %} {% else %} {% if country == "BE" %} selected {% endif %}  {% endif %}>Belgium</option>
-                        <option value="BZ" {% if flash.old[0].country %} {% if flash.old[0].country == "BZ" %} selected {% endif %} {% else %} {% if country == "BZ" %} selected {% endif %}  {% endif %}>Belize</option>
-                        <option value="BJ" {% if flash.old[0].country %} {% if flash.old[0].country == "BJ" %} selected {% endif %} {% else %} {% if country == "BJ" %} selected {% endif %}  {% endif %}>Benin</option>
-                        <option value="BM" {% if flash.old[0].country %} {% if flash.old[0].country == "BM" %} selected {% endif %} {% else %} {% if country == "BM" %} selected {% endif %}  {% endif %}>Bermuda</option>
-                        <option value="BT" {% if flash.old[0].country %} {% if flash.old[0].country == "BT" %} selected {% endif %} {% else %} {% if country == "BT" %} selected {% endif %}  {% endif %}>Bhutan</option>
-                        <option value="BO" {% if flash.old[0].country %} {% if flash.old[0].country == "BO" %} selected {% endif %} {% else %} {% if country == "BO" %} selected {% endif %}  {% endif %}>Bolivia, Plurinational State of</option>
-                        <option value="BQ" {% if flash.old[0].country %} {% if flash.old[0].country == "BQ" %} selected {% endif %} {% else %} {% if country == "BQ" %} selected {% endif %}  {% endif %}>Bonaire, Sint Eustatius and Saba</option>
-                        <option value="BA" {% if flash.old[0].country %} {% if flash.old[0].country == "BA" %} selected {% endif %} {% else %} {% if country == "BA" %} selected {% endif %}  {% endif %}>Bosnia and Herzegovina</option>
-                        <option value="BW" {% if flash.old[0].country %} {% if flash.old[0].country == "BW" %} selected {% endif %} {% else %} {% if country == "BW" %} selected {% endif %}  {% endif %}>Botswana</option>
-                        <option value="BV" {% if flash.old[0].country %} {% if flash.old[0].country == "BV" %} selected {% endif %} {% else %} {% if country == "BV" %} selected {% endif %}  {% endif %}>Bouvet Island</option>
-                        <option value="BR" {% if flash.old[0].country %} {% if flash.old[0].country == "BR" %} selected {% endif %} {% else %} {% if country == "BR" %} selected {% endif %}  {% endif %}>Brazil</option>
-                        <option value="IO" {% if flash.old[0].country %} {% if flash.old[0].country == "IO" %} selected {% endif %} {% else %} {% if country == "IO" %} selected {% endif %}  {% endif %}>British Indian Ocean Territory</option>
-                        <option value="BN" {% if flash.old[0].country %} {% if flash.old[0].country == "BN" %} selected {% endif %} {% else %} {% if country == "BN" %} selected {% endif %}  {% endif %}>Brunei Darussalam</option>
-                        <option value="BG" {% if flash.old[0].country %} {% if flash.old[0].country == "BG" %} selected {% endif %} {% else %} {% if country == "BG" %} selected {% endif %}  {% endif %}>Bulgaria</option>
-                        <option value="BF" {% if flash.old[0].country %} {% if flash.old[0].country == "BF" %} selected {% endif %} {% else %} {% if country == "BF" %} selected {% endif %}  {% endif %}>Burkina Faso</option>
-                        <option value="BI" {% if flash.old[0].country %} {% if flash.old[0].country == "BI" %} selected {% endif %} {% else %} {% if country == "BI" %} selected {% endif %}  {% endif %}>Burundi</option>
-                        <option value="KH" {% if flash.old[0].country %} {% if flash.old[0].country == "KH" %} selected {% endif %} {% else %} {% if country == "KH" %} selected {% endif %}  {% endif %}>Cambodia</option>
-                        <option value="CM" {% if flash.old[0].country %} {% if flash.old[0].country == "CM" %} selected {% endif %} {% else %} {% if country == "CM" %} selected {% endif %}  {% endif %}>Cameroon</option>
-                        <option value="CA" {% if flash.old[0].country %} {% if flash.old[0].country == "CA" %} selected {% endif %} {% else %} {% if country == "CA" %} selected {% endif %}  {% endif %}>Canada</option>
-                        <option value="CV" {% if flash.old[0].country %} {% if flash.old[0].country == "CV" %} selected {% endif %} {% else %} {% if country == "CV" %} selected {% endif %}  {% endif %}>Cape Verde</option>
-                        <option value="KY" {% if flash.old[0].country %} {% if flash.old[0].country == "KY" %} selected {% endif %} {% else %} {% if country == "KY" %} selected {% endif %}  {% endif %}>Cayman Islands</option>
-                        <option value="CF" {% if flash.old[0].country %} {% if flash.old[0].country == "CF" %} selected {% endif %} {% else %} {% if country == "CF" %} selected {% endif %}  {% endif %}>Central African Republic</option>
-                        <option value="TD" {% if flash.old[0].country %} {% if flash.old[0].country == "TD" %} selected {% endif %} {% else %} {% if country == "TD" %} selected {% endif %}  {% endif %}>Chad</option>
-                        <option value="CL" {% if flash.old[0].country %} {% if flash.old[0].country == "CL" %} selected {% endif %} {% else %} {% if country == "CL" %} selected {% endif %}  {% endif %}>Chile</option>
-                        <option value="CN" {% if flash.old[0].country %} {% if flash.old[0].country == "CN" %} selected {% endif %} {% else %} {% if country == "CN" %} selected {% endif %}  {% endif %}>China</option>
-                        <option value="CX" {% if flash.old[0].country %} {% if flash.old[0].country == "CX" %} selected {% endif %} {% else %} {% if country == "CX" %} selected {% endif %}  {% endif %}>Christmas Island</option>
-                        <option value="CC" {% if flash.old[0].country %} {% if flash.old[0].country == "CC" %} selected {% endif %} {% else %} {% if country == "CC" %} selected {% endif %}  {% endif %}>Cocos (Keeling) Islands</option>
-                        <option value="CO" {% if flash.old[0].country %} {% if flash.old[0].country == "CO" %} selected {% endif %} {% else %} {% if country == "CO" %} selected {% endif %}  {% endif %}>Colombia</option>
-                        <option value="KM" {% if flash.old[0].country %} {% if flash.old[0].country == "KM" %} selected {% endif %} {% else %} {% if country == "KM" %} selected {% endif %}  {% endif %}>Comoros</option>
-                        <option value="CG" {% if flash.old[0].country %} {% if flash.old[0].country == "CG" %} selected {% endif %} {% else %} {% if country == "CG" %} selected {% endif %}  {% endif %}>Congo</option>
-                        <option value="CD" {% if flash.old[0].country %} {% if flash.old[0].country == "CD" %} selected {% endif %} {% else %} {% if country == "CD" %} selected {% endif %}  {% endif %}>Congo, the Democratic Republic of the</option>
-                        <option value="CK" {% if flash.old[0].country %} {% if flash.old[0].country == "CK" %} selected {% endif %} {% else %} {% if country == "CK" %} selected {% endif %}  {% endif %}>Cook Islands</option>
-                        <option value="CR" {% if flash.old[0].country %} {% if flash.old[0].country == "CR" %} selected {% endif %} {% else %} {% if country == "CR" %} selected {% endif %}  {% endif %}>Costa Rica</option>
-                        <option value="CI" {% if flash.old[0].country %} {% if flash.old[0].country == "CI" %} selected {% endif %} {% else %} {% if country == "CI" %} selected {% endif %}  {% endif %}>Côte d'Ivoire</option>
-                        <option value="HR" {% if flash.old[0].country %} {% if flash.old[0].country == "HR" %} selected {% endif %} {% else %} {% if country == "HR" %} selected {% endif %}  {% endif %}>Croatia</option>
-                        <option value="CU" {% if flash.old[0].country %} {% if flash.old[0].country == "CU" %} selected {% endif %} {% else %} {% if country == "CU" %} selected {% endif %}  {% endif %}>Cuba</option>
-                        <option value="CW" {% if flash.old[0].country %} {% if flash.old[0].country == "CW" %} selected {% endif %} {% else %} {% if country == "CW" %} selected {% endif %}  {% endif %}>Curaçao</option>
-                        <option value="CY" {% if flash.old[0].country %} {% if flash.old[0].country == "CY" %} selected {% endif %} {% else %} {% if country == "CY" %} selected {% endif %}  {% endif %}>Cyprus</option>
-                        <option value="CZ" {% if flash.old[0].country %} {% if flash.old[0].country == "CZ" %} selected {% endif %} {% else %} {% if country == "CZ" %} selected {% endif %}  {% endif %}>Czech Republic</option>
-                        <option value="DK" {% if flash.old[0].country %} {% if flash.old[0].country == "DK" %} selected {% endif %} {% else %} {% if country == "DK" %} selected {% endif %}  {% endif %}>Denmark</option>
-                        <option value="DJ" {% if flash.old[0].country %} {% if flash.old[0].country == "DJ" %} selected {% endif %} {% else %} {% if country == "DJ" %} selected {% endif %}  {% endif %}>Djibouti</option>
-                        <option value="DM" {% if flash.old[0].country %} {% if flash.old[0].country == "DM" %} selected {% endif %} {% else %} {% if country == "DM" %} selected {% endif %}  {% endif %}>Dominica</option>
-                        <option value="DO" {% if flash.old[0].country %} {% if flash.old[0].country == "DO" %} selected {% endif %} {% else %} {% if country == "DO" %} selected {% endif %}  {% endif %}>Dominican Republic</option>
-                        <option value="EC" {% if flash.old[0].country %} {% if flash.old[0].country == "EC" %} selected {% endif %} {% else %} {% if country == "EC" %} selected {% endif %}  {% endif %}>Ecuador</option>
-                        <option value="EG" {% if flash.old[0].country %} {% if flash.old[0].country == "EG" %} selected {% endif %} {% else %} {% if country == "EG" %} selected {% endif %}  {% endif %}>Egypt</option>
-                        <option value="SV" {% if flash.old[0].country %} {% if flash.old[0].country == "SV" %} selected {% endif %} {% else %} {% if country == "SV" %} selected {% endif %}  {% endif %}>El Salvador</option>
-                        <option value="GQ" {% if flash.old[0].country %} {% if flash.old[0].country == "GQ" %} selected {% endif %} {% else %} {% if country == "GQ" %} selected {% endif %}  {% endif %}>Equatorial Guinea</option>
-                        <option value="ER" {% if flash.old[0].country %} {% if flash.old[0].country == "ER" %} selected {% endif %} {% else %} {% if country == "ER" %} selected {% endif %}  {% endif %}>Eritrea</option>
-                        <option value="EE" {% if flash.old[0].country %} {% if flash.old[0].country == "EE" %} selected {% endif %} {% else %} {% if country == "EE" %} selected {% endif %}  {% endif %}>Estonia</option>
-                        <option value="ET" {% if flash.old[0].country %} {% if flash.old[0].country == "ET" %} selected {% endif %} {% else %} {% if country == "ET" %} selected {% endif %}  {% endif %}>Ethiopia</option>
-                        <option value="FK" {% if flash.old[0].country %} {% if flash.old[0].country == "FK" %} selected {% endif %} {% else %} {% if country == "FK" %} selected {% endif %}  {% endif %}>Falkland Islands (Malvinas)</option>
-                        <option value="FO" {% if flash.old[0].country %} {% if flash.old[0].country == "FO" %} selected {% endif %} {% else %} {% if country == "FO" %} selected {% endif %}  {% endif %}>Faroe Islands</option>
-                        <option value="FJ" {% if flash.old[0].country %} {% if flash.old[0].country == "FJ" %} selected {% endif %} {% else %} {% if country == "FJ" %} selected {% endif %}  {% endif %}>Fiji</option>
-                        <option value="FI" {% if flash.old[0].country %} {% if flash.old[0].country == "FI" %} selected {% endif %} {% else %} {% if country == "FI" %} selected {% endif %}  {% endif %}>Finland</option>
-                        <option value="FR" {% if flash.old[0].country %} {% if flash.old[0].country == "FR" %} selected {% endif %} {% else %} {% if country == "FR" %} selected {% endif %}  {% endif %}>France</option>
-                        <option value="GF" {% if flash.old[0].country %} {% if flash.old[0].country == "GF" %} selected {% endif %} {% else %} {% if country == "GF" %} selected {% endif %}  {% endif %}>French Guiana</option>
-                        <option value="PF" {% if flash.old[0].country %} {% if flash.old[0].country == "PF" %} selected {% endif %} {% else %} {% if country == "PF" %} selected {% endif %}  {% endif %}>French Polynesia</option>
-                        <option value="TF" {% if flash.old[0].country %} {% if flash.old[0].country == "TF" %} selected {% endif %} {% else %} {% if country == "TF" %} selected {% endif %}  {% endif %}>French Southern Territories</option>
-                        <option value="GA" {% if flash.old[0].country %} {% if flash.old[0].country == "GA" %} selected {% endif %} {% else %} {% if country == "GA" %} selected {% endif %}  {% endif %}>Gabon</option>
-                        <option value="GM" {% if flash.old[0].country %} {% if flash.old[0].country == "GM" %} selected {% endif %} {% else %} {% if country == "GM" %} selected {% endif %}  {% endif %}>Gambia</option>
-                        <option value="GE" {% if flash.old[0].country %} {% if flash.old[0].country == "GE" %} selected {% endif %} {% else %} {% if country == "GE" %} selected {% endif %}  {% endif %}>Georgia</option>
-                        <option value="DE" {% if flash.old[0].country %} {% if flash.old[0].country == "DE" %} selected {% endif %} {% else %} {% if country == "DE" %} selected {% endif %}  {% endif %}>Germany</option>
-                        <option value="GH" {% if flash.old[0].country %} {% if flash.old[0].country == "GH" %} selected {% endif %} {% else %} {% if country == "GH" %} selected {% endif %}  {% endif %}>Ghana</option>
-                        <option value="GI" {% if flash.old[0].country %} {% if flash.old[0].country == "GI" %} selected {% endif %} {% else %} {% if country == "GI" %} selected {% endif %}  {% endif %}>Gibraltar</option>
-                        <option value="GR" {% if flash.old[0].country %} {% if flash.old[0].country == "GR" %} selected {% endif %} {% else %} {% if country == "GR" %} selected {% endif %}  {% endif %}>Greece</option>
-                        <option value="GL" {% if flash.old[0].country %} {% if flash.old[0].country == "GL" %} selected {% endif %} {% else %} {% if country == "GL" %} selected {% endif %}  {% endif %}>Greenland</option>
-                        <option value="GD" {% if flash.old[0].country %} {% if flash.old[0].country == "GD" %} selected {% endif %} {% else %} {% if country == "GD" %} selected {% endif %}  {% endif %}>Grenada</option>
-                        <option value="GP" {% if flash.old[0].country %} {% if flash.old[0].country == "GP" %} selected {% endif %} {% else %} {% if country == "GP" %} selected {% endif %}  {% endif %}>Guadeloupe</option>
-                        <option value="GU" {% if flash.old[0].country %} {% if flash.old[0].country == "GU" %} selected {% endif %} {% else %} {% if country == "GU" %} selected {% endif %}  {% endif %}>Guam</option>
-                        <option value="GT" {% if flash.old[0].country %} {% if flash.old[0].country == "GT" %} selected {% endif %} {% else %} {% if country == "GT" %} selected {% endif %}  {% endif %}>Guatemala</option>
-                        <option value="GG" {% if flash.old[0].country %} {% if flash.old[0].country == "GG" %} selected {% endif %} {% else %} {% if country == "GG" %} selected {% endif %}  {% endif %}>Guernsey</option>
-                        <option value="GN" {% if flash.old[0].country %} {% if flash.old[0].country == "GN" %} selected {% endif %} {% else %} {% if country == "GN" %} selected {% endif %}  {% endif %}>Guinea</option>
-                        <option value="GW" {% if flash.old[0].country %} {% if flash.old[0].country == "GW" %} selected {% endif %} {% else %} {% if country == "GW" %} selected {% endif %}  {% endif %}>Guinea-Bissau</option>
-                        <option value="GY" {% if flash.old[0].country %} {% if flash.old[0].country == "GY" %} selected {% endif %} {% else %} {% if country == "GY" %} selected {% endif %}  {% endif %}>Guyana</option>
-                        <option value="HT" {% if flash.old[0].country %} {% if flash.old[0].country == "HT" %} selected {% endif %} {% else %} {% if country == "HT" %} selected {% endif %}  {% endif %}>Haiti</option>
-                        <option value="HM" {% if flash.old[0].country %} {% if flash.old[0].country == "HM" %} selected {% endif %} {% else %} {% if country == "HM" %} selected {% endif %}  {% endif %}>Heard Island and McDonald Islands</option>
-                        <option value="VA" {% if flash.old[0].country %} {% if flash.old[0].country == "VA" %} selected {% endif %} {% else %} {% if country == "VA" %} selected {% endif %}  {% endif %}>Holy See (Vatican City State)</option>
-                        <option value="HN" {% if flash.old[0].country %} {% if flash.old[0].country == "HN" %} selected {% endif %} {% else %} {% if country == "HN" %} selected {% endif %}  {% endif %}>Honduras</option>
-                        <option value="HK" {% if flash.old[0].country %} {% if flash.old[0].country == "HK" %} selected {% endif %} {% else %} {% if country == "HK" %} selected {% endif %}  {% endif %}>Hong Kong</option>
-                        <option value="HU" {% if flash.old[0].country %} {% if flash.old[0].country == "HU" %} selected {% endif %} {% else %} {% if country == "HU" %} selected {% endif %}  {% endif %}>Hungary</option>
-                        <option value="IS" {% if flash.old[0].country %} {% if flash.old[0].country == "IS" %} selected {% endif %} {% else %} {% if country == "IS" %} selected {% endif %}  {% endif %}>Iceland</option>
-                        <option value="IN" {% if flash.old[0].country %} {% if flash.old[0].country == "IN" %} selected {% endif %} {% else %} {% if country == "IN" %} selected {% endif %}  {% endif %}>India</option>
-                        <option value="ID" {% if flash.old[0].country %} {% if flash.old[0].country == "ID" %} selected {% endif %} {% else %} {% if country == "ID" %} selected {% endif %}  {% endif %}>Indonesia</option>
-                        <option value="IR" {% if flash.old[0].country %} {% if flash.old[0].country == "IR" %} selected {% endif %} {% else %} {% if country == "IR" %} selected {% endif %}  {% endif %}>Iran, Islamic Republic of</option>
-                        <option value="IQ" {% if flash.old[0].country %} {% if flash.old[0].country == "IQ" %} selected {% endif %} {% else %} {% if country == "IQ" %} selected {% endif %}  {% endif %}>Iraq</option>
-                        <option value="IE" {% if flash.old[0].country %} {% if flash.old[0].country == "IE" %} selected {% endif %} {% else %} {% if country == "IE" %} selected {% endif %}  {% endif %}>Ireland</option>
-                        <option value="IM" {% if flash.old[0].country %} {% if flash.old[0].country == "IM" %} selected {% endif %} {% else %} {% if country == "IM" %} selected {% endif %}  {% endif %}>Isle of Man</option>
-                        <option value="IL" {% if flash.old[0].country %} {% if flash.old[0].country == "IL" %} selected {% endif %} {% else %} {% if country == "IL" %} selected {% endif %}  {% endif %}>Israel</option>
-                        <option value="IT" {% if flash.old[0].country %} {% if flash.old[0].country == "IT" %} selected {% endif %} {% else %} {% if country == "IT" %} selected {% endif %}  {% endif %}>Italy</option>
-                        <option value="JM" {% if flash.old[0].country %} {% if flash.old[0].country == "JM" %} selected {% endif %} {% else %} {% if country == "JM" %} selected {% endif %}  {% endif %}>Jamaica</option>
-                        <option value="JP" {% if flash.old[0].country %} {% if flash.old[0].country == "JP" %} selected {% endif %} {% else %} {% if country == "JP" %} selected {% endif %}  {% endif %}>Japan</option>
-                        <option value="JE" {% if flash.old[0].country %} {% if flash.old[0].country == "JE" %} selected {% endif %} {% else %} {% if country == "JE" %} selected {% endif %}  {% endif %}>Jersey</option>
-                        <option value="JO" {% if flash.old[0].country %} {% if flash.old[0].country == "JO" %} selected {% endif %} {% else %} {% if country == "JO" %} selected {% endif %}  {% endif %}>Jordan</option>
-                        <option value="KZ" {% if flash.old[0].country %} {% if flash.old[0].country == "KZ" %} selected {% endif %} {% else %} {% if country == "KZ" %} selected {% endif %}  {% endif %}>Kazakhstan</option>
-                        <option value="KE" {% if flash.old[0].country %} {% if flash.old[0].country == "KE" %} selected {% endif %} {% else %} {% if country == "KE" %} selected {% endif %}  {% endif %}>Kenya</option>
-                        <option value="KI" {% if flash.old[0].country %} {% if flash.old[0].country == "KI" %} selected {% endif %} {% else %} {% if country == "KI" %} selected {% endif %}  {% endif %}>Kiribati</option>
-                        <option value="KP" {% if flash.old[0].country %} {% if flash.old[0].country == "KP" %} selected {% endif %} {% else %} {% if country == "KP" %} selected {% endif %}  {% endif %}>Korea, Democratic People's Republic of</option>
-                        <option value="KR" {% if flash.old[0].country %} {% if flash.old[0].country == "KR" %} selected {% endif %} {% else %} {% if country == "KR" %} selected {% endif %}  {% endif %}>Korea, Republic of</option>
-                        <option value="KW" {% if flash.old[0].country %} {% if flash.old[0].country == "KW" %} selected {% endif %} {% else %} {% if country == "KW" %} selected {% endif %}  {% endif %}>Kuwait</option>
-                        <option value="KG" {% if flash.old[0].country %} {% if flash.old[0].country == "KG" %} selected {% endif %} {% else %} {% if country == "KG" %} selected {% endif %}  {% endif %}>Kyrgyzstan</option>
-                        <option value="LA" {% if flash.old[0].country %} {% if flash.old[0].country == "LA" %} selected {% endif %} {% else %} {% if country == "LA" %} selected {% endif %}  {% endif %}>Lao People's Democratic Republic</option>
-                        <option value="LV" {% if flash.old[0].country %} {% if flash.old[0].country == "LV" %} selected {% endif %} {% else %} {% if country == "LV" %} selected {% endif %}  {% endif %}>Latvia</option>
-                        <option value="LB" {% if flash.old[0].country %} {% if flash.old[0].country == "LB" %} selected {% endif %} {% else %} {% if country == "LB" %} selected {% endif %}  {% endif %}>Lebanon</option>
-                        <option value="LS" {% if flash.old[0].country %} {% if flash.old[0].country == "LS" %} selected {% endif %} {% else %} {% if country == "LS" %} selected {% endif %}  {% endif %}>Lesotho</option>
-                        <option value="LR" {% if flash.old[0].country %} {% if flash.old[0].country == "LR" %} selected {% endif %} {% else %} {% if country == "LR" %} selected {% endif %}  {% endif %}>Liberia</option>
-                        <option value="LY" {% if flash.old[0].country %} {% if flash.old[0].country == "LY" %} selected {% endif %} {% else %} {% if country == "LY" %} selected {% endif %}  {% endif %}>Libya</option>
-                        <option value="LI" {% if flash.old[0].country %} {% if flash.old[0].country == "LI" %} selected {% endif %} {% else %} {% if country == "LI" %} selected {% endif %}  {% endif %}>Liechtenstein</option>
-                        <option value="LT" {% if flash.old[0].country %} {% if flash.old[0].country == "LT" %} selected {% endif %} {% else %} {% if country == "LT" %} selected {% endif %}  {% endif %}>Lithuania</option>
-                        <option value="LU" {% if flash.old[0].country %} {% if flash.old[0].country == "LU" %} selected {% endif %} {% else %} {% if country == "LU" %} selected {% endif %}  {% endif %}>Luxembourg</option>
-                        <option value="MO" {% if flash.old[0].country %} {% if flash.old[0].country == "MO" %} selected {% endif %} {% else %} {% if country == "MO" %} selected {% endif %}  {% endif %}>Macao</option>
-                        <option value="MK" {% if flash.old[0].country %} {% if flash.old[0].country == "MK" %} selected {% endif %} {% else %} {% if country == "MK" %} selected {% endif %}  {% endif %}>Macedonia, the former Yugoslav Republic of</option>
-                        <option value="MG" {% if flash.old[0].country %} {% if flash.old[0].country == "MG" %} selected {% endif %} {% else %} {% if country == "MG" %} selected {% endif %}  {% endif %}>Madagascar</option>
-                        <option value="MW" {% if flash.old[0].country %} {% if flash.old[0].country == "MW" %} selected {% endif %} {% else %} {% if country == "MW" %} selected {% endif %}  {% endif %}>Malawi</option>
-                        <option value="MY" {% if flash.old[0].country %} {% if flash.old[0].country == "MY" %} selected {% endif %} {% else %} {% if country == "MY" %} selected {% endif %}  {% endif %}>Malaysia</option>
-                        <option value="MV" {% if flash.old[0].country %} {% if flash.old[0].country == "MV" %} selected {% endif %} {% else %} {% if country == "MV" %} selected {% endif %}  {% endif %}>Maldives</option>
-                        <option value="ML" {% if flash.old[0].country %} {% if flash.old[0].country == "ML" %} selected {% endif %} {% else %} {% if country == "ML" %} selected {% endif %}  {% endif %}>Mali</option>
-                        <option value="MT" {% if flash.old[0].country %} {% if flash.old[0].country == "MT" %} selected {% endif %} {% else %} {% if country == "MT" %} selected {% endif %}  {% endif %}>Malta</option>
-                        <option value="MH" {% if flash.old[0].country %} {% if flash.old[0].country == "MH" %} selected {% endif %} {% else %} {% if country == "MH" %} selected {% endif %}  {% endif %}>Marshall Islands</option>
-                        <option value="MQ" {% if flash.old[0].country %} {% if flash.old[0].country == "MQ" %} selected {% endif %} {% else %} {% if country == "MQ" %} selected {% endif %}  {% endif %}>Martinique</option>
-                        <option value="MR" {% if flash.old[0].country %} {% if flash.old[0].country == "MR" %} selected {% endif %} {% else %} {% if country == "MR" %} selected {% endif %}  {% endif %}>Mauritania</option>
-                        <option value="MU" {% if flash.old[0].country %} {% if flash.old[0].country == "MU" %} selected {% endif %} {% else %} {% if country == "MU" %} selected {% endif %}  {% endif %}>Mauritius</option>
-                        <option value="YT" {% if flash.old[0].country %} {% if flash.old[0].country == "YT" %} selected {% endif %} {% else %} {% if country == "YT" %} selected {% endif %}  {% endif %}>Mayotte</option>
-                        <option value="MX" {% if flash.old[0].country %} {% if flash.old[0].country == "MX" %} selected {% endif %} {% else %} {% if country == "MX" %} selected {% endif %}  {% endif %}>Mexico</option>
-                        <option value="FM" {% if flash.old[0].country %} {% if flash.old[0].country == "FM" %} selected {% endif %} {% else %} {% if country == "FM" %} selected {% endif %}  {% endif %}>Micronesia, Federated States of</option>
-                        <option value="MD" {% if flash.old[0].country %} {% if flash.old[0].country == "MD" %} selected {% endif %} {% else %} {% if country == "MD" %} selected {% endif %}  {% endif %}>Moldova, Republic of</option>
-                        <option value="MC" {% if flash.old[0].country %} {% if flash.old[0].country == "MC" %} selected {% endif %} {% else %} {% if country == "MC" %} selected {% endif %}  {% endif %}>Monaco</option>
-                        <option value="MN" {% if flash.old[0].country %} {% if flash.old[0].country == "MN" %} selected {% endif %} {% else %} {% if country == "MN" %} selected {% endif %}  {% endif %}>Mongolia</option>
-                        <option value="ME" {% if flash.old[0].country %} {% if flash.old[0].country == "ME" %} selected {% endif %} {% else %} {% if country == "ME" %} selected {% endif %}  {% endif %}>Montenegro</option>
-                        <option value="MS" {% if flash.old[0].country %} {% if flash.old[0].country == "MS" %} selected {% endif %} {% else %} {% if country == "MS" %} selected {% endif %}  {% endif %}>Montserrat</option>
-                        <option value="MA" {% if flash.old[0].country %} {% if flash.old[0].country == "MA" %} selected {% endif %} {% else %} {% if country == "MA" %} selected {% endif %}  {% endif %}>Morocco</option>
-                        <option value="MZ" {% if flash.old[0].country %} {% if flash.old[0].country == "MZ" %} selected {% endif %} {% else %} {% if country == "MZ" %} selected {% endif %}  {% endif %}>Mozambique</option>
-                        <option value="MM" {% if flash.old[0].country %} {% if flash.old[0].country == "MM" %} selected {% endif %} {% else %} {% if country == "MM" %} selected {% endif %}  {% endif %}>Myanmar</option>
-                        <option value="NA" {% if flash.old[0].country %} {% if flash.old[0].country == "NA" %} selected {% endif %} {% else %} {% if country == "NA" %} selected {% endif %}  {% endif %}>Namibia</option>
-                        <option value="NR" {% if flash.old[0].country %} {% if flash.old[0].country == "NR" %} selected {% endif %} {% else %} {% if country == "NR" %} selected {% endif %}  {% endif %}>Nauru</option>
-                        <option value="NP" {% if flash.old[0].country %} {% if flash.old[0].country == "NP" %} selected {% endif %} {% else %} {% if country == "NP" %} selected {% endif %}  {% endif %}>Nepal</option>
-                        <option value="NL" {% if flash.old[0].country %} {% if flash.old[0].country == "NL" %} selected {% endif %} {% else %} {% if country == "NL" %} selected {% endif %}  {% endif %}>Netherlands</option>
-                        <option value="NC" {% if flash.old[0].country %} {% if flash.old[0].country == "NC" %} selected {% endif %} {% else %} {% if country == "NC" %} selected {% endif %}  {% endif %}>New Caledonia</option>
-                        <option value="NZ" {% if flash.old[0].country %} {% if flash.old[0].country == "NZ" %} selected {% endif %} {% else %} {% if country == "NZ" %} selected {% endif %}  {% endif %}>New Zealand</option>
-                        <option value="NI" {% if flash.old[0].country %} {% if flash.old[0].country == "NI" %} selected {% endif %} {% else %} {% if country == "NI" %} selected {% endif %}  {% endif %}>Nicaragua</option>
-                        <option value="NE" {% if flash.old[0].country %} {% if flash.old[0].country == "NE" %} selected {% endif %} {% else %} {% if country == "NE" %} selected {% endif %}  {% endif %}>Niger</option>
-                        <option value="NG" {% if flash.old[0].country %} {% if flash.old[0].country == "NG" %} selected {% endif %} {% else %} {% if country == "NG" %} selected {% endif %}  {% endif %}>Nigeria</option>
-                        <option value="NU" {% if flash.old[0].country %} {% if flash.old[0].country == "NU" %} selected {% endif %} {% else %} {% if country == "NU" %} selected {% endif %}  {% endif %}>Niue</option>
-                        <option value="NF" {% if flash.old[0].country %} {% if flash.old[0].country == "NF" %} selected {% endif %} {% else %} {% if country == "NF" %} selected {% endif %}  {% endif %}>Norfolk Island</option>
-                        <option value="MP" {% if flash.old[0].country %} {% if flash.old[0].country == "MP" %} selected {% endif %} {% else %} {% if country == "MP" %} selected {% endif %}  {% endif %}>Northern Mariana Islands</option>
-                        <option value="NO" {% if flash.old[0].country %} {% if flash.old[0].country == "NO" %} selected {% endif %} {% else %} {% if country == "NO" %} selected {% endif %}  {% endif %}>Norway</option>
-                        <option value="OM" {% if flash.old[0].country %} {% if flash.old[0].country == "OM" %} selected {% endif %} {% else %} {% if country == "OM" %} selected {% endif %}  {% endif %}>Oman</option>
-                        <option value="PK" {% if flash.old[0].country %} {% if flash.old[0].country == "PK" %} selected {% endif %} {% else %} {% if country == "PK" %} selected {% endif %}  {% endif %}>Pakistan</option>
-                        <option value="PW" {% if flash.old[0].country %} {% if flash.old[0].country == "PW" %} selected {% endif %} {% else %} {% if country == "PW" %} selected {% endif %}  {% endif %}>Palau</option>
-                        <option value="PS" {% if flash.old[0].country %} {% if flash.old[0].country == "PS" %} selected {% endif %} {% else %} {% if country == "PS" %} selected {% endif %}  {% endif %}>Palestinian Territory, Occupied</option>
-                        <option value="PA" {% if flash.old[0].country %} {% if flash.old[0].country == "PA" %} selected {% endif %} {% else %} {% if country == "PA" %} selected {% endif %}  {% endif %}>Panama</option>
-                        <option value="PG" {% if flash.old[0].country %} {% if flash.old[0].country == "PG" %} selected {% endif %} {% else %} {% if country == "PG" %} selected {% endif %}  {% endif %}>Papua New Guinea</option>
-                        <option value="PY" {% if flash.old[0].country %} {% if flash.old[0].country == "PY" %} selected {% endif %} {% else %} {% if country == "PY" %} selected {% endif %}  {% endif %}>Paraguay</option>
-                        <option value="PE" {% if flash.old[0].country %} {% if flash.old[0].country == "PE" %} selected {% endif %} {% else %} {% if country == "PE" %} selected {% endif %}  {% endif %}>Peru</option>
-                        <option value="PH" {% if flash.old[0].country %} {% if flash.old[0].country == "PH" %} selected {% endif %} {% else %} {% if country == "PH" %} selected {% endif %}  {% endif %}>Philippines</option>
-                        <option value="PN" {% if flash.old[0].country %} {% if flash.old[0].country == "PN" %} selected {% endif %} {% else %} {% if country == "PN" %} selected {% endif %}  {% endif %}>Pitcairn</option>
-                        <option value="PL" {% if flash.old[0].country %} {% if flash.old[0].country == "PL" %} selected {% endif %} {% else %} {% if country == "PL" %} selected {% endif %}  {% endif %}>Poland</option>
-                        <option value="PT" {% if flash.old[0].country %} {% if flash.old[0].country == "PT" %} selected {% endif %} {% else %} {% if country == "PT" %} selected {% endif %}  {% endif %}>Portugal</option>
-                        <option value="PR" {% if flash.old[0].country %} {% if flash.old[0].country == "PR" %} selected {% endif %} {% else %} {% if country == "PR" %} selected {% endif %}  {% endif %}>Puerto Rico</option>
-                        <option value="QA" {% if flash.old[0].country %} {% if flash.old[0].country == "QA" %} selected {% endif %} {% else %} {% if country == "QA" %} selected {% endif %}  {% endif %}>Qatar</option>
-                        <option value="RE" {% if flash.old[0].country %} {% if flash.old[0].country == "RE" %} selected {% endif %} {% else %} {% if country == "RE" %} selected {% endif %}  {% endif %}>Réunion</option>
-                        <option value="RO" {% if flash.old[0].country %} {% if flash.old[0].country == "RO" %} selected {% endif %} {% else %} {% if country == "RO" %} selected {% endif %}  {% endif %}>Romania</option>
-                        <option value="RU" {% if flash.old[0].country %} {% if flash.old[0].country == "RU" %} selected {% endif %} {% else %} {% if country == "RU" %} selected {% endif %}  {% endif %}>Russian Federation</option>
-                        <option value="RW" {% if flash.old[0].country %} {% if flash.old[0].country == "RW" %} selected {% endif %} {% else %} {% if country == "RW" %} selected {% endif %}  {% endif %}>Rwanda</option>
-                        <option value="BL" {% if flash.old[0].country %} {% if flash.old[0].country == "BL" %} selected {% endif %} {% else %} {% if country == "BL" %} selected {% endif %}  {% endif %}>Saint Barthélemy</option>
-                        <option value="SH" {% if flash.old[0].country %} {% if flash.old[0].country == "SH" %} selected {% endif %} {% else %} {% if country == "SH" %} selected {% endif %}  {% endif %}>Saint Helena, Ascension and Tristan da Cunha</option>
-                        <option value="KN" {% if flash.old[0].country %} {% if flash.old[0].country == "KN" %} selected {% endif %} {% else %} {% if country == "KN" %} selected {% endif %}  {% endif %}>Saint Kitts and Nevis</option>
-                        <option value="LC" {% if flash.old[0].country %} {% if flash.old[0].country == "LC" %} selected {% endif %} {% else %} {% if country == "LC" %} selected {% endif %}  {% endif %}>Saint Lucia</option>
-                        <option value="MF" {% if flash.old[0].country %} {% if flash.old[0].country == "MF" %} selected {% endif %} {% else %} {% if country == "MF" %} selected {% endif %}  {% endif %}>Saint Martin (French part)</option>
-                        <option value="PM" {% if flash.old[0].country %} {% if flash.old[0].country == "PM" %} selected {% endif %} {% else %} {% if country == "PM" %} selected {% endif %}  {% endif %}>Saint Pierre and Miquelon</option>
-                        <option value="VC" {% if flash.old[0].country %} {% if flash.old[0].country == "VC" %} selected {% endif %} {% else %} {% if country == "VC" %} selected {% endif %}  {% endif %}>Saint Vincent and the Grenadines</option>
-                        <option value="WS" {% if flash.old[0].country %} {% if flash.old[0].country == "WS" %} selected {% endif %} {% else %} {% if country == "WS" %} selected {% endif %}  {% endif %}>Samoa</option>
-                        <option value="SM" {% if flash.old[0].country %} {% if flash.old[0].country == "SM" %} selected {% endif %} {% else %} {% if country == "SM" %} selected {% endif %}  {% endif %}>San Marino</option>
-                        <option value="ST" {% if flash.old[0].country %} {% if flash.old[0].country == "ST" %} selected {% endif %} {% else %} {% if country == "ST" %} selected {% endif %}  {% endif %}>Sao Tome and Principe</option>
-                        <option value="SA" {% if flash.old[0].country %} {% if flash.old[0].country == "SA" %} selected {% endif %} {% else %} {% if country == "SA" %} selected {% endif %}  {% endif %}>Saudi Arabia</option>
-                        <option value="SN" {% if flash.old[0].country %} {% if flash.old[0].country == "SN" %} selected {% endif %} {% else %} {% if country == "SN" %} selected {% endif %}  {% endif %}>Senegal</option>
-                        <option value="RS" {% if flash.old[0].country %} {% if flash.old[0].country == "RS" %} selected {% endif %} {% else %} {% if country == "RS" %} selected {% endif %}  {% endif %}>Serbia</option>
-                        <option value="SC" {% if flash.old[0].country %} {% if flash.old[0].country == "SC" %} selected {% endif %} {% else %} {% if country == "SC" %} selected {% endif %}  {% endif %}>Seychelles</option>
-                        <option value="SL" {% if flash.old[0].country %} {% if flash.old[0].country == "SL" %} selected {% endif %} {% else %} {% if country == "SL" %} selected {% endif %}  {% endif %}>Sierra Leone</option>
-                        <option value="SG" {% if flash.old[0].country %} {% if flash.old[0].country == "SG" %} selected {% endif %} {% else %} {% if country == "SG" %} selected {% endif %}  {% endif %}>Singapore</option>
-                        <option value="SX" {% if flash.old[0].country %} {% if flash.old[0].country == "SX" %} selected {% endif %} {% else %} {% if country == "SX" %} selected {% endif %}  {% endif %}>Sint Maarten (Dutch part)</option>
-                        <option value="SK" {% if flash.old[0].country %} {% if flash.old[0].country == "SK" %} selected {% endif %} {% else %} {% if country == "SK" %} selected {% endif %}  {% endif %}>Slovakia</option>
-                        <option value="SI" {% if flash.old[0].country %} {% if flash.old[0].country == "SI" %} selected {% endif %} {% else %} {% if country == "SI" %} selected {% endif %}  {% endif %}>Slovenia</option>
-                        <option value="SB" {% if flash.old[0].country %} {% if flash.old[0].country == "SB" %} selected {% endif %} {% else %} {% if country == "SB" %} selected {% endif %}  {% endif %}>Solomon Islands</option>
-                        <option value="SO" {% if flash.old[0].country %} {% if flash.old[0].country == "SO" %} selected {% endif %} {% else %} {% if country == "SO" %} selected {% endif %}  {% endif %}>Somalia</option>
-                        <option value="ZA" {% if flash.old[0].country %} {% if flash.old[0].country == "ZA" %} selected {% endif %} {% else %} {% if country == "ZA" %} selected {% endif %}  {% endif %}>South Africa</option>
-                        <option value="GS" {% if flash.old[0].country %} {% if flash.old[0].country == "GS" %} selected {% endif %} {% else %} {% if country == "GS" %} selected {% endif %}  {% endif %}>South Georgia and the South Sandwich Islands</option>
-                        <option value="SS" {% if flash.old[0].country %} {% if flash.old[0].country == "SS" %} selected {% endif %} {% else %} {% if country == "SS" %} selected {% endif %}  {% endif %}>South Sudan</option>
-                        <option value="ES" {% if flash.old[0].country %} {% if flash.old[0].country == "ES" %} selected {% endif %} {% else %} {% if country == "ES" %} selected {% endif %}  {% endif %}>Spain</option>
-                        <option value="LK" {% if flash.old[0].country %} {% if flash.old[0].country == "LK" %} selected {% endif %} {% else %} {% if country == "LK" %} selected {% endif %}  {% endif %}>Sri Lanka</option>
-                        <option value="SD" {% if flash.old[0].country %} {% if flash.old[0].country == "SD" %} selected {% endif %} {% else %} {% if country == "SD" %} selected {% endif %}  {% endif %}>Sudan</option>
-                        <option value="SR" {% if flash.old[0].country %} {% if flash.old[0].country == "SR" %} selected {% endif %} {% else %} {% if country == "SR" %} selected {% endif %}  {% endif %}>Suriname</option>
-                        <option value="SJ" {% if flash.old[0].country %} {% if flash.old[0].country == "SJ" %} selected {% endif %} {% else %} {% if country == "SJ" %} selected {% endif %}  {% endif %}>Svalbard and Jan Mayen</option>
-                        <option value="SZ" {% if flash.old[0].country %} {% if flash.old[0].country == "SZ" %} selected {% endif %} {% else %} {% if country == "SZ" %} selected {% endif %}  {% endif %}>Swaziland</option>
-                        <option value="SE" {% if flash.old[0].country %} {% if flash.old[0].country == "SE" %} selected {% endif %} {% else %} {% if country == "SE" %} selected {% endif %}  {% endif %}>Sweden</option>
-                        <option value="CH" {% if flash.old[0].country %} {% if flash.old[0].country == "CH" %} selected {% endif %} {% else %} {% if country == "CH" %} selected {% endif %}  {% endif %}>Switzerland</option>
-                        <option value="SY" {% if flash.old[0].country %} {% if flash.old[0].country == "SY" %} selected {% endif %} {% else %} {% if country == "SY" %} selected {% endif %}  {% endif %}>Syrian Arab Republic</option>
-                        <option value="TW" {% if flash.old[0].country %} {% if flash.old[0].country == "TW" %} selected {% endif %} {% else %} {% if country == "TW" %} selected {% endif %}  {% endif %}>Taiwan, Province of China</option>
-                        <option value="TJ" {% if flash.old[0].country %} {% if flash.old[0].country == "TJ" %} selected {% endif %} {% else %} {% if country == "TJ" %} selected {% endif %}  {% endif %}>Tajikistan</option>
-                        <option value="TZ" {% if flash.old[0].country %} {% if flash.old[0].country == "TZ" %} selected {% endif %} {% else %} {% if country == "TZ" %} selected {% endif %}  {% endif %}>Tanzania, United Republic of</option>
-                        <option value="TH" {% if flash.old[0].country %} {% if flash.old[0].country == "TH" %} selected {% endif %} {% else %} {% if country == "TH" %} selected {% endif %}  {% endif %}>Thailand</option>
-                        <option value="TL" {% if flash.old[0].country %} {% if flash.old[0].country == "TL" %} selected {% endif %} {% else %} {% if country == "TL" %} selected {% endif %}  {% endif %}>Timor-Leste</option>
-                        <option value="TG" {% if flash.old[0].country %} {% if flash.old[0].country == "TG" %} selected {% endif %} {% else %} {% if country == "TG" %} selected {% endif %}  {% endif %}>Togo</option>
-                        <option value="TK" {% if flash.old[0].country %} {% if flash.old[0].country == "TK" %} selected {% endif %} {% else %} {% if country == "TK" %} selected {% endif %}  {% endif %}>Tokelau</option>
-                        <option value="TO" {% if flash.old[0].country %} {% if flash.old[0].country == "TO" %} selected {% endif %} {% else %} {% if country == "TO" %} selected {% endif %}  {% endif %}>Tonga</option>
-                        <option value="TT" {% if flash.old[0].country %} {% if flash.old[0].country == "TT" %} selected {% endif %} {% else %} {% if country == "TT" %} selected {% endif %}  {% endif %}>Trinidad and Tobago</option>
-                        <option value="TN" {% if flash.old[0].country %} {% if flash.old[0].country == "TN" %} selected {% endif %} {% else %} {% if country == "TN" %} selected {% endif %}  {% endif %}>Tunisia</option>
-                        <option value="TR" {% if flash.old[0].country %} {% if flash.old[0].country == "TR" %} selected {% endif %} {% else %} {% if country == "TR" %} selected {% endif %}  {% endif %}>Turkey</option>
-                        <option value="TM" {% if flash.old[0].country %} {% if flash.old[0].country == "TM" %} selected {% endif %} {% else %} {% if country == "TM" %} selected {% endif %}  {% endif %}>Turkmenistan</option>
-                        <option value="TC" {% if flash.old[0].country %} {% if flash.old[0].country == "TC" %} selected {% endif %} {% else %} {% if country == "TC" %} selected {% endif %}  {% endif %}>Turks and Caicos Islands</option>
-                        <option value="TV" {% if flash.old[0].country %} {% if flash.old[0].country == "TV" %} selected {% endif %} {% else %} {% if country == "TV" %} selected {% endif %}  {% endif %}>Tuvalu</option>
-                        <option value="UG" {% if flash.old[0].country %} {% if flash.old[0].country == "UG" %} selected {% endif %} {% else %} {% if country == "UG" %} selected {% endif %}  {% endif %}>Uganda</option>
-                        <option value="UA" {% if flash.old[0].country %} {% if flash.old[0].country == "UA" %} selected {% endif %} {% else %} {% if country == "UA" %} selected {% endif %}  {% endif %}>Ukraine</option>
-                        <option value="AE" {% if flash.old[0].country %} {% if flash.old[0].country == "AE" %} selected {% endif %} {% else %} {% if country == "AE" %} selected {% endif %}  {% endif %}>United Arab Emirates</option>
-                        <option value="GB" {% if flash.old[0].country %} {% if flash.old[0].country == "GB" %} selected {% endif %} {% else %} {% if country == "GB" %} selected {% endif %}  {% endif %}>United Kingdom</option>
-                        <option value="US" {% if flash.old[0].country %} {% if flash.old[0].country == "US" %} selected {% endif %} {% else %} {% if country == "US" %} selected {% endif %}  {% endif %}>United States</option>
-                        <option value="UM" {% if flash.old[0].country %} {% if flash.old[0].country == "UM" %} selected {% endif %} {% else %} {% if country == "UM" %} selected {% endif %}  {% endif %}>United States Minor Outlying Islands</option>
-                        <option value="UY" {% if flash.old[0].country %} {% if flash.old[0].country == "UY" %} selected {% endif %} {% else %} {% if country == "UY" %} selected {% endif %}  {% endif %}>Uruguay</option>
-                        <option value="UZ" {% if flash.old[0].country %} {% if flash.old[0].country == "UZ" %} selected {% endif %} {% else %} {% if country == "UZ" %} selected {% endif %}  {% endif %}>Uzbekistan</option>
-                        <option value="VU" {% if flash.old[0].country %} {% if flash.old[0].country == "VU" %} selected {% endif %} {% else %} {% if country == "VU" %} selected {% endif %}  {% endif %}>Vanuatu</option>
-                        <option value="VE" {% if flash.old[0].country %} {% if flash.old[0].country == "VE" %} selected {% endif %} {% else %} {% if country == "VE" %} selected {% endif %}  {% endif %}>Venezuela, Bolivarian Republic of</option>
-                        <option value="VN" {% if flash.old[0].country %} {% if flash.old[0].country == "VN" %} selected {% endif %} {% else %} {% if country == "VN" %} selected {% endif %}  {% endif %}>Viet Nam</option>
-                        <option value="VG" {% if flash.old[0].country %} {% if flash.old[0].country == "VG" %} selected {% endif %} {% else %} {% if country == "VG" %} selected {% endif %}  {% endif %}>Virgin Islands, British</option>
-                        <option value="VI" {% if flash.old[0].country %} {% if flash.old[0].country == "VI" %} selected {% endif %} {% else %} {% if country == "VI" %} selected {% endif %}  {% endif %}>Virgin Islands, U.S.</option>
-                        <option value="WF" {% if flash.old[0].country %} {% if flash.old[0].country == "WF" %} selected {% endif %} {% else %} {% if country == "WF" %} selected {% endif %}  {% endif %}>Wallis and Futuna</option>
-                        <option value="EH" {% if flash.old[0].country %} {% if flash.old[0].country == "EH" %} selected {% endif %} {% else %} {% if country == "EH" %} selected {% endif %}  {% endif %}>Western Sahara</option>
-                        <option value="YE" {% if flash.old[0].country %} {% if flash.old[0].country == "YE" %} selected {% endif %} {% else %} {% if country == "YE" %} selected {% endif %}  {% endif %}>Yemen</option>
-                        <option value="ZM" {% if flash.old[0].country %} {% if flash.old[0].country == "ZM" %} selected {% endif %} {% else %} {% if country == "ZM" %} selected {% endif %}  {% endif %}>Zambia</option>
-                        <option value="ZW" {% if flash.old[0].country %} {% if flash.old[0].country == "ZW" %} selected {% endif %} {% else %} {% if country == "ZW" %} selected {% endif %}  {% endif %}>Zimbabwe</option>
-                    </select>
-                    {% if flash.errors[0].country %}
-                        <p class="text-red-600 text-sm">{{ flash.errors[0].country }}</p>
-                    {% endif %}
+            
+                <div class="mb-4 md:flex md:items-center">
+                    <label for="country" class="md:w-40 md:inline-block block mb-1 md:mb-0">البلد</label>
+                    <div class="block">
+                        <select type="text" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" name="country" id="country" required>
+                            <option value="AF" {% if flash.old[0].country %} {% if flash.old[0].country == "AF" %} selected {% endif %} {% else %} {% if country == "AF" %} selected {% endif %}  {% endif %}>Afghanistan</option>
+                            <option value="AX" {% if flash.old[0].country %} {% if flash.old[0].country == "AX" %} selected {% endif %} {% else %} {% if country == "AX" %} selected {% endif %}  {% endif %}>Åland Islands</option>
+                            <option value="AL" {% if flash.old[0].country %} {% if flash.old[0].country == "AL" %} selected {% endif %} {% else %} {% if country == "AL" %} selected {% endif %}  {% endif %}>Albania</option>
+                            <option value="DZ" {% if flash.old[0].country %} {% if flash.old[0].country == "DZ" %} selected {% endif %} {% else %} {% if country == "DZ" %} selected {% endif %}  {% endif %}>Algeria</option>
+                            <option value="AS" {% if flash.old[0].country %} {% if flash.old[0].country == "AS" %} selected {% endif %} {% else %} {% if country == "AS" %} selected {% endif %}  {% endif %}>American Samoa</option>
+                            <option value="AD" {% if flash.old[0].country %} {% if flash.old[0].country == "AD" %} selected {% endif %} {% else %} {% if country == "AD" %} selected {% endif %}  {% endif %}>Andorra</option>
+                            <option value="AO" {% if flash.old[0].country %} {% if flash.old[0].country == "AO" %} selected {% endif %} {% else %} {% if country == "AO" %} selected {% endif %}  {% endif %}>Angola</option>
+                            <option value="AI" {% if flash.old[0].country %} {% if flash.old[0].country == "AI" %} selected {% endif %} {% else %} {% if country == "AI" %} selected {% endif %}  {% endif %}>Anguilla</option>
+                            <option value="AQ" {% if flash.old[0].country %} {% if flash.old[0].country == "AQ" %} selected {% endif %} {% else %} {% if country == "AQ" %} selected {% endif %}  {% endif %}>Antarctica</option>
+                            <option value="AG" {% if flash.old[0].country %} {% if flash.old[0].country == "AG" %} selected {% endif %} {% else %} {% if country == "AG" %} selected {% endif %}  {% endif %}>Antigua and Barbuda</option>
+                            <option value="AR" {% if flash.old[0].country %} {% if flash.old[0].country == "AR" %} selected {% endif %} {% else %} {% if country == "AR" %} selected {% endif %}  {% endif %}>Argentina</option>
+                            <option value="AM" {% if flash.old[0].country %} {% if flash.old[0].country == "AM" %} selected {% endif %} {% else %} {% if country == "AM" %} selected {% endif %}  {% endif %}>Armenia</option>
+                            <option value="AW" {% if flash.old[0].country %} {% if flash.old[0].country == "AW" %} selected {% endif %} {% else %} {% if country == "AW" %} selected {% endif %}  {% endif %}>Aruba</option>
+                            <option value="AU" {% if flash.old[0].country %} {% if flash.old[0].country == "AU" %} selected {% endif %} {% else %} {% if country == "AU" %} selected {% endif %}  {% endif %}>Australia</option>
+                            <option value="AT" {% if flash.old[0].country %} {% if flash.old[0].country == "AT" %} selected {% endif %} {% else %} {% if country == "AT" %} selected {% endif %}  {% endif %}>Austria</option>
+                            <option value="AZ" {% if flash.old[0].country %} {% if flash.old[0].country == "AZ" %} selected {% endif %} {% else %} {% if country == "AZ" %} selected {% endif %}  {% endif %}>Azerbaijan</option>
+                            <option value="BS" {% if flash.old[0].country %} {% if flash.old[0].country == "BS" %} selected {% endif %} {% else %} {% if country == "BS" %} selected {% endif %}  {% endif %}>Bahamas</option>
+                            <option value="BH" {% if flash.old[0].country %} {% if flash.old[0].country == "BH" %} selected {% endif %} {% else %} {% if country == "BH" %} selected {% endif %}  {% endif %}>Bahrain</option>
+                            <option value="BD" {% if flash.old[0].country %} {% if flash.old[0].country == "BD" %} selected {% endif %} {% else %} {% if country == "BD" %} selected {% endif %}  {% endif %}>Bangladesh</option>
+                            <option value="BB" {% if flash.old[0].country %} {% if flash.old[0].country == "BB" %} selected {% endif %} {% else %} {% if country == "BB" %} selected {% endif %}  {% endif %}>Barbados</option>
+                            <option value="BY" {% if flash.old[0].country %} {% if flash.old[0].country == "BY" %} selected {% endif %} {% else %} {% if country == "BY" %} selected {% endif %}  {% endif %}>Belarus</option>
+                            <option value="BE" {% if flash.old[0].country %} {% if flash.old[0].country == "BE" %} selected {% endif %} {% else %} {% if country == "BE" %} selected {% endif %}  {% endif %}>Belgium</option>
+                            <option value="BZ" {% if flash.old[0].country %} {% if flash.old[0].country == "BZ" %} selected {% endif %} {% else %} {% if country == "BZ" %} selected {% endif %}  {% endif %}>Belize</option>
+                            <option value="BJ" {% if flash.old[0].country %} {% if flash.old[0].country == "BJ" %} selected {% endif %} {% else %} {% if country == "BJ" %} selected {% endif %}  {% endif %}>Benin</option>
+                            <option value="BM" {% if flash.old[0].country %} {% if flash.old[0].country == "BM" %} selected {% endif %} {% else %} {% if country == "BM" %} selected {% endif %}  {% endif %}>Bermuda</option>
+                            <option value="BT" {% if flash.old[0].country %} {% if flash.old[0].country == "BT" %} selected {% endif %} {% else %} {% if country == "BT" %} selected {% endif %}  {% endif %}>Bhutan</option>
+                            <option value="BO" {% if flash.old[0].country %} {% if flash.old[0].country == "BO" %} selected {% endif %} {% else %} {% if country == "BO" %} selected {% endif %}  {% endif %}>Bolivia, Plurinational State of</option>
+                            <option value="BQ" {% if flash.old[0].country %} {% if flash.old[0].country == "BQ" %} selected {% endif %} {% else %} {% if country == "BQ" %} selected {% endif %}  {% endif %}>Bonaire, Sint Eustatius and Saba</option>
+                            <option value="BA" {% if flash.old[0].country %} {% if flash.old[0].country == "BA" %} selected {% endif %} {% else %} {% if country == "BA" %} selected {% endif %}  {% endif %}>Bosnia and Herzegovina</option>
+                            <option value="BW" {% if flash.old[0].country %} {% if flash.old[0].country == "BW" %} selected {% endif %} {% else %} {% if country == "BW" %} selected {% endif %}  {% endif %}>Botswana</option>
+                            <option value="BV" {% if flash.old[0].country %} {% if flash.old[0].country == "BV" %} selected {% endif %} {% else %} {% if country == "BV" %} selected {% endif %}  {% endif %}>Bouvet Island</option>
+                            <option value="BR" {% if flash.old[0].country %} {% if flash.old[0].country == "BR" %} selected {% endif %} {% else %} {% if country == "BR" %} selected {% endif %}  {% endif %}>Brazil</option>
+                            <option value="IO" {% if flash.old[0].country %} {% if flash.old[0].country == "IO" %} selected {% endif %} {% else %} {% if country == "IO" %} selected {% endif %}  {% endif %}>British Indian Ocean Territory</option>
+                            <option value="BN" {% if flash.old[0].country %} {% if flash.old[0].country == "BN" %} selected {% endif %} {% else %} {% if country == "BN" %} selected {% endif %}  {% endif %}>Brunei Darussalam</option>
+                            <option value="BG" {% if flash.old[0].country %} {% if flash.old[0].country == "BG" %} selected {% endif %} {% else %} {% if country == "BG" %} selected {% endif %}  {% endif %}>Bulgaria</option>
+                            <option value="BF" {% if flash.old[0].country %} {% if flash.old[0].country == "BF" %} selected {% endif %} {% else %} {% if country == "BF" %} selected {% endif %}  {% endif %}>Burkina Faso</option>
+                            <option value="BI" {% if flash.old[0].country %} {% if flash.old[0].country == "BI" %} selected {% endif %} {% else %} {% if country == "BI" %} selected {% endif %}  {% endif %}>Burundi</option>
+                            <option value="KH" {% if flash.old[0].country %} {% if flash.old[0].country == "KH" %} selected {% endif %} {% else %} {% if country == "KH" %} selected {% endif %}  {% endif %}>Cambodia</option>
+                            <option value="CM" {% if flash.old[0].country %} {% if flash.old[0].country == "CM" %} selected {% endif %} {% else %} {% if country == "CM" %} selected {% endif %}  {% endif %}>Cameroon</option>
+                            <option value="CA" {% if flash.old[0].country %} {% if flash.old[0].country == "CA" %} selected {% endif %} {% else %} {% if country == "CA" %} selected {% endif %}  {% endif %}>Canada</option>
+                            <option value="CV" {% if flash.old[0].country %} {% if flash.old[0].country == "CV" %} selected {% endif %} {% else %} {% if country == "CV" %} selected {% endif %}  {% endif %}>Cape Verde</option>
+                            <option value="KY" {% if flash.old[0].country %} {% if flash.old[0].country == "KY" %} selected {% endif %} {% else %} {% if country == "KY" %} selected {% endif %}  {% endif %}>Cayman Islands</option>
+                            <option value="CF" {% if flash.old[0].country %} {% if flash.old[0].country == "CF" %} selected {% endif %} {% else %} {% if country == "CF" %} selected {% endif %}  {% endif %}>Central African Republic</option>
+                            <option value="TD" {% if flash.old[0].country %} {% if flash.old[0].country == "TD" %} selected {% endif %} {% else %} {% if country == "TD" %} selected {% endif %}  {% endif %}>Chad</option>
+                            <option value="CL" {% if flash.old[0].country %} {% if flash.old[0].country == "CL" %} selected {% endif %} {% else %} {% if country == "CL" %} selected {% endif %}  {% endif %}>Chile</option>
+                            <option value="CN" {% if flash.old[0].country %} {% if flash.old[0].country == "CN" %} selected {% endif %} {% else %} {% if country == "CN" %} selected {% endif %}  {% endif %}>China</option>
+                            <option value="CX" {% if flash.old[0].country %} {% if flash.old[0].country == "CX" %} selected {% endif %} {% else %} {% if country == "CX" %} selected {% endif %}  {% endif %}>Christmas Island</option>
+                            <option value="CC" {% if flash.old[0].country %} {% if flash.old[0].country == "CC" %} selected {% endif %} {% else %} {% if country == "CC" %} selected {% endif %}  {% endif %}>Cocos (Keeling) Islands</option>
+                            <option value="CO" {% if flash.old[0].country %} {% if flash.old[0].country == "CO" %} selected {% endif %} {% else %} {% if country == "CO" %} selected {% endif %}  {% endif %}>Colombia</option>
+                            <option value="KM" {% if flash.old[0].country %} {% if flash.old[0].country == "KM" %} selected {% endif %} {% else %} {% if country == "KM" %} selected {% endif %}  {% endif %}>Comoros</option>
+                            <option value="CG" {% if flash.old[0].country %} {% if flash.old[0].country == "CG" %} selected {% endif %} {% else %} {% if country == "CG" %} selected {% endif %}  {% endif %}>Congo</option>
+                            <option value="CD" {% if flash.old[0].country %} {% if flash.old[0].country == "CD" %} selected {% endif %} {% else %} {% if country == "CD" %} selected {% endif %}  {% endif %}>Congo, the Democratic Republic of the</option>
+                            <option value="CK" {% if flash.old[0].country %} {% if flash.old[0].country == "CK" %} selected {% endif %} {% else %} {% if country == "CK" %} selected {% endif %}  {% endif %}>Cook Islands</option>
+                            <option value="CR" {% if flash.old[0].country %} {% if flash.old[0].country == "CR" %} selected {% endif %} {% else %} {% if country == "CR" %} selected {% endif %}  {% endif %}>Costa Rica</option>
+                            <option value="CI" {% if flash.old[0].country %} {% if flash.old[0].country == "CI" %} selected {% endif %} {% else %} {% if country == "CI" %} selected {% endif %}  {% endif %}>Côte d'Ivoire</option>
+                            <option value="HR" {% if flash.old[0].country %} {% if flash.old[0].country == "HR" %} selected {% endif %} {% else %} {% if country == "HR" %} selected {% endif %}  {% endif %}>Croatia</option>
+                            <option value="CU" {% if flash.old[0].country %} {% if flash.old[0].country == "CU" %} selected {% endif %} {% else %} {% if country == "CU" %} selected {% endif %}  {% endif %}>Cuba</option>
+                            <option value="CW" {% if flash.old[0].country %} {% if flash.old[0].country == "CW" %} selected {% endif %} {% else %} {% if country == "CW" %} selected {% endif %}  {% endif %}>Curaçao</option>
+                            <option value="CY" {% if flash.old[0].country %} {% if flash.old[0].country == "CY" %} selected {% endif %} {% else %} {% if country == "CY" %} selected {% endif %}  {% endif %}>Cyprus</option>
+                            <option value="CZ" {% if flash.old[0].country %} {% if flash.old[0].country == "CZ" %} selected {% endif %} {% else %} {% if country == "CZ" %} selected {% endif %}  {% endif %}>Czech Republic</option>
+                            <option value="DK" {% if flash.old[0].country %} {% if flash.old[0].country == "DK" %} selected {% endif %} {% else %} {% if country == "DK" %} selected {% endif %}  {% endif %}>Denmark</option>
+                            <option value="DJ" {% if flash.old[0].country %} {% if flash.old[0].country == "DJ" %} selected {% endif %} {% else %} {% if country == "DJ" %} selected {% endif %}  {% endif %}>Djibouti</option>
+                            <option value="DM" {% if flash.old[0].country %} {% if flash.old[0].country == "DM" %} selected {% endif %} {% else %} {% if country == "DM" %} selected {% endif %}  {% endif %}>Dominica</option>
+                            <option value="DO" {% if flash.old[0].country %} {% if flash.old[0].country == "DO" %} selected {% endif %} {% else %} {% if country == "DO" %} selected {% endif %}  {% endif %}>Dominican Republic</option>
+                            <option value="EC" {% if flash.old[0].country %} {% if flash.old[0].country == "EC" %} selected {% endif %} {% else %} {% if country == "EC" %} selected {% endif %}  {% endif %}>Ecuador</option>
+                            <option value="EG" {% if flash.old[0].country %} {% if flash.old[0].country == "EG" %} selected {% endif %} {% else %} {% if country == "EG" %} selected {% endif %}  {% endif %}>Egypt</option>
+                            <option value="SV" {% if flash.old[0].country %} {% if flash.old[0].country == "SV" %} selected {% endif %} {% else %} {% if country == "SV" %} selected {% endif %}  {% endif %}>El Salvador</option>
+                            <option value="GQ" {% if flash.old[0].country %} {% if flash.old[0].country == "GQ" %} selected {% endif %} {% else %} {% if country == "GQ" %} selected {% endif %}  {% endif %}>Equatorial Guinea</option>
+                            <option value="ER" {% if flash.old[0].country %} {% if flash.old[0].country == "ER" %} selected {% endif %} {% else %} {% if country == "ER" %} selected {% endif %}  {% endif %}>Eritrea</option>
+                            <option value="EE" {% if flash.old[0].country %} {% if flash.old[0].country == "EE" %} selected {% endif %} {% else %} {% if country == "EE" %} selected {% endif %}  {% endif %}>Estonia</option>
+                            <option value="ET" {% if flash.old[0].country %} {% if flash.old[0].country == "ET" %} selected {% endif %} {% else %} {% if country == "ET" %} selected {% endif %}  {% endif %}>Ethiopia</option>
+                            <option value="FK" {% if flash.old[0].country %} {% if flash.old[0].country == "FK" %} selected {% endif %} {% else %} {% if country == "FK" %} selected {% endif %}  {% endif %}>Falkland Islands (Malvinas)</option>
+                            <option value="FO" {% if flash.old[0].country %} {% if flash.old[0].country == "FO" %} selected {% endif %} {% else %} {% if country == "FO" %} selected {% endif %}  {% endif %}>Faroe Islands</option>
+                            <option value="FJ" {% if flash.old[0].country %} {% if flash.old[0].country == "FJ" %} selected {% endif %} {% else %} {% if country == "FJ" %} selected {% endif %}  {% endif %}>Fiji</option>
+                            <option value="FI" {% if flash.old[0].country %} {% if flash.old[0].country == "FI" %} selected {% endif %} {% else %} {% if country == "FI" %} selected {% endif %}  {% endif %}>Finland</option>
+                            <option value="FR" {% if flash.old[0].country %} {% if flash.old[0].country == "FR" %} selected {% endif %} {% else %} {% if country == "FR" %} selected {% endif %}  {% endif %}>France</option>
+                            <option value="GF" {% if flash.old[0].country %} {% if flash.old[0].country == "GF" %} selected {% endif %} {% else %} {% if country == "GF" %} selected {% endif %}  {% endif %}>French Guiana</option>
+                            <option value="PF" {% if flash.old[0].country %} {% if flash.old[0].country == "PF" %} selected {% endif %} {% else %} {% if country == "PF" %} selected {% endif %}  {% endif %}>French Polynesia</option>
+                            <option value="TF" {% if flash.old[0].country %} {% if flash.old[0].country == "TF" %} selected {% endif %} {% else %} {% if country == "TF" %} selected {% endif %}  {% endif %}>French Southern Territories</option>
+                            <option value="GA" {% if flash.old[0].country %} {% if flash.old[0].country == "GA" %} selected {% endif %} {% else %} {% if country == "GA" %} selected {% endif %}  {% endif %}>Gabon</option>
+                            <option value="GM" {% if flash.old[0].country %} {% if flash.old[0].country == "GM" %} selected {% endif %} {% else %} {% if country == "GM" %} selected {% endif %}  {% endif %}>Gambia</option>
+                            <option value="GE" {% if flash.old[0].country %} {% if flash.old[0].country == "GE" %} selected {% endif %} {% else %} {% if country == "GE" %} selected {% endif %}  {% endif %}>Georgia</option>
+                            <option value="DE" {% if flash.old[0].country %} {% if flash.old[0].country == "DE" %} selected {% endif %} {% else %} {% if country == "DE" %} selected {% endif %}  {% endif %}>Germany</option>
+                            <option value="GH" {% if flash.old[0].country %} {% if flash.old[0].country == "GH" %} selected {% endif %} {% else %} {% if country == "GH" %} selected {% endif %}  {% endif %}>Ghana</option>
+                            <option value="GI" {% if flash.old[0].country %} {% if flash.old[0].country == "GI" %} selected {% endif %} {% else %} {% if country == "GI" %} selected {% endif %}  {% endif %}>Gibraltar</option>
+                            <option value="GR" {% if flash.old[0].country %} {% if flash.old[0].country == "GR" %} selected {% endif %} {% else %} {% if country == "GR" %} selected {% endif %}  {% endif %}>Greece</option>
+                            <option value="GL" {% if flash.old[0].country %} {% if flash.old[0].country == "GL" %} selected {% endif %} {% else %} {% if country == "GL" %} selected {% endif %}  {% endif %}>Greenland</option>
+                            <option value="GD" {% if flash.old[0].country %} {% if flash.old[0].country == "GD" %} selected {% endif %} {% else %} {% if country == "GD" %} selected {% endif %}  {% endif %}>Grenada</option>
+                            <option value="GP" {% if flash.old[0].country %} {% if flash.old[0].country == "GP" %} selected {% endif %} {% else %} {% if country == "GP" %} selected {% endif %}  {% endif %}>Guadeloupe</option>
+                            <option value="GU" {% if flash.old[0].country %} {% if flash.old[0].country == "GU" %} selected {% endif %} {% else %} {% if country == "GU" %} selected {% endif %}  {% endif %}>Guam</option>
+                            <option value="GT" {% if flash.old[0].country %} {% if flash.old[0].country == "GT" %} selected {% endif %} {% else %} {% if country == "GT" %} selected {% endif %}  {% endif %}>Guatemala</option>
+                            <option value="GG" {% if flash.old[0].country %} {% if flash.old[0].country == "GG" %} selected {% endif %} {% else %} {% if country == "GG" %} selected {% endif %}  {% endif %}>Guernsey</option>
+                            <option value="GN" {% if flash.old[0].country %} {% if flash.old[0].country == "GN" %} selected {% endif %} {% else %} {% if country == "GN" %} selected {% endif %}  {% endif %}>Guinea</option>
+                            <option value="GW" {% if flash.old[0].country %} {% if flash.old[0].country == "GW" %} selected {% endif %} {% else %} {% if country == "GW" %} selected {% endif %}  {% endif %}>Guinea-Bissau</option>
+                            <option value="GY" {% if flash.old[0].country %} {% if flash.old[0].country == "GY" %} selected {% endif %} {% else %} {% if country == "GY" %} selected {% endif %}  {% endif %}>Guyana</option>
+                            <option value="HT" {% if flash.old[0].country %} {% if flash.old[0].country == "HT" %} selected {% endif %} {% else %} {% if country == "HT" %} selected {% endif %}  {% endif %}>Haiti</option>
+                            <option value="HM" {% if flash.old[0].country %} {% if flash.old[0].country == "HM" %} selected {% endif %} {% else %} {% if country == "HM" %} selected {% endif %}  {% endif %}>Heard Island and McDonald Islands</option>
+                            <option value="VA" {% if flash.old[0].country %} {% if flash.old[0].country == "VA" %} selected {% endif %} {% else %} {% if country == "VA" %} selected {% endif %}  {% endif %}>Holy See (Vatican City State)</option>
+                            <option value="HN" {% if flash.old[0].country %} {% if flash.old[0].country == "HN" %} selected {% endif %} {% else %} {% if country == "HN" %} selected {% endif %}  {% endif %}>Honduras</option>
+                            <option value="HK" {% if flash.old[0].country %} {% if flash.old[0].country == "HK" %} selected {% endif %} {% else %} {% if country == "HK" %} selected {% endif %}  {% endif %}>Hong Kong</option>
+                            <option value="HU" {% if flash.old[0].country %} {% if flash.old[0].country == "HU" %} selected {% endif %} {% else %} {% if country == "HU" %} selected {% endif %}  {% endif %}>Hungary</option>
+                            <option value="IS" {% if flash.old[0].country %} {% if flash.old[0].country == "IS" %} selected {% endif %} {% else %} {% if country == "IS" %} selected {% endif %}  {% endif %}>Iceland</option>
+                            <option value="IN" {% if flash.old[0].country %} {% if flash.old[0].country == "IN" %} selected {% endif %} {% else %} {% if country == "IN" %} selected {% endif %}  {% endif %}>India</option>
+                            <option value="ID" {% if flash.old[0].country %} {% if flash.old[0].country == "ID" %} selected {% endif %} {% else %} {% if country == "ID" %} selected {% endif %}  {% endif %}>Indonesia</option>
+                            <option value="IR" {% if flash.old[0].country %} {% if flash.old[0].country == "IR" %} selected {% endif %} {% else %} {% if country == "IR" %} selected {% endif %}  {% endif %}>Iran, Islamic Republic of</option>
+                            <option value="IQ" {% if flash.old[0].country %} {% if flash.old[0].country == "IQ" %} selected {% endif %} {% else %} {% if country == "IQ" %} selected {% endif %}  {% endif %}>Iraq</option>
+                            <option value="IE" {% if flash.old[0].country %} {% if flash.old[0].country == "IE" %} selected {% endif %} {% else %} {% if country == "IE" %} selected {% endif %}  {% endif %}>Ireland</option>
+                            <option value="IM" {% if flash.old[0].country %} {% if flash.old[0].country == "IM" %} selected {% endif %} {% else %} {% if country == "IM" %} selected {% endif %}  {% endif %}>Isle of Man</option>
+                            <option value="IL" {% if flash.old[0].country %} {% if flash.old[0].country == "IL" %} selected {% endif %} {% else %} {% if country == "IL" %} selected {% endif %}  {% endif %}>Israel</option>
+                            <option value="IT" {% if flash.old[0].country %} {% if flash.old[0].country == "IT" %} selected {% endif %} {% else %} {% if country == "IT" %} selected {% endif %}  {% endif %}>Italy</option>
+                            <option value="JM" {% if flash.old[0].country %} {% if flash.old[0].country == "JM" %} selected {% endif %} {% else %} {% if country == "JM" %} selected {% endif %}  {% endif %}>Jamaica</option>
+                            <option value="JP" {% if flash.old[0].country %} {% if flash.old[0].country == "JP" %} selected {% endif %} {% else %} {% if country == "JP" %} selected {% endif %}  {% endif %}>Japan</option>
+                            <option value="JE" {% if flash.old[0].country %} {% if flash.old[0].country == "JE" %} selected {% endif %} {% else %} {% if country == "JE" %} selected {% endif %}  {% endif %}>Jersey</option>
+                            <option value="JO" {% if flash.old[0].country %} {% if flash.old[0].country == "JO" %} selected {% endif %} {% else %} {% if country == "JO" %} selected {% endif %}  {% endif %}>Jordan</option>
+                            <option value="KZ" {% if flash.old[0].country %} {% if flash.old[0].country == "KZ" %} selected {% endif %} {% else %} {% if country == "KZ" %} selected {% endif %}  {% endif %}>Kazakhstan</option>
+                            <option value="KE" {% if flash.old[0].country %} {% if flash.old[0].country == "KE" %} selected {% endif %} {% else %} {% if country == "KE" %} selected {% endif %}  {% endif %}>Kenya</option>
+                            <option value="KI" {% if flash.old[0].country %} {% if flash.old[0].country == "KI" %} selected {% endif %} {% else %} {% if country == "KI" %} selected {% endif %}  {% endif %}>Kiribati</option>
+                            <option value="KP" {% if flash.old[0].country %} {% if flash.old[0].country == "KP" %} selected {% endif %} {% else %} {% if country == "KP" %} selected {% endif %}  {% endif %}>Korea, Democratic People's Republic of</option>
+                            <option value="KR" {% if flash.old[0].country %} {% if flash.old[0].country == "KR" %} selected {% endif %} {% else %} {% if country == "KR" %} selected {% endif %}  {% endif %}>Korea, Republic of</option>
+                            <option value="KW" {% if flash.old[0].country %} {% if flash.old[0].country == "KW" %} selected {% endif %} {% else %} {% if country == "KW" %} selected {% endif %}  {% endif %}>Kuwait</option>
+                            <option value="KG" {% if flash.old[0].country %} {% if flash.old[0].country == "KG" %} selected {% endif %} {% else %} {% if country == "KG" %} selected {% endif %}  {% endif %}>Kyrgyzstan</option>
+                            <option value="LA" {% if flash.old[0].country %} {% if flash.old[0].country == "LA" %} selected {% endif %} {% else %} {% if country == "LA" %} selected {% endif %}  {% endif %}>Lao People's Democratic Republic</option>
+                            <option value="LV" {% if flash.old[0].country %} {% if flash.old[0].country == "LV" %} selected {% endif %} {% else %} {% if country == "LV" %} selected {% endif %}  {% endif %}>Latvia</option>
+                            <option value="LB" {% if flash.old[0].country %} {% if flash.old[0].country == "LB" %} selected {% endif %} {% else %} {% if country == "LB" %} selected {% endif %}  {% endif %}>Lebanon</option>
+                            <option value="LS" {% if flash.old[0].country %} {% if flash.old[0].country == "LS" %} selected {% endif %} {% else %} {% if country == "LS" %} selected {% endif %}  {% endif %}>Lesotho</option>
+                            <option value="LR" {% if flash.old[0].country %} {% if flash.old[0].country == "LR" %} selected {% endif %} {% else %} {% if country == "LR" %} selected {% endif %}  {% endif %}>Liberia</option>
+                            <option value="LY" {% if flash.old[0].country %} {% if flash.old[0].country == "LY" %} selected {% endif %} {% else %} {% if country == "LY" %} selected {% endif %}  {% endif %}>Libya</option>
+                            <option value="LI" {% if flash.old[0].country %} {% if flash.old[0].country == "LI" %} selected {% endif %} {% else %} {% if country == "LI" %} selected {% endif %}  {% endif %}>Liechtenstein</option>
+                            <option value="LT" {% if flash.old[0].country %} {% if flash.old[0].country == "LT" %} selected {% endif %} {% else %} {% if country == "LT" %} selected {% endif %}  {% endif %}>Lithuania</option>
+                            <option value="LU" {% if flash.old[0].country %} {% if flash.old[0].country == "LU" %} selected {% endif %} {% else %} {% if country == "LU" %} selected {% endif %}  {% endif %}>Luxembourg</option>
+                            <option value="MO" {% if flash.old[0].country %} {% if flash.old[0].country == "MO" %} selected {% endif %} {% else %} {% if country == "MO" %} selected {% endif %}  {% endif %}>Macao</option>
+                            <option value="MK" {% if flash.old[0].country %} {% if flash.old[0].country == "MK" %} selected {% endif %} {% else %} {% if country == "MK" %} selected {% endif %}  {% endif %}>Macedonia, the former Yugoslav Republic of</option>
+                            <option value="MG" {% if flash.old[0].country %} {% if flash.old[0].country == "MG" %} selected {% endif %} {% else %} {% if country == "MG" %} selected {% endif %}  {% endif %}>Madagascar</option>
+                            <option value="MW" {% if flash.old[0].country %} {% if flash.old[0].country == "MW" %} selected {% endif %} {% else %} {% if country == "MW" %} selected {% endif %}  {% endif %}>Malawi</option>
+                            <option value="MY" {% if flash.old[0].country %} {% if flash.old[0].country == "MY" %} selected {% endif %} {% else %} {% if country == "MY" %} selected {% endif %}  {% endif %}>Malaysia</option>
+                            <option value="MV" {% if flash.old[0].country %} {% if flash.old[0].country == "MV" %} selected {% endif %} {% else %} {% if country == "MV" %} selected {% endif %}  {% endif %}>Maldives</option>
+                            <option value="ML" {% if flash.old[0].country %} {% if flash.old[0].country == "ML" %} selected {% endif %} {% else %} {% if country == "ML" %} selected {% endif %}  {% endif %}>Mali</option>
+                            <option value="MT" {% if flash.old[0].country %} {% if flash.old[0].country == "MT" %} selected {% endif %} {% else %} {% if country == "MT" %} selected {% endif %}  {% endif %}>Malta</option>
+                            <option value="MH" {% if flash.old[0].country %} {% if flash.old[0].country == "MH" %} selected {% endif %} {% else %} {% if country == "MH" %} selected {% endif %}  {% endif %}>Marshall Islands</option>
+                            <option value="MQ" {% if flash.old[0].country %} {% if flash.old[0].country == "MQ" %} selected {% endif %} {% else %} {% if country == "MQ" %} selected {% endif %}  {% endif %}>Martinique</option>
+                            <option value="MR" {% if flash.old[0].country %} {% if flash.old[0].country == "MR" %} selected {% endif %} {% else %} {% if country == "MR" %} selected {% endif %}  {% endif %}>Mauritania</option>
+                            <option value="MU" {% if flash.old[0].country %} {% if flash.old[0].country == "MU" %} selected {% endif %} {% else %} {% if country == "MU" %} selected {% endif %}  {% endif %}>Mauritius</option>
+                            <option value="YT" {% if flash.old[0].country %} {% if flash.old[0].country == "YT" %} selected {% endif %} {% else %} {% if country == "YT" %} selected {% endif %}  {% endif %}>Mayotte</option>
+                            <option value="MX" {% if flash.old[0].country %} {% if flash.old[0].country == "MX" %} selected {% endif %} {% else %} {% if country == "MX" %} selected {% endif %}  {% endif %}>Mexico</option>
+                            <option value="FM" {% if flash.old[0].country %} {% if flash.old[0].country == "FM" %} selected {% endif %} {% else %} {% if country == "FM" %} selected {% endif %}  {% endif %}>Micronesia, Federated States of</option>
+                            <option value="MD" {% if flash.old[0].country %} {% if flash.old[0].country == "MD" %} selected {% endif %} {% else %} {% if country == "MD" %} selected {% endif %}  {% endif %}>Moldova, Republic of</option>
+                            <option value="MC" {% if flash.old[0].country %} {% if flash.old[0].country == "MC" %} selected {% endif %} {% else %} {% if country == "MC" %} selected {% endif %}  {% endif %}>Monaco</option>
+                            <option value="MN" {% if flash.old[0].country %} {% if flash.old[0].country == "MN" %} selected {% endif %} {% else %} {% if country == "MN" %} selected {% endif %}  {% endif %}>Mongolia</option>
+                            <option value="ME" {% if flash.old[0].country %} {% if flash.old[0].country == "ME" %} selected {% endif %} {% else %} {% if country == "ME" %} selected {% endif %}  {% endif %}>Montenegro</option>
+                            <option value="MS" {% if flash.old[0].country %} {% if flash.old[0].country == "MS" %} selected {% endif %} {% else %} {% if country == "MS" %} selected {% endif %}  {% endif %}>Montserrat</option>
+                            <option value="MA" {% if flash.old[0].country %} {% if flash.old[0].country == "MA" %} selected {% endif %} {% else %} {% if country == "MA" %} selected {% endif %}  {% endif %}>Morocco</option>
+                            <option value="MZ" {% if flash.old[0].country %} {% if flash.old[0].country == "MZ" %} selected {% endif %} {% else %} {% if country == "MZ" %} selected {% endif %}  {% endif %}>Mozambique</option>
+                            <option value="MM" {% if flash.old[0].country %} {% if flash.old[0].country == "MM" %} selected {% endif %} {% else %} {% if country == "MM" %} selected {% endif %}  {% endif %}>Myanmar</option>
+                            <option value="NA" {% if flash.old[0].country %} {% if flash.old[0].country == "NA" %} selected {% endif %} {% else %} {% if country == "NA" %} selected {% endif %}  {% endif %}>Namibia</option>
+                            <option value="NR" {% if flash.old[0].country %} {% if flash.old[0].country == "NR" %} selected {% endif %} {% else %} {% if country == "NR" %} selected {% endif %}  {% endif %}>Nauru</option>
+                            <option value="NP" {% if flash.old[0].country %} {% if flash.old[0].country == "NP" %} selected {% endif %} {% else %} {% if country == "NP" %} selected {% endif %}  {% endif %}>Nepal</option>
+                            <option value="NL" {% if flash.old[0].country %} {% if flash.old[0].country == "NL" %} selected {% endif %} {% else %} {% if country == "NL" %} selected {% endif %}  {% endif %}>Netherlands</option>
+                            <option value="NC" {% if flash.old[0].country %} {% if flash.old[0].country == "NC" %} selected {% endif %} {% else %} {% if country == "NC" %} selected {% endif %}  {% endif %}>New Caledonia</option>
+                            <option value="NZ" {% if flash.old[0].country %} {% if flash.old[0].country == "NZ" %} selected {% endif %} {% else %} {% if country == "NZ" %} selected {% endif %}  {% endif %}>New Zealand</option>
+                            <option value="NI" {% if flash.old[0].country %} {% if flash.old[0].country == "NI" %} selected {% endif %} {% else %} {% if country == "NI" %} selected {% endif %}  {% endif %}>Nicaragua</option>
+                            <option value="NE" {% if flash.old[0].country %} {% if flash.old[0].country == "NE" %} selected {% endif %} {% else %} {% if country == "NE" %} selected {% endif %}  {% endif %}>Niger</option>
+                            <option value="NG" {% if flash.old[0].country %} {% if flash.old[0].country == "NG" %} selected {% endif %} {% else %} {% if country == "NG" %} selected {% endif %}  {% endif %}>Nigeria</option>
+                            <option value="NU" {% if flash.old[0].country %} {% if flash.old[0].country == "NU" %} selected {% endif %} {% else %} {% if country == "NU" %} selected {% endif %}  {% endif %}>Niue</option>
+                            <option value="NF" {% if flash.old[0].country %} {% if flash.old[0].country == "NF" %} selected {% endif %} {% else %} {% if country == "NF" %} selected {% endif %}  {% endif %}>Norfolk Island</option>
+                            <option value="MP" {% if flash.old[0].country %} {% if flash.old[0].country == "MP" %} selected {% endif %} {% else %} {% if country == "MP" %} selected {% endif %}  {% endif %}>Northern Mariana Islands</option>
+                            <option value="NO" {% if flash.old[0].country %} {% if flash.old[0].country == "NO" %} selected {% endif %} {% else %} {% if country == "NO" %} selected {% endif %}  {% endif %}>Norway</option>
+                            <option value="OM" {% if flash.old[0].country %} {% if flash.old[0].country == "OM" %} selected {% endif %} {% else %} {% if country == "OM" %} selected {% endif %}  {% endif %}>Oman</option>
+                            <option value="PK" {% if flash.old[0].country %} {% if flash.old[0].country == "PK" %} selected {% endif %} {% else %} {% if country == "PK" %} selected {% endif %}  {% endif %}>Pakistan</option>
+                            <option value="PW" {% if flash.old[0].country %} {% if flash.old[0].country == "PW" %} selected {% endif %} {% else %} {% if country == "PW" %} selected {% endif %}  {% endif %}>Palau</option>
+                            <option value="PS" {% if flash.old[0].country %} {% if flash.old[0].country == "PS" %} selected {% endif %} {% else %} {% if country == "PS" %} selected {% endif %}  {% endif %}>Palestinian Territory, Occupied</option>
+                            <option value="PA" {% if flash.old[0].country %} {% if flash.old[0].country == "PA" %} selected {% endif %} {% else %} {% if country == "PA" %} selected {% endif %}  {% endif %}>Panama</option>
+                            <option value="PG" {% if flash.old[0].country %} {% if flash.old[0].country == "PG" %} selected {% endif %} {% else %} {% if country == "PG" %} selected {% endif %}  {% endif %}>Papua New Guinea</option>
+                            <option value="PY" {% if flash.old[0].country %} {% if flash.old[0].country == "PY" %} selected {% endif %} {% else %} {% if country == "PY" %} selected {% endif %}  {% endif %}>Paraguay</option>
+                            <option value="PE" {% if flash.old[0].country %} {% if flash.old[0].country == "PE" %} selected {% endif %} {% else %} {% if country == "PE" %} selected {% endif %}  {% endif %}>Peru</option>
+                            <option value="PH" {% if flash.old[0].country %} {% if flash.old[0].country == "PH" %} selected {% endif %} {% else %} {% if country == "PH" %} selected {% endif %}  {% endif %}>Philippines</option>
+                            <option value="PN" {% if flash.old[0].country %} {% if flash.old[0].country == "PN" %} selected {% endif %} {% else %} {% if country == "PN" %} selected {% endif %}  {% endif %}>Pitcairn</option>
+                            <option value="PL" {% if flash.old[0].country %} {% if flash.old[0].country == "PL" %} selected {% endif %} {% else %} {% if country == "PL" %} selected {% endif %}  {% endif %}>Poland</option>
+                            <option value="PT" {% if flash.old[0].country %} {% if flash.old[0].country == "PT" %} selected {% endif %} {% else %} {% if country == "PT" %} selected {% endif %}  {% endif %}>Portugal</option>
+                            <option value="PR" {% if flash.old[0].country %} {% if flash.old[0].country == "PR" %} selected {% endif %} {% else %} {% if country == "PR" %} selected {% endif %}  {% endif %}>Puerto Rico</option>
+                            <option value="QA" {% if flash.old[0].country %} {% if flash.old[0].country == "QA" %} selected {% endif %} {% else %} {% if country == "QA" %} selected {% endif %}  {% endif %}>Qatar</option>
+                            <option value="RE" {% if flash.old[0].country %} {% if flash.old[0].country == "RE" %} selected {% endif %} {% else %} {% if country == "RE" %} selected {% endif %}  {% endif %}>Réunion</option>
+                            <option value="RO" {% if flash.old[0].country %} {% if flash.old[0].country == "RO" %} selected {% endif %} {% else %} {% if country == "RO" %} selected {% endif %}  {% endif %}>Romania</option>
+                            <option value="RU" {% if flash.old[0].country %} {% if flash.old[0].country == "RU" %} selected {% endif %} {% else %} {% if country == "RU" %} selected {% endif %}  {% endif %}>Russian Federation</option>
+                            <option value="RW" {% if flash.old[0].country %} {% if flash.old[0].country == "RW" %} selected {% endif %} {% else %} {% if country == "RW" %} selected {% endif %}  {% endif %}>Rwanda</option>
+                            <option value="BL" {% if flash.old[0].country %} {% if flash.old[0].country == "BL" %} selected {% endif %} {% else %} {% if country == "BL" %} selected {% endif %}  {% endif %}>Saint Barthélemy</option>
+                            <option value="SH" {% if flash.old[0].country %} {% if flash.old[0].country == "SH" %} selected {% endif %} {% else %} {% if country == "SH" %} selected {% endif %}  {% endif %}>Saint Helena, Ascension and Tristan da Cunha</option>
+                            <option value="KN" {% if flash.old[0].country %} {% if flash.old[0].country == "KN" %} selected {% endif %} {% else %} {% if country == "KN" %} selected {% endif %}  {% endif %}>Saint Kitts and Nevis</option>
+                            <option value="LC" {% if flash.old[0].country %} {% if flash.old[0].country == "LC" %} selected {% endif %} {% else %} {% if country == "LC" %} selected {% endif %}  {% endif %}>Saint Lucia</option>
+                            <option value="MF" {% if flash.old[0].country %} {% if flash.old[0].country == "MF" %} selected {% endif %} {% else %} {% if country == "MF" %} selected {% endif %}  {% endif %}>Saint Martin (French part)</option>
+                            <option value="PM" {% if flash.old[0].country %} {% if flash.old[0].country == "PM" %} selected {% endif %} {% else %} {% if country == "PM" %} selected {% endif %}  {% endif %}>Saint Pierre and Miquelon</option>
+                            <option value="VC" {% if flash.old[0].country %} {% if flash.old[0].country == "VC" %} selected {% endif %} {% else %} {% if country == "VC" %} selected {% endif %}  {% endif %}>Saint Vincent and the Grenadines</option>
+                            <option value="WS" {% if flash.old[0].country %} {% if flash.old[0].country == "WS" %} selected {% endif %} {% else %} {% if country == "WS" %} selected {% endif %}  {% endif %}>Samoa</option>
+                            <option value="SM" {% if flash.old[0].country %} {% if flash.old[0].country == "SM" %} selected {% endif %} {% else %} {% if country == "SM" %} selected {% endif %}  {% endif %}>San Marino</option>
+                            <option value="ST" {% if flash.old[0].country %} {% if flash.old[0].country == "ST" %} selected {% endif %} {% else %} {% if country == "ST" %} selected {% endif %}  {% endif %}>Sao Tome and Principe</option>
+                            <option value="SA" {% if flash.old[0].country %} {% if flash.old[0].country == "SA" %} selected {% endif %} {% else %} {% if country == "SA" %} selected {% endif %}  {% endif %}>Saudi Arabia</option>
+                            <option value="SN" {% if flash.old[0].country %} {% if flash.old[0].country == "SN" %} selected {% endif %} {% else %} {% if country == "SN" %} selected {% endif %}  {% endif %}>Senegal</option>
+                            <option value="RS" {% if flash.old[0].country %} {% if flash.old[0].country == "RS" %} selected {% endif %} {% else %} {% if country == "RS" %} selected {% endif %}  {% endif %}>Serbia</option>
+                            <option value="SC" {% if flash.old[0].country %} {% if flash.old[0].country == "SC" %} selected {% endif %} {% else %} {% if country == "SC" %} selected {% endif %}  {% endif %}>Seychelles</option>
+                            <option value="SL" {% if flash.old[0].country %} {% if flash.old[0].country == "SL" %} selected {% endif %} {% else %} {% if country == "SL" %} selected {% endif %}  {% endif %}>Sierra Leone</option>
+                            <option value="SG" {% if flash.old[0].country %} {% if flash.old[0].country == "SG" %} selected {% endif %} {% else %} {% if country == "SG" %} selected {% endif %}  {% endif %}>Singapore</option>
+                            <option value="SX" {% if flash.old[0].country %} {% if flash.old[0].country == "SX" %} selected {% endif %} {% else %} {% if country == "SX" %} selected {% endif %}  {% endif %}>Sint Maarten (Dutch part)</option>
+                            <option value="SK" {% if flash.old[0].country %} {% if flash.old[0].country == "SK" %} selected {% endif %} {% else %} {% if country == "SK" %} selected {% endif %}  {% endif %}>Slovakia</option>
+                            <option value="SI" {% if flash.old[0].country %} {% if flash.old[0].country == "SI" %} selected {% endif %} {% else %} {% if country == "SI" %} selected {% endif %}  {% endif %}>Slovenia</option>
+                            <option value="SB" {% if flash.old[0].country %} {% if flash.old[0].country == "SB" %} selected {% endif %} {% else %} {% if country == "SB" %} selected {% endif %}  {% endif %}>Solomon Islands</option>
+                            <option value="SO" {% if flash.old[0].country %} {% if flash.old[0].country == "SO" %} selected {% endif %} {% else %} {% if country == "SO" %} selected {% endif %}  {% endif %}>Somalia</option>
+                            <option value="ZA" {% if flash.old[0].country %} {% if flash.old[0].country == "ZA" %} selected {% endif %} {% else %} {% if country == "ZA" %} selected {% endif %}  {% endif %}>South Africa</option>
+                            <option value="GS" {% if flash.old[0].country %} {% if flash.old[0].country == "GS" %} selected {% endif %} {% else %} {% if country == "GS" %} selected {% endif %}  {% endif %}>South Georgia and the South Sandwich Islands</option>
+                            <option value="SS" {% if flash.old[0].country %} {% if flash.old[0].country == "SS" %} selected {% endif %} {% else %} {% if country == "SS" %} selected {% endif %}  {% endif %}>South Sudan</option>
+                            <option value="ES" {% if flash.old[0].country %} {% if flash.old[0].country == "ES" %} selected {% endif %} {% else %} {% if country == "ES" %} selected {% endif %}  {% endif %}>Spain</option>
+                            <option value="LK" {% if flash.old[0].country %} {% if flash.old[0].country == "LK" %} selected {% endif %} {% else %} {% if country == "LK" %} selected {% endif %}  {% endif %}>Sri Lanka</option>
+                            <option value="SD" {% if flash.old[0].country %} {% if flash.old[0].country == "SD" %} selected {% endif %} {% else %} {% if country == "SD" %} selected {% endif %}  {% endif %}>Sudan</option>
+                            <option value="SR" {% if flash.old[0].country %} {% if flash.old[0].country == "SR" %} selected {% endif %} {% else %} {% if country == "SR" %} selected {% endif %}  {% endif %}>Suriname</option>
+                            <option value="SJ" {% if flash.old[0].country %} {% if flash.old[0].country == "SJ" %} selected {% endif %} {% else %} {% if country == "SJ" %} selected {% endif %}  {% endif %}>Svalbard and Jan Mayen</option>
+                            <option value="SZ" {% if flash.old[0].country %} {% if flash.old[0].country == "SZ" %} selected {% endif %} {% else %} {% if country == "SZ" %} selected {% endif %}  {% endif %}>Swaziland</option>
+                            <option value="SE" {% if flash.old[0].country %} {% if flash.old[0].country == "SE" %} selected {% endif %} {% else %} {% if country == "SE" %} selected {% endif %}  {% endif %}>Sweden</option>
+                            <option value="CH" {% if flash.old[0].country %} {% if flash.old[0].country == "CH" %} selected {% endif %} {% else %} {% if country == "CH" %} selected {% endif %}  {% endif %}>Switzerland</option>
+                            <option value="SY" {% if flash.old[0].country %} {% if flash.old[0].country == "SY" %} selected {% endif %} {% else %} {% if country == "SY" %} selected {% endif %}  {% endif %}>Syrian Arab Republic</option>
+                            <option value="TW" {% if flash.old[0].country %} {% if flash.old[0].country == "TW" %} selected {% endif %} {% else %} {% if country == "TW" %} selected {% endif %}  {% endif %}>Taiwan, Province of China</option>
+                            <option value="TJ" {% if flash.old[0].country %} {% if flash.old[0].country == "TJ" %} selected {% endif %} {% else %} {% if country == "TJ" %} selected {% endif %}  {% endif %}>Tajikistan</option>
+                            <option value="TZ" {% if flash.old[0].country %} {% if flash.old[0].country == "TZ" %} selected {% endif %} {% else %} {% if country == "TZ" %} selected {% endif %}  {% endif %}>Tanzania, United Republic of</option>
+                            <option value="TH" {% if flash.old[0].country %} {% if flash.old[0].country == "TH" %} selected {% endif %} {% else %} {% if country == "TH" %} selected {% endif %}  {% endif %}>Thailand</option>
+                            <option value="TL" {% if flash.old[0].country %} {% if flash.old[0].country == "TL" %} selected {% endif %} {% else %} {% if country == "TL" %} selected {% endif %}  {% endif %}>Timor-Leste</option>
+                            <option value="TG" {% if flash.old[0].country %} {% if flash.old[0].country == "TG" %} selected {% endif %} {% else %} {% if country == "TG" %} selected {% endif %}  {% endif %}>Togo</option>
+                            <option value="TK" {% if flash.old[0].country %} {% if flash.old[0].country == "TK" %} selected {% endif %} {% else %} {% if country == "TK" %} selected {% endif %}  {% endif %}>Tokelau</option>
+                            <option value="TO" {% if flash.old[0].country %} {% if flash.old[0].country == "TO" %} selected {% endif %} {% else %} {% if country == "TO" %} selected {% endif %}  {% endif %}>Tonga</option>
+                            <option value="TT" {% if flash.old[0].country %} {% if flash.old[0].country == "TT" %} selected {% endif %} {% else %} {% if country == "TT" %} selected {% endif %}  {% endif %}>Trinidad and Tobago</option>
+                            <option value="TN" {% if flash.old[0].country %} {% if flash.old[0].country == "TN" %} selected {% endif %} {% else %} {% if country == "TN" %} selected {% endif %}  {% endif %}>Tunisia</option>
+                            <option value="TR" {% if flash.old[0].country %} {% if flash.old[0].country == "TR" %} selected {% endif %} {% else %} {% if country == "TR" %} selected {% endif %}  {% endif %}>Turkey</option>
+                            <option value="TM" {% if flash.old[0].country %} {% if flash.old[0].country == "TM" %} selected {% endif %} {% else %} {% if country == "TM" %} selected {% endif %}  {% endif %}>Turkmenistan</option>
+                            <option value="TC" {% if flash.old[0].country %} {% if flash.old[0].country == "TC" %} selected {% endif %} {% else %} {% if country == "TC" %} selected {% endif %}  {% endif %}>Turks and Caicos Islands</option>
+                            <option value="TV" {% if flash.old[0].country %} {% if flash.old[0].country == "TV" %} selected {% endif %} {% else %} {% if country == "TV" %} selected {% endif %}  {% endif %}>Tuvalu</option>
+                            <option value="UG" {% if flash.old[0].country %} {% if flash.old[0].country == "UG" %} selected {% endif %} {% else %} {% if country == "UG" %} selected {% endif %}  {% endif %}>Uganda</option>
+                            <option value="UA" {% if flash.old[0].country %} {% if flash.old[0].country == "UA" %} selected {% endif %} {% else %} {% if country == "UA" %} selected {% endif %}  {% endif %}>Ukraine</option>
+                            <option value="AE" {% if flash.old[0].country %} {% if flash.old[0].country == "AE" %} selected {% endif %} {% else %} {% if country == "AE" %} selected {% endif %}  {% endif %}>United Arab Emirates</option>
+                            <option value="GB" {% if flash.old[0].country %} {% if flash.old[0].country == "GB" %} selected {% endif %} {% else %} {% if country == "GB" %} selected {% endif %}  {% endif %}>United Kingdom</option>
+                            <option value="US" {% if flash.old[0].country %} {% if flash.old[0].country == "US" %} selected {% endif %} {% else %} {% if country == "US" %} selected {% endif %}  {% endif %}>United States</option>
+                            <option value="UM" {% if flash.old[0].country %} {% if flash.old[0].country == "UM" %} selected {% endif %} {% else %} {% if country == "UM" %} selected {% endif %}  {% endif %}>United States Minor Outlying Islands</option>
+                            <option value="UY" {% if flash.old[0].country %} {% if flash.old[0].country == "UY" %} selected {% endif %} {% else %} {% if country == "UY" %} selected {% endif %}  {% endif %}>Uruguay</option>
+                            <option value="UZ" {% if flash.old[0].country %} {% if flash.old[0].country == "UZ" %} selected {% endif %} {% else %} {% if country == "UZ" %} selected {% endif %}  {% endif %}>Uzbekistan</option>
+                            <option value="VU" {% if flash.old[0].country %} {% if flash.old[0].country == "VU" %} selected {% endif %} {% else %} {% if country == "VU" %} selected {% endif %}  {% endif %}>Vanuatu</option>
+                            <option value="VE" {% if flash.old[0].country %} {% if flash.old[0].country == "VE" %} selected {% endif %} {% else %} {% if country == "VE" %} selected {% endif %}  {% endif %}>Venezuela, Bolivarian Republic of</option>
+                            <option value="VN" {% if flash.old[0].country %} {% if flash.old[0].country == "VN" %} selected {% endif %} {% else %} {% if country == "VN" %} selected {% endif %}  {% endif %}>Viet Nam</option>
+                            <option value="VG" {% if flash.old[0].country %} {% if flash.old[0].country == "VG" %} selected {% endif %} {% else %} {% if country == "VG" %} selected {% endif %}  {% endif %}>Virgin Islands, British</option>
+                            <option value="VI" {% if flash.old[0].country %} {% if flash.old[0].country == "VI" %} selected {% endif %} {% else %} {% if country == "VI" %} selected {% endif %}  {% endif %}>Virgin Islands, U.S.</option>
+                            <option value="WF" {% if flash.old[0].country %} {% if flash.old[0].country == "WF" %} selected {% endif %} {% else %} {% if country == "WF" %} selected {% endif %}  {% endif %}>Wallis and Futuna</option>
+                            <option value="EH" {% if flash.old[0].country %} {% if flash.old[0].country == "EH" %} selected {% endif %} {% else %} {% if country == "EH" %} selected {% endif %}  {% endif %}>Western Sahara</option>
+                            <option value="YE" {% if flash.old[0].country %} {% if flash.old[0].country == "YE" %} selected {% endif %} {% else %} {% if country == "YE" %} selected {% endif %}  {% endif %}>Yemen</option>
+                            <option value="ZM" {% if flash.old[0].country %} {% if flash.old[0].country == "ZM" %} selected {% endif %} {% else %} {% if country == "ZM" %} selected {% endif %}  {% endif %}>Zambia</option>
+                            <option value="ZW" {% if flash.old[0].country %} {% if flash.old[0].country == "ZW" %} selected {% endif %} {% else %} {% if country == "ZW" %} selected {% endif %}  {% endif %}>Zimbabwe</option>
+                        </select>
+                        {% if flash.errors[0].country %}
+                            <p class="text-red-600 text-sm">{{ flash.errors[0].country }}</p>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        
-            <div class="mb-4 md:flex md:items-center">
-                <label for="speciality" class="md:w-40 md:inline-block block mb-2 md:mb-0">التخصص العلمي</label>
-                
-                <div class="block">
-                    <input type="text" class="border rounded-md border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].speciality }}" name="speciality" id="speciality" required>
-                    {% if flash.errors[0].speciality %}
-                        <p class="text-red-600 text-sm">{{ flash.errors[0].speciality }}</p>
-                    {% endif %}
+            
+                <div class="mb-4 md:flex md:items-center">
+                    <label for="speciality" class="md:w-40 md:inline-block block mb-1 md:mb-0">التخصص العلمي</label>
+                    
+                    <div class="block">
+                        <input type="text" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].speciality }}" name="speciality" id="speciality" required>
+                        {% if flash.errors[0].speciality %}
+                            <p class="text-red-600 text-sm">{{ flash.errors[0].speciality }}</p>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        
-            <div class="mb-4 md:flex md:items-center">
-                <label for="telegramId" class="md:w-40 md:inline-block block mb-2 md:mb-0">معرف التليجرام</label>
-                <div class="block">
-                    <input type="number" class="border rounded-md border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].phone }}" name="telegramId" id="telegramId" required>
-                    {% if flash.errors[0].telegramId %}
-                        <p class="text-red-600 text-sm">{{ flash.errors[0].telegramId }}</p>
-                    {% endif %}
+            
+                <div class="mb-4 md:flex md:items-center">
+                    <label for="telegramId" class="md:w-40 md:inline-block block mb-1 md:mb-0">معرف التليجرام</label>
+                    <div class="block">
+                        <input type="number" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].telegramId }}" name="telegramId" id="telegramId" required>
+                        {% if flash.errors[0].telegramId %}
+                            <p class="text-red-600 text-sm">{{ flash.errors[0].telegramId }}</p>
+                        {% endif %}
+                    </div>
+                    <a href="/telegram_id" target="_blank" class="md:mr-2 text-blue-700 hover:text-blue-800">كيف أحصل عليه؟</a>
                 </div>
-                <a href="/telegram_id" target="_blank" class="md:mr-2 text-blue-700 hover:text-blue-800">كيف أحصل عليه؟</a>
-            </div>
-        
-            <div class="mb-4 md:flex md:items-center">
-                <label for="phone" class="md:w-40 md:inline-block block mb-2 md:mb-0">رقم الموبايل</label>
-                <div class="block">
-                    <input type="text" class="border rounded-md border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].phone }}" name="phone" id="phone" placeholder="على سبيل المثال 0501234567" required>
-                    {% if flash.errors[0].phone %}
-                        <p class="text-red-600 text-sm">{{ flash.errors[0].phone }}</p>
-                    {% endif %}
+            
+                <div class="mb-4 md:flex md:items-center">
+                    <label for="phone" class="md:w-40 md:inline-block block mb-1 md:mb-0">رقم الموبايل</label>
+                    <div class="block">
+                        <input type="text" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].phone }}" name="phone" id="phone" placeholder="على سبيل المثال 0501234567" required>
+                        {% if flash.errors[0].phone %}
+                            <p class="text-red-600 text-sm">{{ flash.errors[0].phone }}</p>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        
-            <div class="mb-4 md:flex md:items-center">
-                <label for="email" class="md:w-40 md:inline-block block mb-2 md:mb-0">الايميل</label>
-                <div class="block">
-                    <input type="email" class="border rounded-md border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].email }}" name="email" id="email" required>
-                    {% if flash.errors[0].email %}
-                        <p class="text-red-600 text-sm">{{ flash.errors[0].email }}</p>
-                    {% endif %}
+            
+                <div class="mb-4 md:flex md:items-center">
+                    <label for="email" class="md:w-40 md:inline-block block mb-1 md:mb-0">الايميل</label>
+                    <div class="block">
+                        <input type="email" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].email }}" name="email" id="email" required>
+                        {% if flash.errors[0].email %}
+                            <p class="text-red-600 text-sm">{{ flash.errors[0].email }}</p>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        
-            <div class="flex justify-end">
-                <button type="submit" class="bg-blue-600 shadow-md hover:shadow-lg hover:bg-blue-700 transition-colors duration-300 text-white px-4 py-2 rounded-md">التسجيل</button>
-            </div>
-        </form>
+            
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-600 shadow-md hover:shadow-lg hover:bg-blue-700 transition duration-300 text-white px-4 py-2 rounded-md">التسجيل</button>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock %}

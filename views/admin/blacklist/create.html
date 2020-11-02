@@ -1,0 +1,25 @@
+{% extends 'layouts/admin.html' %}
+
+{% block title %}
+| إضافة إيميل محظور
+{% endblock %}
+
+{% block content_header %}
+    <h1>إضافة إيميل محظور</h1>
+{% endblock %}
+
+{% block content %}
+{% if flash.message %}
+    <div class="alert alert-{{ flash.type }} mb-4 rounded-md">
+        {{ flash.message }}
+    </div>
+    {% endif %}
+    <form action="/admin/blacklist" method="POST">
+        <input type="hidden" name="_csrf" value="{{ _csrf }}">
+        <div class="form-group">
+            <label for="address">الايميل</label>
+            <input type="email" class="form-control" name="address" id="address" required>
+        </div>
+        <button class="btn btn-success">إضافة</button>
+    </form>
+{% endblock %}

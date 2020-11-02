@@ -27,3 +27,8 @@ body {
     @apply bg-orange-300;
     @apply text-orange-900;
 }
+
+.alert-danger {
+    @apply bg-red-300;
+    @apply text-red-900;
+}

@@ -2,29 +2,45 @@ const express = require('express');
 const path = require('path');
 const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const csrf = require('csurf');
 const session = require('express-session');
 const flash = require('connect-flash');
+
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 // Use .env file
 require('dotenv').config();
 
-const routes = require('./routes');
-const sequelize = require('./db');
+const mainRouter = require('./routers/main');
+const adminRouter = require('./routers/admin');
 const bot = require('./bot');
 
 // Init the epxress app
 const app = express();
 
-// Use body parser
-app.use(bodyParser.urlencoded({ extended: false }))
-
 // Use sessions
+const sessionStore = new SequelizeStore({
+    db: require('./models').sequelize,
+})
+
 app.use(session({
     secret: process.env.APP_SECRET,
     saveUninitialized: false,
-    resave: true,
-    cookie: { maxAge: 60000 }
+    store: sessionStore,
+    resave: false,
+    cookie: { maxAge: 1000 * 60 * 60 }
 }));
+sessionStore.sync();
+
+// Use cookeis
+app.use(cookieParser(process.env.APP_SECRET))
+
+// Use body parser
+app.use(bodyParser.urlencoded({ extended: false }))
+
+//Use CSRF
+app.use(csrf({ cookie: true }))
 
 // Use flash messages
 app.use(flash());
@@ -32,14 +48,10 @@ app.use(flash());
 // Expose flash messages to views
 app.use((req, res, next) => {
     res.locals.flash = req.flash();
+    res.locals._csrf = req.csrfToken();
+    res.locals.reqPath = req.path;
     next();
 })
-
-// Connect to DB
-sequelize
-.authenticate()
-.then(() => console.log('Connected to DB'))
-.catch(e => console.log(e))
 
 // Init the bot
 bot.launch();
@@ -48,7 +60,8 @@ bot.launch();
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Use routes
-app.use(routes)
+app.use('/admin', adminRouter);
+app.use(mainRouter)
 
 app.set('view engine', 'html')
 

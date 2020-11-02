@@ -1,0 +1,136 @@
+{% extends 'layouts/admin.html' %}
+
+{% block title %}
+| المستخدمين
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
+{% endblock %}
+
+{% block content_header %}
+    <h1>المستخدمين</h1>
+{% endblock %}
+
+{% block content %}
+    <table class="datatables w-100">
+        <thead>
+            <th>الاسم</th>
+            <th>رقم الهاتف</th>
+            <th>معرف تلجرام</th>
+            <th>الدولة</th>
+            <th>التخصص</th>
+            <th>الآي بي</th>
+            <th>الإجراءات</th>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.telegramId }}</td>
+                    <td>{{ user.country }}</td>
+                    <td>{{ user.speciality }}</td>
+                    <td>{{ user.ipAddress }}</td>
+                    <td>
+                        {% if user.status != 'banned' %}
+                        <button class="btn btn-warning btn-sm" onclick="confirmBan({{ user.telegramId }})">حظر</button>
+                        {% endif %}
+                        <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ user.telegramId }})">حذف</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+
+<script>
+    $('.datatables').DataTable({
+        responsive: true,
+        dom: 'Bftrip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ],
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Arabic.json"
+        }
+    });
+
+    function confirmBan(telegramId) {
+        Swal.fire({
+            title: 'هل تريد حظر هذا الحساب؟',
+            text: "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم',
+            cancelButtonText: 'لا',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                  method: "POST",
+                  url: `/admin/users/${telegramId}/ban`,
+                  headers: {
+                    'CSRF-Token': "{{ _csrf }}"
+                  },
+                  success: function(res) {
+                    Swal.fire(
+                        res.message,
+                        "",
+                        res.status == '0' ? 'error' : 'success',
+                      ).then(() => { location.reload() })
+                  }
+              })
+            }
+          })
+    }
+
+    function confirmDelete(telegramId) {
+        Swal.fire({
+            title: 'هل تريد حذف هذا الحساب؟',
+            text: "هذا سيؤدي إلى حظره أيضاً",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم',
+            cancelButtonText: 'لا',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                  type: "DELETE",
+                  url: `/admin/users/${telegramId}`,
+                  headers: {
+                    'CSRF-Token': "{{ _csrf }}"
+                  },
+                  success: function(res) {
+                    Swal.fire(
+                        res.message,
+                        "",
+                        res.status == '0' ? 'error' : 'success',
+                      ).then(() => { location.reload() })
+                  }
+              })
+            }
+          })
+    }
+</script>
+{% endblock %}

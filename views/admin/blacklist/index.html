@@ -1,0 +1,90 @@
+{% extends 'layouts/admin.html' %}
+
+{% block title %}
+| الإيميلات المحظورة
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
+{% endblock %}
+
+{% block content_header %}
+    <div class="d-flex justify-content-between">
+        <h1>الإيميلات المحظورة</h1>
+        <a href="/admin/blacklist/create" class="btn btn-success">إضافة</a>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    {% if flash.message %}
+    <div class="alert alert-{{ flash.type }} mb-4 rounded-md">
+        {{ flash.message }}
+    </div>
+    {% endif %}
+
+    <table class="datatables w-100">
+        <thead>
+            <th>البريد الالكتروني</th>
+            <th>الإجراءات</th>
+        </thead>
+        <tbody>
+            {% for email in emails %}
+                <tr>
+                    <td>{{ email.address }}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ email.id }})">حذف</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
+
+<script>
+    $('.datatables').DataTable({
+        responsive: true,
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Arabic.json"
+        }
+    });
+
+    function confirmDelete(emailId) {
+        Swal.fire({
+            title: 'هل تريد حذف هذا الحساب من الايميلات المحظورة؟',
+            text: "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم',
+            cancelButtonText: 'لا',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                  type: "DELETE",
+                  url: `/admin/blacklist/${emailId}`,
+                  headers: {
+                    'CSRF-Token': "{{ _csrf }}"
+                  },
+                  success: function(res) {
+                    Swal.fire(
+                        res.message,
+                        "",
+                        res.status == '0' ? 'error' : 'success',
+                      ).then(() => { location.reload(); })
+                  }
+              })
+            }
+          })
+    }
+</script>
+{% endblock %}

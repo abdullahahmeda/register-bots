@@ -19223,6 +19223,15 @@ body {
   color: rgba(123, 52, 30, var(--text-opacity));
 }
 
+.alert-danger {
+  --bg-opacity: 1;
+  background-color: #feb2b2;
+  background-color: rgba(254, 178, 178, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #742a2a;
+  color: rgba(116, 42, 42, var(--text-opacity));
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
