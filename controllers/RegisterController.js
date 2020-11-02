@@ -32,6 +32,32 @@ module.exports = {
             req.flash('old', req.body);
             return res.redirect('/register');
         }
+
+        // Check if email is banned
+        const bannedEmail = await BannedEmail.findOne({
+            where: {
+                address: value.email
+            }
+        });
+
+        if (bannedEmail != null) {
+            req.flash('message', 'هذا الايميل محظور');
+            req.flash('type', 'danger');
+            req.flash('old', req.body);
+            return res.redirect('/register');
+        }
+
+        // Verify user on telegram
+        try {
+            const userTelegram = await telegram.getChatMember(value.telegramId, value.telegramId);
+            console.log(userTelegram)
+        }
+        catch (e) {
+            req.flash('message', 'معرف التلجرام غير صحيح');
+            req.flash('type', 'danger');
+            req.flash('old', req.body);
+            return res.redirect('/register');
+        }
     
         try {
             value.ipAddress = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim();
@@ -53,33 +79,7 @@ module.exports = {
                 req.flash('old', req.body);
                 return res.redirect('/register');
             }
-        }
-
-        // Check if email is banned
-        const bannedEmail = await BannedEmail.findOne({
-            where: {
-                address: value.email
-            }
-        });
-
-        if (bannedEmail != null) {
-            req.flash('message', 'هذا الايميل محظور');
-            req.flash('type', 'danger');
-            req.flash('old', req.body);
-            return res.redirect('/register');
-        }
-
-        // Verify user on telegram
-        try {
-            const userTelegram = await telegram.getChatMember(value.telegramId, value.telegramId);
-        }
-        catch (e) {
-            req.flash('message', 'معرف التلجرام غير صحيح');
-            req.flash('type', 'danger');
-            req.flash('old', req.body);
-            return res.redirect('/register');
-        }
-        
+        } 
 
         //sendVerifySMS('201064290265');
     
