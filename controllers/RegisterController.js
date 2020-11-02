@@ -83,7 +83,7 @@ module.exports = {
 
         //sendVerifySMS('201064290265');
     
-        return res.end();
+        return res.redirect('/verify');
     },
 
     verify: function(req, res) {

@@ -29,9 +29,4 @@ bot.on('left_chat_member', ctx => {
 })
 
 
-// 307537053
-//utils.isInChat(307537053).then(r => console.log(r)).catch(e => console.log(e))
-//utils.isInChat(307537313053).then(r => console.log(r)).catch(e => console.log('errrrr'))
-
-
 module.exports = bot;

@@ -41,7 +41,6 @@ module.exports = {
 
         delete user.password;
         req.session.user = user;
-        console.log(req.session.user)
 
         return res.redirect('/admin');
     }
