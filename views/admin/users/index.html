@@ -25,6 +25,7 @@
             <th>المدينة</th>
             <th>التخصص</th>
             <th>الآي بي</th>
+            <th>الحالة</th>
             <th>الإجراءات</th>
         </thead>
         <tbody>
@@ -38,6 +39,7 @@
                     <td>{{ user.city }}</td>
                     <td>{{ user.speciality }}</td>
                     <td>{{ user.ipAddress }}</td>
+                    <td>{{ user.status }}</td>
                     <td>
                         {% if user.status != 'banned' %}
                         <button class="btn btn-warning btn-sm" onclick="confirmBan({{ user.telegramId }})">حظر</button>
