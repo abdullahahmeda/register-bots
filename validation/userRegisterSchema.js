@@ -34,7 +34,7 @@ const userRegisterSchema = Joi.object({
 
     phone: Joi.string()
         .required()
-        .pattern(/^([0-9]+){10,12}$/)
+        .pattern(/^([0-9]+){9,12}$/)
         .messages({
             'string.pattern.base': 'برجاء إدخال رقم هاتف صالح',
         }),
