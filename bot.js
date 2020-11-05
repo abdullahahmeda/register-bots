@@ -30,6 +30,10 @@ bot.on('new_chat_members', async (ctx) =>  {
                 await utils.denyUserToSendMessages(member.id);
                 console.log('denied user')
             }
+            else {
+                await utils.allowUserToSendMessages(member.id);
+                console.log('allowed user');
+            }
         }
     }
 })
