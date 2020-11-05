@@ -23,7 +23,8 @@ bot.on('new_chat_members', async (ctx) =>  {
         for (const member of newMembers) {
             const user = await User.findOne({
                 where: {
-                    telegramId: member.id
+                    telegramId: member.id,
+                    status: 'active'
                 }
             })
             if (user == null) {
