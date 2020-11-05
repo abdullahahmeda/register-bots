@@ -50,6 +50,10 @@ app.use((req, res, next) => {
     res.locals.flash = req.flash();
     res.locals._csrf = req.csrfToken();
     res.locals.reqPath = req.path;
+    res.locals.user = req.session.user;
+    res.locals.getDate = function(date) {
+        return date.toISOString().split('T')[0];
+    }
     next();
 })
 

@@ -24,7 +24,8 @@
     "node-fetch": "^2.6.1",
     "nunjucks": "^3.2.2",
     "sequelize": "^6.3.5",
-    "telegraf": "^3.38.0"
+    "telegraf": "^3.38.0",
+    "twilio": "^3.50.0"
   },
   "devDependencies": {
     "postcss": "^8.1.4",

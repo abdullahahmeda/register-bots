@@ -18,9 +18,11 @@
     <table class="datatables w-100">
         <thead>
             <th>الاسم</th>
+            <th>تاريخ الميلاد</th>
             <th>رقم الهاتف</th>
             <th>معرف تلجرام</th>
             <th>الدولة</th>
+            <th>المدينة</th>
             <th>التخصص</th>
             <th>الآي بي</th>
             <th>الإجراءات</th>
@@ -29,9 +31,11 @@
             {% for user in users %}
                 <tr>
                     <td>{{ user.name }}</td>
+                    <td>{{ getDate(user.birth) }}</td>
                     <td>{{ user.phone }}</td>
                     <td>{{ user.telegramId }}</td>
                     <td>{{ user.country }}</td>
+                    <td>{{ user.city }}</td>
                     <td>{{ user.speciality }}</td>
                     <td>{{ user.ipAddress }}</td>
                     <td>

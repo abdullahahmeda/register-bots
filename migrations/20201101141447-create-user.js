@@ -11,11 +11,18 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      birth: {
+        type: Sequelize.DATE
+      },
       password: {
         type: Sequelize.STRING,
       },
       country: {
         type: Sequelize.STRING,
+      },
+      city: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       speciality: {
         type: Sequelize.STRING,

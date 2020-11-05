@@ -2,6 +2,11 @@ const Joi = require('joi');
 
 const userLoginSchema = Joi.object({
 
+    name: Joi.string()
+        .required()
+        .messages({
+            'any.required': 'حقل الاسم إجباري'
+        }),
     email: Joi.string()
         .email()
         .required()
@@ -9,11 +14,14 @@ const userLoginSchema = Joi.object({
             'string.email': 'الرجاء إدخال إيميل صالح',
             'any.required': 'حقل الايميل إجباري'
         }),
+
     password: Joi.string()
         .required()
         .messages({
             'any.required': 'حقل الباسورد إجباري'
-        })
+        }),
+    
+    password_confirmation: Joi.ref('password')
 });
 
 module.exports = userLoginSchema;

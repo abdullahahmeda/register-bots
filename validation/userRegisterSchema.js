@@ -10,8 +10,16 @@ const userRegisterSchema = Joi.object({
             'string.min': 'الاسم يجب أن يكون 3 حروف على الأقل',
             'any.required': 'حقل الاسم إجباري'
         }),
+    birth: Joi.date()
+        .required()
+        .messages({
+            'any.required': 'حقل تاريخ الميلاد إجباري'
+        }),
 
     country: Joi.string()
+        .required(),
+
+    city: Joi.string()
         .required(),
 
     speciality: Joi.string()    

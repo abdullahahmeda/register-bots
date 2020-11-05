@@ -7,31 +7,31 @@ module.exports = {
         return res.render('login');
     },
     login: async function(req, res) {
-        delete req.body.csrf;
+        delete req.body._csrf;
 
         const { error , value } = userLoginSchema.validate(req.body, {
             abortEarly: false
         });
 
-        const users = await User.findAll({
+        if (error) {
+            req.flash('message', 'الرجاء إدخال بريد إلكتروني وكلمة مرور صالحتين');
+            req.flash('type', 'danger');
+            req.flash('old', req.body);
+            return res.redirect('/login');
+        }
+
+        const user = await User.findOne({
             where: {
                 email: value.email
             }
         });
-        if (users.length === 0) {
-            const errors = {};
-            error.details.forEach(elm => {
-                const path = elm.path[0];
-                errors[path] = elm.message
-            })
-    
+        if (user == null) {
             req.flash('message', 'البيانات المدخلة غير صحيحة');
             req.flash('type', 'danger');
             req.flash('old', req.body);
             return res.redirect('/login');
         }
 
-        const user = users[0];
         if (!bcrypt.compareSync(value.password, user.password)) {
             req.flash('message', 'كلمة المرور غير صحيحة');
             req.flash('type', 'danger');

@@ -27,11 +27,20 @@
                         {% endif %}
                     </div>
                 </div>
+                <div class="mb-4 md:flex md:items-center">
+                    <label for="birth" class="md:w-40 md:inline-block block mb-1 md:mb-0">تاريخ الميلاد</label>
+                    <div class="block">
+                        <input type="date" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].birth }}" name="birth" id="birth" required>
+                        {% if flash.errors[0].birth %}
+                            <p class="text-red-600 text-sm">{{ flash.errors[0].birth }}</p>
+                        {% endif %}
+                    </div>
+                </div>
             
                 <div class="mb-4 md:flex md:items-center">
                     <label for="country" class="md:w-40 md:inline-block block mb-1 md:mb-0">البلد</label>
                     <div class="block">
-                        <select type="text" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" name="country" id="country" required>
+                        <select class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" name="country" id="country" required>
                             <option value="AF" {% if flash.old[0].country %} {% if flash.old[0].country == "AF" %} selected {% endif %} {% else %} {% if country == "AF" %} selected {% endif %}  {% endif %}>Afghanistan</option>
                             <option value="AX" {% if flash.old[0].country %} {% if flash.old[0].country == "AX" %} selected {% endif %} {% else %} {% if country == "AX" %} selected {% endif %}  {% endif %}>Åland Islands</option>
                             <option value="AL" {% if flash.old[0].country %} {% if flash.old[0].country == "AL" %} selected {% endif %} {% else %} {% if country == "AL" %} selected {% endif %}  {% endif %}>Albania</option>
@@ -287,12 +296,26 @@
                         {% endif %}
                     </div>
                 </div>
+
+                <div class="mb-4 md:flex md:items-center">
+                    <label for="city" class="md:w-40 md:inline-block block mb-1 md:mb-0">المدينة</label>
+                    <div class="block">
+                        <input type="text" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].city }}" name="city" id="city" required>
+                        {% if flash.errors[0].city %}
+                            <p class="text-red-600 text-sm">{{ flash.errors[0].city }}</p>
+                        {% endif %}
+                    </div>
+                </div>
             
                 <div class="mb-4 md:flex md:items-center">
                     <label for="speciality" class="md:w-40 md:inline-block block mb-1 md:mb-0">التخصص العلمي</label>
                     
                     <div class="block">
-                        <input type="text" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].speciality }}" name="speciality" id="speciality" required>
+                        <select class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" name="speciality" id="speciality" required>
+                            <option {{ 'selected' if flash.old[0].speciality == 'باراميدك أخصائي' else '' }} value="باراميدك أخصائي">باراميدك أخصائي</option>
+                            <option {{ 'selected' if flash.old[0].speciality == 'باراميدك فني' else '' }} value="باراميدك فني">باراميدك فني</option>
+                            <option {{ 'selected' if flash.old[0].speciality == 'غير ذلك' else '' }} value="غير ذلك">غير ذلك</option>
+                        </select>
                         {% if flash.errors[0].speciality %}
                             <p class="text-red-600 text-sm">{{ flash.errors[0].speciality }}</p>
                         {% endif %}
@@ -311,7 +334,7 @@
                 </div>
             
                 <div class="mb-4 md:flex md:items-center">
-                    <label for="phone" class="md:w-40 md:inline-block block mb-1 md:mb-0">رقم الموبايل</label>
+                    <label for="phone" class="md:w-40 md:inline-block block mb-1 md:mb-0">رقم الجوال</label>
                     <div class="block">
                         <input type="text" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].phone }}" name="phone" id="phone" placeholder="على سبيل المثال 0501234567" required>
                         {% if flash.errors[0].phone %}
@@ -321,7 +344,7 @@
                 </div>
             
                 <div class="mb-4 md:flex md:items-center">
-                    <label for="email" class="md:w-40 md:inline-block block mb-1 md:mb-0">الايميل</label>
+                    <label for="email" class="md:w-40 md:inline-block block mb-1 md:mb-0">الإيميل</label>
                     <div class="block">
                         <input type="email" class="border rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2 w-full" value="{{ flash.old[0].email }}" name="email" id="email" required>
                         {% if flash.errors[0].email %}

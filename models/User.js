@@ -18,12 +18,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    birth: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: true,
       defaultValue: null
     },
     country: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    city: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -51,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
     status: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'active'
+      defaultValue: 'not verified'
     },
     role: {
       type: DataTypes.STRING,

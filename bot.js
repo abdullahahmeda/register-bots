@@ -1,32 +1,45 @@
 const Telegraf = require('telegraf');
 const utils = require('./utils');
-const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
+const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN, {
+    username: process.env.TELEGRAM_BOT_USERNAME
+});
 const User = require('./models').User;
 
 const chatId = process.env.TELEGRAM_CHAT_ID;
 
-bot.on('message', (ctx) => {
+/* bot.use(async (ctx, next) => {
+    const start = new Date()
+    await next()
+    const ms = new Date() - start
+    console.log('Response time: %sms', ms)
+  }) */
+
+bot.on('new_chat_members', async (ctx) =>  {
+    if (ctx.message.chat.id == chatId) {
+        const newMembers = ctx.message.new_chat_members;
+
+        for (const member of newMembers) {
+            const user = await User.findOne({
+                where: {
+                    telegramId: member.id
+                }
+            })
+            if (user == null) {
+                await utils.denyUserToSendMessages(member.id);
+            }
+        }
+    }
+})
+
+bot.on('text', (ctx) => {
     if (ctx.update.message.chat.type === 'private') {
         ctx.reply(`المعرف الخاص بك هو: ${ctx.update.message.from.id}`);
     }
 })
 
-bot.on('new_chat_members', (ctx) =>  {
-
-    /* if (ctx.message.chat.id == chatId) {
-        
-    } */
-
-    console.log(ctx)
-    console.log('\n\n\n\n\n\n')
-    console.log(ctx.message);
-    console.log('\n\n\n\n\n\n')
-    console.log(ctx.message.new_chat_members)
-})
-
-bot.on('left_chat_member', ctx => {
+/* bot.on('left_chat_member', ctx => {
     console.log('left')
-})
+}) */
 
 
 module.exports = bot;

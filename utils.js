@@ -1,5 +1,8 @@
 const fetch = require('node-fetch');
-const telegram = require('./telegram')
+const telegram = require('./telegram');
+const twilio = require('twilio');
+const { message } = require('./validation/userLoginSchema');
+const client = new twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 
 async function getCountry(ip) {
     return new Promise((resolve, reject) => {
@@ -10,8 +13,12 @@ async function getCountry(ip) {
     })
 }
 
-function sendVerifySMS(to, text) {
-    
+function sendVerifySMS(to, body) {
+    client.messages.create({
+        body,
+        to,
+        from: process.env.TWILIO_PHONE_NUMBER
+    }).then(message => console.log(message)).catch(e => console.log(e));
 }
 
 async function isInChat(telegramId) {
@@ -24,8 +31,42 @@ async function isInChat(telegramId) {
     }
 }
 
+async function allowUserToSendMessages(telegramId) {
+    try {
+        const s = await telegram.restrictChatMember(process.env.TELEGRAM_CHAT_ID, telegramId, {
+            can_send_messages: true,
+            can_send_media_messages: true,
+            can_send_other_messages: true
+        })
+        console.log('updated ' , s);
+        return true;
+    }
+    catch(e) {
+        console.log(e)
+        return false;
+    }
+}
+
+async function denyUserToSendMessages(telegramId) {
+    try {
+        const s = await telegram.restrictChatMember(process.env.TELEGRAM_CHAT_ID, telegramId, {
+            can_send_messages: false,
+            can_send_media_messages: false,
+            can_send_other_messages: false
+        })
+        console.log('updated ' , s);
+        return true;
+    }
+    catch(e) {
+        console.log(e)
+        return false;
+    }
+}
+
 module.exports = {
     getCountry,
     sendVerifySMS,
-    isInChat
+    isInChat,
+    allowUserToSendMessages,
+    denyUserToSendMessages
 }

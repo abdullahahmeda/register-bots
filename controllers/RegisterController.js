@@ -2,6 +2,7 @@ const userRegisterSchema = require('../validation/userRegisterSchema');
 const User = require('../models').User;
 const utils = require('../utils');
 const telegram = require('../telegram');
+const VerificationCode = require('../models').VerificationCode;
 const BannedEmail = require('../models').BannedEmail;
 
 module.exports = {
@@ -50,7 +51,7 @@ module.exports = {
         // Verify user on telegram
         try {
             const userTelegram = await telegram.getChatMember(value.telegramId, value.telegramId);
-            console.log(userTelegram)
+            //console.log(userTelegram)
         }
         catch (e) {
             req.flash('message', 'معرف التلجرام غير صحيح');
@@ -59,9 +60,10 @@ module.exports = {
             return res.redirect('/register');
         }
     
+        let user;
         try {
             value.ipAddress = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim();
-            await User.create(value);
+            user = await User.create(value);
         }
         catch (e) {
             if (e.name === 'SequelizeUniqueConstraintError') {
@@ -79,15 +81,78 @@ module.exports = {
                 req.flash('old', req.body);
                 return res.redirect('/register');
             }
-        } 
+        }
 
-        //sendVerifySMS('201064290265');
+        const code = Math.random().toString(10).slice(2,8);
+        const token = Math.random().toString(36).substr(2);
+        try {
+            await VerificationCode.create({
+                token,
+                code,
+                userId: user.id
+            });
+        }
+        catch(e) {
+            /* req.flash('type', 'danger');
+            req.flash('old', req.body); */
+        }
+
+        utils.sendVerifySMS('+201064290265', `كود التفعيل الخاص بك هو: ${code}`);
     
-        return res.redirect('/verify');
+        return res.redirect('/verify/' + token);
     },
 
-    verify: function(req, res) {
+    verifyGet: function(req, res) {
         return res.render('verify');
-    }
+    },
+
+    verifyPost: async function(req, res) {
+        const token = req.params.token;
+        const code = req.body.code;
+        
+        const row = await VerificationCode.findOne({
+            where: {
+                token,
+                code
+            }
+        });
+        if (row == null) {
+            return res.json({
+                status: '0',
+                message: 'هذا الكود غير صحيح'
+            });
+        }
+
+        try {
+            await User.update({
+                verifiedAt: new Date(),
+                status: 'active'
+            }, {
+                where: {
+                    id: row.userId
+                }
+            })
+
+            await VerificationCode.destroy({
+                where: {
+                    token,
+                    code
+                }
+            })
+        }
+        catch (e) {
+            return res.json({
+                status: '0',
+                message: 'حدث خطأ أثناء التفعيل، الرجاء إعادة المحاولة'
+            });
+        }
+
+        return res.json({
+            status: '1',
+            message: 'تم التفعيل بنجاح'
+        });
+        
+    },
+
 
 }

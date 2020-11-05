@@ -28,8 +28,16 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/">الموقع الرئيسي</a>
+      </li>
     </ul>
-    
+    <div class="mr-auto">
+      <form action="/admin/logout" method="POST">
+        <input type="hidden" name="_csrf" value="{{ _csrf }}">
+        <button class="btn btn-link" href="/">تسجيل الخروج</button>
+      </form>
+    </div>
   </nav>
   <!-- /.navbar -->
 
@@ -61,6 +69,14 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 الايميلات المحظورة
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/settings" class="nav-link {{ 'active' if reqPath == '/admin/settings' else '' }}">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                إعدادات الأدمن
               </p>
             </a>
           </li>

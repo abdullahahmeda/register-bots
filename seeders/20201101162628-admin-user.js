@@ -10,6 +10,7 @@ module.exports = {
       email: 'admin@admin.com',
       password: bcrypt.hashSync('1234'),
       country: 'EG',
+      city: 'الاسكندرية',
       speciality: 'admin',
       telegramId: 123456,
       ipAddress: '123414',
