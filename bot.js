@@ -15,7 +15,9 @@ const chatId = process.env.TELEGRAM_CHAT_ID;
   }) */
 
 bot.on('new_chat_members', async (ctx) =>  {
+    
     if (ctx.message.chat.id == chatId) {
+        console.log('new chat member')
         const newMembers = ctx.message.new_chat_members;
 
         for (const member of newMembers) {
@@ -26,6 +28,7 @@ bot.on('new_chat_members', async (ctx) =>  {
             })
             if (user == null) {
                 await utils.denyUserToSendMessages(member.id);
+                console.log('denied user')
             }
         }
     }
