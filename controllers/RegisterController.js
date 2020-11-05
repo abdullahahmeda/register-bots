@@ -97,7 +97,7 @@ module.exports = {
             req.flash('old', req.body); */
         }
 
-        utils.sendVerifySMS('+201064290265', `كود التفعيل الخاص بك هو: ${code}`);
+        utils.sendVerifySMS(`+966${value.phone}`, `كود التفعيل الخاص بك هو: ${code}`);
     
         return res.redirect('/verify/' + token);
     },
