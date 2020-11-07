@@ -3,9 +3,9 @@ const utils = require('./utils');
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN, {
     username: process.env.TELEGRAM_BOT_USERNAME
 });
-const User = require('./models').User;
+//const User = require('./models').User;
 
-const chatId = process.env.TELEGRAM_CHAT_ID;
+//const chatId = process.env.TELEGRAM_CHAT_ID;
 
 /* bot.use(async (ctx, next) => {
     const start = new Date()
@@ -14,7 +14,7 @@ const chatId = process.env.TELEGRAM_CHAT_ID;
     console.log('Response time: %sms', ms)
   }) */
 
-bot.on('new_chat_members', async (ctx) =>  {
+/* bot.on('new_chat_members', async (ctx) =>  {
     
     if (ctx.message.chat.id == chatId) {
         console.log('new chat member')
@@ -37,7 +37,7 @@ bot.on('new_chat_members', async (ctx) =>  {
             }
         }
     }
-})
+}) */
 
 bot.on('text', (ctx) => {
     if (ctx.update.message.chat.type === 'private') {
