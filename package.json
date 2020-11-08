@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "build-dev": "postcss src/css/*.css --dir public/css/ --watch"
   },
   "keywords": [],
