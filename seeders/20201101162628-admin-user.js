@@ -15,6 +15,7 @@ module.exports = {
       telegramId: 123456,
       ipAddress: '123414',
       phone: '123141414',
+      status: 'active',
       verifiedAt: new Date(),
       role: 'admin',
       createdAt: new Date(),

@@ -31,22 +31,27 @@ module.exports = {
         }
 
         const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(req.body.password, salt);
+        const hash = bcrypt.hashSync(value.password, salt);
 
         try {
             await User.update({
-                name: req.body.name,
-                email: req.body.email,
+                name: value.name,
+                telegramId: value.telegramId,
+                email: value.email,
                 password: hash
             }, {
                 where: {
                     id: req.session.user.id
                 }
             })
+            req.session.user = {
+                ...req.session.user,
+                ...value
+            }
         }
         catch (e) {
             if (e.name === 'SequelizeUniqueConstraintError') {
-                req.flash('message', 'هذا الايميل مستخدم من قبل مستخدم آخر');
+                req.flash('message', 'هذا الايميل أو معرف التليجرام مستخدم من قبل مستخدم آخر');
                 req.flash('type', 'danger');
                 req.flash('old', req.body);
                 return res.redirect('/admin/settings');

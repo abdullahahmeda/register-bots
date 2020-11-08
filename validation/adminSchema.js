@@ -7,6 +7,11 @@ const userLoginSchema = Joi.object({
         .messages({
             'any.required': 'حقل الاسم إجباري'
         }),
+
+    telegramId: Joi.string()
+        .required()
+        .pattern(/^[0-9]+$/),
+        
     email: Joi.string()
         .email()
         .required()
