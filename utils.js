@@ -63,10 +63,22 @@ async function denyUserToSendMessages(telegramId) {
     }
 }
 
+async function deleteGroupMessage(messageId) {
+    try {
+        await telegram.deleteMessage(process.env.TELEGRAM_CHAT_ID, messageId);
+        return true;
+    }
+    catch (e) {
+        console.log(e);
+        return false;
+    }
+}
+
 module.exports = {
     getCountry,
     sendVerifySMS,
     isInChat,
     allowUserToSendMessages,
-    denyUserToSendMessages
+    denyUserToSendMessages,
+    deleteGroupMessage,
 }

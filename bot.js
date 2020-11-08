@@ -3,9 +3,9 @@ const utils = require('./utils');
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN, {
     username: process.env.TELEGRAM_BOT_USERNAME
 });
-//const User = require('./models').User;
+const User = require('./models').User;
 
-//const chatId = process.env.TELEGRAM_CHAT_ID;
+const chatId = process.env.TELEGRAM_CHAT_ID;
 
 /* bot.use(async (ctx, next) => {
     const start = new Date()
@@ -39,9 +39,24 @@ const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN, {
     }
 }) */
 
-bot.on('text', (ctx) => {
+bot.on('text', async (ctx) => {
     if (ctx.update.message.chat.type === 'private') {
         ctx.reply(`المعرف الخاص بك هو: ${ctx.update.message.from.id}`);
+    }
+    else if (ctx.update.message.chat.id == chatId) {
+        const messageId = ctx.update.message.message_id;
+        const telegramId = ctx.update.message.from.id;
+
+        const user = await User.findOne({
+            where: {
+                telegramId,
+                status: 'active'
+            }
+        })
+
+        if (user == null) {
+            await utils.deleteGroupMessage(messageId);
+        }
     }
 })
 
