@@ -13,6 +13,7 @@ router.post('/settings', AdminController.update)
 
 router.get('/users', AdminUsersController.index)
 router.post('/users/:telegramId/ban', AdminUsersController.ban)
+router.post('/users/:telegramId/verify', AdminUsersController.verify)
 router.delete('/users/:telegramId', AdminUsersController.destroy)
 
 
