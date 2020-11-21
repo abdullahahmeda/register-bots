@@ -27,7 +27,7 @@ module.exports = {
     
             req.flash('errors', errors);
             req.flash('old', req.body);
-            return res.redirect('/admin/settings')
+            return res.redirect('/custom-admin/settings')
         }
 
         const salt = bcrypt.genSaltSync(10);
@@ -54,13 +54,13 @@ module.exports = {
                 req.flash('message', 'هذا الايميل أو معرف التليجرام مستخدم من قبل مستخدم آخر');
                 req.flash('type', 'danger');
                 req.flash('old', req.body);
-                return res.redirect('/admin/settings');
+                return res.redirect('/custom-admin/settings');
             }
         }
 
         req.flash('message', 'تم تحديث بياناتك بنجاح');
         req.flash('type', 'success');
-        return res.redirect('/admin/settings')
+        return res.redirect('/custom-admin/settings')
     },
 
     logout: function(req, res) {

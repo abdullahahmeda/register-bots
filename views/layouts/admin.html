@@ -33,7 +33,7 @@
       </li>
     </ul>
     <div class="mr-auto">
-      <form action="/admin/logout" method="POST">
+      <form action="/custom-admin/logout" method="POST">
         <input type="hidden" name="_csrf" value="{{ _csrf }}">
         <button class="btn btn-link" href="/">تسجيل الخروج</button>
       </form>
@@ -44,7 +44,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/admin" class="brand-link">
+    <a href="/custom-admin" class="brand-link">
       <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8"> -->
       <span class="brand-text font-weight-light">لوحة التحكم</span>
@@ -57,7 +57,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/admin/users" class="nav-link {{ 'active' if reqPath == '/admin/users' else '' }}">
+            <a href="/custom-admin/users" class="nav-link {{ 'active' if reqPath == '/custom-admin/users' else '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 المستخدمين
@@ -65,7 +65,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/admin/blacklist" class="nav-link {{ 'active' if reqPath == '/admin/blacklist' else '' }}">
+            <a href="/custom-admin/blacklist" class="nav-link {{ 'active' if reqPath == '/custom-admin/blacklist' else '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 الايميلات المحظورة
@@ -73,7 +73,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/admin/settings" class="nav-link {{ 'active' if reqPath == '/admin/settings' else '' }}">
+            <a href="/custom-admin/settings" class="nav-link {{ 'active' if reqPath == '/custom-admin/settings' else '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 إعدادات الأدمن

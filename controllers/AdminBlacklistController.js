@@ -18,7 +18,7 @@ module.exports = {
         if (!re.test(String(req.body.address).toLowerCase())) {
             req.flash('message', 'بريد الكتروني غير صالح');
             req.flash('type', 'danger');
-            return res.redirect('/admin/blacklist/create');
+            return res.redirect('/custom-admin/blacklist/create');
         }
         try {
             await BannedEmail.create(req.body);
@@ -29,10 +29,10 @@ module.exports = {
             if (e.name === 'SequelizeUniqueConstraintError') {
                 req.flash('message', 'هذا الايميل في الايميلات المحظورة بالفعل');
                 req.flash('type', 'danger');
-                return res.redirect('/admin/blacklist/create');
+                return res.redirect('/custom-admin/blacklist/create');
             }
         }
-        return res.redirect('/admin/blacklist');
+        return res.redirect('/custom-admin/blacklist');
     },
 
     destroy: async function(req, res) {

@@ -12,7 +12,7 @@
 {% block content_header %}
     <div class="d-flex justify-content-between">
         <h1>الإيميلات المحظورة</h1>
-        <a href="/admin/blacklist/create" class="btn btn-success">إضافة</a>
+        <a href="/custom-admin/blacklist/create" class="btn btn-success">إضافة</a>
     </div>
 
 {% endblock %}
@@ -71,7 +71,7 @@
             if (result.isConfirmed) {
               $.ajax({
                   type: "DELETE",
-                  url: `/admin/blacklist/${emailId}`,
+                  url: `/custom-admin/blacklist/${emailId}`,
                   headers: {
                     'CSRF-Token': "{{ _csrf }}"
                   },

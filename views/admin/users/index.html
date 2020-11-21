@@ -97,7 +97,7 @@
             if (result.isConfirmed) {
               $.ajax({
                   method: "POST",
-                  url: `/admin/users/${telegramId}/ban`,
+                  url: `/custom-admin/users/${telegramId}/ban`,
                   headers: {
                     'CSRF-Token': "{{ _csrf }}"
                   },
@@ -127,7 +127,7 @@
             if (result.isConfirmed) {
               $.ajax({
                   method: "POST",
-                  url: `/admin/users/${telegramId}/verify`,
+                  url: `/custom-admin/users/${telegramId}/verify`,
                   headers: {
                     'CSRF-Token': "{{ _csrf }}"
                   },
@@ -156,7 +156,7 @@
             if (result.isConfirmed) {
               $.ajax({
                   type: "DELETE",
-                  url: `/admin/users/${telegramId}`,
+                  url: `/custom-admin/users/${telegramId}`,
                   headers: {
                     'CSRF-Token': "{{ _csrf }}"
                   },
