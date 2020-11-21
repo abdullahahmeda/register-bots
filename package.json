@@ -5,6 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "drop-db": "sequelize db:drop",
+    "create-db": "sequelize db:create",
+    "migrate-db": "sequelize db:migrate",
+    "seed-db": "sequelize db:seed:all",
+    "reset-db": "sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
     "build-dev": "postcss src/css/*.css --dir public/css/ --watch"
   },
   "keywords": [],
