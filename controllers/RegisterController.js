@@ -31,7 +31,7 @@ module.exports = {
     
             req.flash('errors', errors);
             req.flash('old', req.body);
-            return res.redirect('/register');
+            return res.redirect('/tgr');
         }
 
         // Check if email is banned
@@ -45,7 +45,7 @@ module.exports = {
             req.flash('message', 'هذا الايميل محظور');
             req.flash('type', 'danger');
             req.flash('old', req.body);
-            return res.redirect('/register');
+            return res.redirect('/tgr');
         }
 
         // Verify user on telegram
@@ -57,7 +57,7 @@ module.exports = {
             req.flash('message', 'معرف التلجرام غير صحيح');
             req.flash('type', 'danger');
             req.flash('old', req.body);
-            return res.redirect('/register');
+            return res.redirect('/tgr');
         }
     
         let user;
@@ -79,7 +79,7 @@ module.exports = {
                 
                 req.flash('type', 'danger');
                 req.flash('old', req.body);
-                return res.redirect('/register');
+                return res.redirect('/tgr');
             }
         }
 

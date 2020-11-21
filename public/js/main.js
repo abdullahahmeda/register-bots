@@ -5,7 +5,7 @@
 
 function nextStep() {
     if (document.getElementById('accept_tos').checked) {
-        location.replace('/register');
+        location.replace('/tgr');
     }
     else {
         document.getElementById('accept_tos_error').classList.remove('hidden');
