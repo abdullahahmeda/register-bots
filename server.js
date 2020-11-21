@@ -20,9 +20,9 @@ const bot = require('./bot');
 const app = express();
 
 // Use sessions
-const sessionStore = new SequelizeStore({
+/* const sessionStore = new SequelizeStore({
     db: require('./models').sequelize,
-})
+}) */
 
 app.use(session({
     secret: process.env.APP_SECRET,
@@ -58,13 +58,13 @@ app.use((req, res, next) => {
 })
 
 // Init the bot
-bot.launch();
+//bot.launch();
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Use routes
-app.use('/admin', adminRouter);
+app.use('/custom-admin', adminRouter);
 app.use(mainRouter)
 
 app.set('view engine', 'html')

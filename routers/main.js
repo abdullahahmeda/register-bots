@@ -6,13 +6,13 @@ const isLoggedIn = require('../middlewares/isLoggedIn');
 const bodyParser = require('body-parser');
 
 
-router.get('/', async (req, res) => {
+router.get('/tgc', async (req, res) => {
     return res.render('home');
 })
 
-router.get('/register', RegisterController.index)
+router.get('/tgr', RegisterController.index)
 
-router.post('/register', RegisterController.store);
+router.post('/tgr', RegisterController.store);
 
 router.get('/verify/:token', function(req, res, next) {
     res.locals.token = req.params.token;
