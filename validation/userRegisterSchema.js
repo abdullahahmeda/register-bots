@@ -29,8 +29,7 @@ const userRegisterSchema = Joi.object({
         }),
     
     other_speciality: Joi.string()
-        .allow('')
-        .when('speciality', { is: 'غير ذلك', then: Joi.required() }),
+        .when('speciality', { is: 'غير ذلك', then: Joi.required(), otherwise: Joi.optional().allow('') }),
 
     telegramId: Joi.string()
         .required()

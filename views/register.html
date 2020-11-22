@@ -317,6 +317,9 @@
                             <option {{ 'selected' if flash.old[0].speciality == 'غير ذلك' else '' }} value="غير ذلك">غير ذلك</option>
                         </select>
                         <input type="text" name="other_speciality" id="other_speciality" class="hidden border mt-2 rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2" placeholder="برجاء إدخال التخصص">
+                        {% if flash.errors[0].other_speciality %}
+                            <p class="text-red-600 text-sm">{{ flash.errors[0].other_speciality }}</p>
+                        {% endif %}
                         {% if flash.errors[0].speciality %}
                             <p class="text-red-600 text-sm">{{ flash.errors[0].speciality }}</p>
                         {% endif %}
