@@ -34,6 +34,11 @@ module.exports = {
             return res.redirect('/tgr');
         }
 
+        if (value.speciality === 'غير ذلك') {
+            value.speciality = value.other_speciality
+        }
+        delete value.other_speciality;
+
         // Check if email is banned
         const bannedEmail = await BannedEmail.findOne({
             where: {

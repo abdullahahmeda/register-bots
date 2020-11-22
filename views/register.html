@@ -316,6 +316,7 @@
                             <option {{ 'selected' if flash.old[0].speciality == 'باراميدك فني' else '' }} value="باراميدك فني">باراميدك فني</option>
                             <option {{ 'selected' if flash.old[0].speciality == 'غير ذلك' else '' }} value="غير ذلك">غير ذلك</option>
                         </select>
+                        <input type="text" name="other_speciality" id="other_speciality" class="hidden border mt-2 rounded-sm border-gray-600 outline-none focus:border-gray-900 p-2" placeholder="برجاء إدخال التخصص">
                         {% if flash.errors[0].speciality %}
                             <p class="text-red-600 text-sm">{{ flash.errors[0].speciality }}</p>
                         {% endif %}
@@ -360,4 +361,19 @@
             </form>
         </div>
     </div>
+{% endblock %}
+
+{% block afterload %}
+<script>
+    function checkSpeciality() {
+        if(document.getElementById('speciality').value === 'غير ذلك') {
+            document.getElementById('other_speciality').classList.remove('hidden')
+            return;
+        }
+        document.getElementById('other_speciality').classList.add('hidden')
+    }
+    checkSpeciality()
+    document.getElementById('speciality').addEventListener('change', checkSpeciality);
+    document.getElementById('birth').setAttribute('max', new Date().toISOString().split('T')[0]);
+</script>
 {% endblock %}

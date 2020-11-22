@@ -27,6 +27,10 @@ const userRegisterSchema = Joi.object({
         .messages({
             'any.required': 'حقل التخصص إجباري'
         }),
+    
+    other_speciality: Joi.string()
+        .allow('')
+        .when('speciality', { is: 'غير ذلك', then: Joi.required() }),
 
     telegramId: Joi.string()
         .required()

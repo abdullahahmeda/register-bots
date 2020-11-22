@@ -1,5 +1,3 @@
-const { content, css } = require("./purgecss.config");
-
 module.exports = {
     future: {
         // removeDeprecatedGapUtilities: true,
