@@ -371,8 +371,10 @@
     function checkSpeciality() {
         if(document.getElementById('speciality').value === 'غير ذلك') {
             document.getElementById('other_speciality').classList.remove('hidden')
+            document.getElementById('other_speciality').required = true;
             return;
         }
+        document.getElementById('other_speciality').required = false;
         document.getElementById('other_speciality').classList.add('hidden')
     }
     checkSpeciality()
