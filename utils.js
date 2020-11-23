@@ -20,7 +20,9 @@ function sendVerifySMS(to, body) {
     }).then(message => console.log(message)).catch(e => console.log(e)); */
 
     fetch(`https://api-server3.com/api/send.aspx?username=${process.env.SMS_API_USERNAME}&password=${process.env.SMS_API_PASSWORD}&language=2&sender=${process.env.SMS_API_SENDER}&mobile=${to}&message=${decodeURIComponent(body)}`)
-    
+        .then(res => res.json())
+        .then(message => console.log(message))
+        .catch(e => console.log(e));
 }
 
 async function isInChat(telegramId) {
