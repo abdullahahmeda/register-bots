@@ -17,7 +17,7 @@ module.exports = {
             req.flash('message', 'الرجاء إدخال بريد إلكتروني وكلمة مرور صالحتين');
             req.flash('type', 'danger');
             req.flash('old', req.body);
-            return res.redirect('/login');
+            return res.redirect('/tgadminlogin-123321ems');
         }
 
         const user = await User.findOne({
@@ -29,14 +29,14 @@ module.exports = {
             req.flash('message', 'البيانات المدخلة غير صحيحة');
             req.flash('type', 'danger');
             req.flash('old', req.body);
-            return res.redirect('/login');
+            return res.redirect('/tgadminlogin-123321ems');
         }
 
         if (!bcrypt.compareSync(value.password, user.password)) {
             req.flash('message', 'كلمة المرور غير صحيحة');
             req.flash('type', 'danger');
             req.flash('old', req.body);
-            return res.redirect('/login');
+            return res.redirect('/tgadminlogin-123321ems');
         }
 
         delete user.password;

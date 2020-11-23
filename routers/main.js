@@ -25,7 +25,7 @@ router.get('/telegram_id', (req, res) => {
     return res.render('telegram_id');
 })
 
-router.get('/login', isLoggedIn, LoginController.index)
-router.post('/login', isLoggedIn, LoginController.login)
+router.get('/tgadminlogin-123321ems', isLoggedIn, LoginController.index)
+router.post('/tgadminlogin-123321ems', isLoggedIn, LoginController.login)
 
 module.exports = router;
