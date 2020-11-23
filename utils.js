@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 const telegram = require('./telegram');
 const twilio = require('twilio');
-const { message } = require('./validation/userLoginSchema');
 const client = new twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 
 async function getCountry(ip) {
@@ -14,11 +13,14 @@ async function getCountry(ip) {
 }
 
 function sendVerifySMS(to, body) {
-    client.messages.create({
+    /* client.messages.create({
         body,
         to,
         from: process.env.TWILIO_PHONE_NUMBER
-    }).then(message => console.log(message)).catch(e => console.log(e));
+    }).then(message => console.log(message)).catch(e => console.log(e)); */
+
+    fetch(`https://api-server3.com/api/send.aspx?username=${process.env.SMS_API_USERNAME}&password=${process.env.SMS_API_PASSWORD}&language=2&sender=${process.env.SMS_API_SENDER}&mobile=${to}&message=${decodeURIComponent(body)}`)
+    
 }
 
 async function isInChat(telegramId) {
