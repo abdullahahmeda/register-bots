@@ -25,6 +25,28 @@ function sendVerifySMS(to, body) {
         .catch(e => console.log(e));
 }
 
+async function shortenLink(long_url) {
+    return new Promise((resolve, reject) => {
+        const myHeaders = new fetch.Headers();
+        myHeaders.append("Authorization", `Bearer ${BITLY_API_TOKEN}`);
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({"domain": "bit.ly", "long_url": long_url});
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://api-ssl.bitly.com/v4/shorten", requestOptions)
+        .then(response => response.json())
+        .then(result => resolve(result.link))
+        .catch(error => reject(null));
+    })
+}
+
 async function isInChat(telegramId) {
     try {
         const user = await telegram.getChatMember(process.env.TELEGRAM_CHAT_ID, telegramId);
@@ -80,6 +102,7 @@ async function deleteGroupMessage(messageId) {
 
 module.exports = {
     getCountry,
+    shortenLink,
     sendVerifySMS,
     isInChat,
     allowUserToSendMessages,
