@@ -28,7 +28,7 @@ function sendVerifySMS(to, body) {
 async function shortenLink(long_url) {
     return new Promise((resolve, reject) => {
         const myHeaders = new fetch.Headers();
-        myHeaders.append("Authorization", `Bearer ${BITLY_API_TOKEN}`);
+        myHeaders.append("Authorization", `Bearer ${process.env.BITLY_API_TOKEN}`);
         myHeaders.append("Content-Type", "application/json");
 
         const raw = JSON.stringify({"domain": "bit.ly", "long_url": long_url});
