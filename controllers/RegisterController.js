@@ -108,7 +108,7 @@ module.exports = {
         }
         else {
         } */
-        utils.sendVerifySMS(`966${value.phone.slice(1)}`, `كود التفعيل الخاص بك هو: ${code}.`);
+        utils.sendVerifySMS(`966${value.phone.slice(1)}`, `${code}`);
     
         return res.redirect('/verify/' + token);
     },
