@@ -102,13 +102,13 @@ module.exports = {
             req.flash('old', req.body); */
         }
 
-        const url = await utils.shortenLink(`${process.env.WEBSITE_URI}/verify/${token}`);
+        /* const url = await utils.shortenLink(`${process.env.WEBSITE_URI}/verify/${token}`);
         if (url != null) {
             utils.sendVerifySMS(`966${value.phone.slice(1)}`, `كود التفعيل الخاص بك هو: ${code}. رابط التفعيل: ${url}`);
         }
         else {
-            utils.sendVerifySMS(`966${value.phone.slice(1)}`, `كود التفعيل الخاص بك هو: ${code}.`);
-        }
+        } */
+        utils.sendVerifySMS(`966${value.phone.slice(1)}`, `كود التفعيل الخاص بك هو: ${code}.`);
     
         return res.redirect('/verify/' + token);
     },
