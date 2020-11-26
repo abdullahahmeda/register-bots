@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 module.exports = {
     index: async function(req, res) {
         const group_members = await telegram.getChatMembersCount(process.env.TELEGRAM_CHAT_ID);
-        const db_members = await User.count();
+        const db_members = await User.count() - 1;
         return res.render('admin/index.html', {
             group_members: group_members,
             db_members: db_members
