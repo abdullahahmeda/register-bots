@@ -1,10 +1,16 @@
 const User = require('../models').User;
 const adminSchema = require('../validation/adminSchema');
+const telegram = require('../telegram');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
-    index: function(req, res) {
-        return res.render('admin/index.html');
+    index: async function(req, res) {
+        const group_members = await telegram.getChatMembersCount(process.env.TELEGRAM_CHAT_ID);
+        const db_members = await User.count();
+        return res.render('admin/index.html', {
+            group_members: group_members,
+            db_members: db_members
+        });
     },
 
     edit: function(req, res) {

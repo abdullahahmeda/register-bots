@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-{% if flash.message %}
+    {% if flash.message %}
     <div class="alert alert-{{ flash.type }} mb-4 rounded-md">
         {{ flash.message }}
     </div>
