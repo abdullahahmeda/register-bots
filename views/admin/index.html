@@ -9,27 +9,39 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="info-box">
-    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-    <div class="info-box-content">
-      <span class="info-box-text">الأعضاء في المجموعة</span>
-      <span class="info-box-number">{{ group_members }}</span>
+<div class="row">
+    <div class="col-lg-4 col-12 col-md-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{ group_members }}</h3>
+                <p>الأعضاء في المجموعة</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-12 col-md-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{ db_members }}</h3>
+                <p>الأعضاء في قاعدة البيانات</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-12 col-md-6">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>{{ (group_members - db_members)|abs }}</h3>
+                <p>الأعضاء في المجموعة وليسوا في قاعدة البيانات</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+        </div>
     </div>
 </div>
-<div class="info-box">
-    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-    <div class="info-box-content">
-      <span class="info-box-text">الأعضاء في قاعدة البيانات</span>
-      <span class="info-box-number">{{ db_members }}</span>
-    </div>
-</div>
-<div class="info-box">
-    <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-    <div class="info-box-content">
-      <span class="info-box-text">الأعضاء في المجموعة وليسوا في قاعدة البيانات</span>
-      <span class="info-box-number">{{ (group_members - db_members)|abs }}</span>
-    </div>
-</div>
-
 {% endblock %}
