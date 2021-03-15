@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const userRegisterSchema = require('../validation/userRegisterSchema');
 const User = require('../models').User;
 const utils = require('../utils');
@@ -66,7 +67,33 @@ module.exports = {
         }
     
         let user;
-        try {
+        value.ipAddress = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim();
+        const duplicateUser = await User.findOne({
+            where: {
+                [Op.or]: [
+                    { email: value.email },
+                    { phone: value.phone },
+                    { telegramId: value.telegramId }
+                ],
+                status: 'active'
+            }
+        })
+        if (duplicateUser != null) { // There's a duplicate user
+            if (duplicateUser.email == value.email) {
+                req.flash('message', 'الايميل مستخدم بالفعل');
+            }
+            if (duplicateUser.phone == value.phone) {
+                req.flash('message', 'رقم الهاتف مستخدم بالفعل');
+            }
+            if (duplicateUser.telegramId == value.telegramId) {
+                req.flash('message', 'معرف التلجرام مستخدم بالفعل');
+            }
+            req.flash('type', 'danger');
+            req.flash('old', req.body);
+            return res.redirect('/tgr');
+        }
+        user = await User.create(value);
+        /* try {
             value.ipAddress = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim();
             user = await User.create(value);
         }
@@ -86,7 +113,7 @@ module.exports = {
                 req.flash('old', req.body);
                 return res.redirect('/tgr');
             }
-        }
+        } */
 
         const code = Math.random().toString(10).slice(2,8);
         const token = Math.random().toString(36).substr(2);
@@ -131,6 +158,44 @@ module.exports = {
             return res.json({
                 status: '0',
                 message: 'هذا الكود غير صحيح'
+            });
+        }
+
+        try {
+            const user = await User.findOne({
+                where: {
+                    id: row.userId
+                }
+            });
+
+            if (user == null) {
+                return res.json({
+                    status: '0',
+                    message: 'حدث خطأ أثناء التفعيل، الرجاء إعادة المحاولة'
+                });
+            }
+
+            const duplicateUsersCount = await User.count({
+                where: {
+                    [Op.or]: [
+                        { email: user.email },
+                        { phone: user.phone },
+                        { telegramId: user.telegramId }
+                    ],
+                    status: 'active'
+                }
+            })
+            if (duplicateUsersCount > 1) {
+                return res.json({
+                    status: '0',
+                    message: 'هذا الحساب مسجل بالفعل'
+                });
+            }
+        }
+        catch (e) {
+            return res.json({
+                status: '0',
+                message: 'حدث خطأ أثناء التفعيل، الرجاء إعادة المحاولة'
             });
         }
 

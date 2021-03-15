@@ -22,7 +22,8 @@ module.exports = {
 
         const user = await User.findOne({
             where: {
-                email: value.email
+                email: value.email,
+                status: 'active'
             }
         });
         if (user == null) {
