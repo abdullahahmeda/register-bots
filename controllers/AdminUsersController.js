@@ -8,7 +8,8 @@ module.exports = {
     index: async function(req, res) {
         users = await User.findAll({
             where: {
-                role: 'user'
+                role: 'user',
+                status: 'active'
             }
         });
         return res.render('admin/users/index.html', {
