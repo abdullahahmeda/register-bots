@@ -41,8 +41,7 @@ const chatId = process.env.TELEGRAM_CHAT_ID;
 
 bot.on('text', async (ctx) => {
     if (ctx.update.message.chat.type === 'private') {
-        ctx.reply(`
-        للدخول لمجموعة الخدمات الطبية الطارئة
+        ctx.reply(`للدخول لمجموعة الخدمات الطبية الطارئة
 
 اتبع التالي:
 
