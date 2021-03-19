@@ -41,7 +41,15 @@ const chatId = process.env.TELEGRAM_CHAT_ID;
 
 bot.on('text', async (ctx) => {
     if (ctx.update.message.chat.type === 'private') {
-        ctx.reply(`المعرف الخاص بك هو: ${ctx.update.message.from.id}`);
+        ctx.reply(`
+        للدخول لمجموعة الخدمات الطبية الطارئة
+
+اتبع التالي:
+
+1- انسخ رقم معرف التليجرام: ${ctx.update.message.from.id}
+
+2-سجّل لك عضوية من الرابط التالي:
+www.eemsr.com/tgc`);
     }
     else if (ctx.update.message.chat.id == chatId) {
         const messageId = ctx.update.message.message_id;
