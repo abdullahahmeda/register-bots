@@ -46,7 +46,7 @@ bot.on('text', async (ctx) => {
 
 اولاً تأكد ان التليجرام عندك محدث لأخر نسخة ثم اتبع التالي :
         
-1- انسخ رقم معرف التليجرام التالي: <strong>${ctx.update.message.from.id} </strong>
+1- انسخ رقم معرف التليجرام التالي: ${ctx.update.message.from.id} 
         
 2-سجّل لك عضوية من الرابط التالي:
 www.eemsr.com/tgc`);
