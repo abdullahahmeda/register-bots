@@ -41,14 +41,15 @@ const chatId = process.env.TELEGRAM_CHAT_ID;
 
 bot.on('text', async (ctx) => {
     if (ctx.update.message.chat.type === 'private') {
-        ctx.reply(`للأنضمام لمجموعة الخدمات الطبية الطارئة
+        ctx.reply(`
+للأنضمام لمجموعة الخدمات الطبية الطارئة
 
-        اولاً تأكد ان التليجرام عندك محدث لأخر نسخة ثم اتبع التالي :
+اولاً تأكد ان التليجرام عندك محدث لأخر نسخة ثم اتبع التالي :
         
-        1- انسخ رقم معرف التليجرام التالي: ${ctx.update.message.from.id} 
+1- انسخ رقم معرف التليجرام التالي: <strong>${ctx.update.message.from.id} </strong>
         
-        2-سجّل لك عضوية من الرابط التالي:
-        www.eemsr.com/tgc`);
+2-سجّل لك عضوية من الرابط التالي:
+www.eemsr.com/tgc`);
     }
     else if (ctx.update.message.chat.id == chatId) {
         const messageId = ctx.update.message.message_id;
