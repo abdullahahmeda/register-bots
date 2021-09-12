@@ -1,31 +1,31 @@
 {% extends 'layouts/master.html' %}
 
 {% block content %}
-    <div class="container mx-auto mt-8 mb-4">
+<div class="container mx-auto mt-8 mb-4">
 
-        {% if flash.message %}
-            <div class="alert alert-{{ flash.type }} p-4 mb-4 rounded-md">
-                {{ flash.message }}
-            </div>
-        {% endif %}
+  <div class="bg-white p-4 max-w-md rounded-md shadow-md mx-auto">
+    <h1 class="fw-bold mb-3 text-center">تسجيل الدخول</h1>
 
-        <div class="bg-white p-4 max-w-md rounded-md shadow-md mx-auto">
-            <h1 class="font-bold text-center text-2xl mb-6">تسجيل الدخول</h1>
-
-            <form method="POST">
-                <input type="hidden" name="_csrf" value="{{ _csrf }}">
-                <div class="form-group mb-4">
-                    <label for="email" class="block mb-1">الايميل</label>
-                    <input type="email" value="{{ flash.old[0].email }}" class="w-full rounded-sm focus:border-gray-900 px-2 py-2 border border-gray-600" name="email" required>
-                </div>
-                <div class="form-group mb-4">
-                    <label for="password" class="block mb-1">الباسورد</label>
-                    <input type="password" class="w-full rounded-sm focus:border-gray-900 px-2 py-2 border border-gray-600" name="password" required>
-                </div>
-                <button type="submit" class="bg-blue-600 shadow-md hover:shadow-lg hover:bg-blue-700 transition duration-300 text-white px-4 py-2 rounded-md">دخول</button>
-            </form>
-
-        </div>
-
+    {% if flash.message %}
+    <div class="alert alert-{{ flash.type }} my-3 rounded-md">
+      {{ flash.message }}
     </div>
+    {% endif %}
+
+    <form method="POST">
+      <input type="hidden" name="_csrf" value="{{ _csrf }}">
+      <div class="form-group mb-4">
+        <label class="form-label" for="email">الايميل</label>
+        <input type="email" value="{{ flash.old[0].email }}" class="form-control" name="email" required>
+      </div>
+      <div class="form-group mb-4">
+        <label class="form-label" for="password">الباسورد</label>
+        <input type="password" class="form-control" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">دخول</button>
+    </form>
+
+  </div>
+
+</div>
 {% endblock %}

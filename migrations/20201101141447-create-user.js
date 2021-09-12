@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Users', {
@@ -15,23 +15,23 @@ module.exports = {
         type: Sequelize.DATE
       },
       password: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       country: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       city: {
         type: Sequelize.STRING,
         allowNull: false
       },
       speciality: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       telegramId: {
         type: Sequelize.INTEGER,
         unique: true
       },
-      ipAddress:{
+      ipAddress: {
         type: Sequelize.STRING
       },
       phone: {
@@ -49,7 +49,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       role: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -61,9 +61,9 @@ module.exports = {
       }
     }, {
       charset: 'utf8'
-    });
+    })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Users')
   }
-};
+}

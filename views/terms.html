@@ -1,20 +1,21 @@
+{% set activeLink = 'tgc' %}
 {% extends 'layouts/master.html' %}
 
 {% block content %}
-    <div class="bg-white mb-10 py-6 shadow-sm">
-        <h1 class="text-2xl font-bold text-center">الموافقة على الشروط</h1>
+    <div class="my-3">
+        <h1 class="fw-bold text-center">الموافقة على الشروط</h1>
     </div>
     <div class="container mx-auto mb-4">
 
-        <div class="bg-white p-4 max-w-4xl rounded-md shadow-md mx-auto">
-            <img src="/img/tos.jpg" class="text-center max-w-full mb-2" alt="">
+        <div class="bg-white p-4 mx-auto">
+            <img src="/img/logo.jpg" class="text-center mw-100 mb-2" alt="">
             <h1 class="text-center text-2xl mb-2">مجموعة الخدمات الطبيه الطارئة</h1>
             <p class="mb-2 text-center">للأنضمام للمجموعة عليك قراءة الشروط التالية والموافقة عليها:</p>
             <div class="border border-gray-400 p-2 text-gray-900">
-                <p class="text-red-700">عدم التزامك بالشروط يعني حظر نهائي !</p>
+                <p class="text-danger">عدم التزامك بالشروط يعني حظر نهائي !</p>
                 <p class="mb-2">هدف المجموعه: هو مشاركة المعلومات فيما بيننا والتركيز على التحضير لأختبار الهيئة لنجاح اكبر عدد ممكن ان شاء الله..</p>
 
-                <ol class="list-decimal pr-4">
+                <ol>
                     <li class="mb-1">
                         <p>لا يمكنك وممنوع تماماً الأعلان للمدرسين الخصوصيين او الدورات او المؤتمرات او توزيع حسابات التواصل الأجتماعي وأرقام الهواتف او مجموعات وقنوات اخرى.</p>
                     </li>
@@ -45,15 +46,15 @@
                 </ol>
             </div>
     
-            <div class="mt-2">
-                <input type="checkbox" name="accept_tos" id="accept_tos" {% if flash.old[0].accept_tos == 'on' %} checked {% endif %}>
-                <label for="accept_tos">أوافق على شروط الاستخدام</label>
+            <div class="form-check my-2">
+                <input class="form-check-input" type="checkbox" name="accept_tos" id="accept_tos" {% if flash.old[0].accept_tos == 'on' %} checked {% endif %}>
+                <label class="form-check-label" for="accept_tos">أوافق على شروط الاستخدام</label>
             </div>
     
-            <p class="text-red-600 mt-2 hidden" id="accept_tos_error">يجب أن توافق على شروط الاستخدام</p>
+            <p class="text-red-600 mt-2 d-none" id="accept_tos_error">يجب أن توافق على شروط الاستخدام</p>
     
             <div class="flex justify-end">
-                <button type="button" class="bg-blue-600 shadow-md hover:shadow-lg hover:bg-blue-700 transition duration-300 text-white px-4 py-2 rounded-md" onclick="nextStep()">التالي</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">التالي</button>
             </div>
         </div>
 

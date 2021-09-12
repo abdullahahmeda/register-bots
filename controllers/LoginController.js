@@ -1,48 +1,60 @@
-const User = require('../models').User;
-var bcrypt = require('bcryptjs');
-const userLoginSchema = require('../validation/userLoginSchema');
+const User = require('../models').User
+const bcrypt = require('bcryptjs')
+const userLoginSchema = require('../validation/userLoginSchema')
+const { isNil } = require('../utils/helpers')
 
 module.exports = {
-    index: function(req, res) {
-        return res.render('login');
-    },
-    login: async function(req, res) {
-        delete req.body._csrf;
+  index: function (req, res) {
+    return res.render('login')
+  },
+  login: async function (req, res) {
+    delete req.body._csrf
 
-        const { error , value } = userLoginSchema.validate(req.body, {
-            abortEarly: false
-        });
+    const { error, value } = userLoginSchema.validate(req.body, {
+      abortEarly: false
+    })
 
-        if (error) {
-            req.flash('message', 'الرجاء إدخال بريد إلكتروني وكلمة مرور صالحتين');
-            req.flash('type', 'danger');
-            req.flash('old', req.body);
-            return res.redirect('/tgadminlogin-123321ems');
+    if (error) {
+      return res.render('login', {
+        flash: {
+          message: 'الرجاء إدخال بريد إلكتروني وكلمة مرور صالحتين',
+          type: 'danger',
+          old: req.body
         }
-
-        const user = await User.findOne({
-            where: {
-                email: value.email,
-                status: 'active'
-            }
-        });
-        if (user == null) {
-            req.flash('message', 'البيانات المدخلة غير صحيحة');
-            req.flash('type', 'danger');
-            req.flash('old', req.body);
-            return res.redirect('/tgadminlogin-123321ems');
-        }
-
-        if (!bcrypt.compareSync(value.password, user.password)) {
-            req.flash('message', 'كلمة المرور غير صحيحة');
-            req.flash('type', 'danger');
-            req.flash('old', req.body);
-            return res.redirect('/tgadminlogin-123321ems');
-        }
-
-        delete user.password;
-        req.session.user = user;
-
-        return res.redirect('/custom-admin');
+      })
     }
+
+    let user = await User.findOne({
+      where: {
+        email: value.email,
+        status: 'active'
+      }
+    })
+
+    if (isNil(user)) {
+      return res.render('login', {
+        flash: {
+          message: 'البيانات المدخلة غير صحيحة',
+          type: 'danger',
+          old: req.body
+        }
+      })
+    }
+
+    user = user.toJSON()
+
+    if (!bcrypt.compareSync(value.password, user.password)) {
+      return res.render('login', {
+        flash: {
+          message: 'كلمة المرور غير صحيحة',
+          type: 'danger',
+          old: req.body
+        }
+      })
+    }
+
+    delete user.password
+    req.session.user = user
+    req.session.save(() => res.redirect('/custom-admin'))
+  }
 }

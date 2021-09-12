@@ -1,18 +1,16 @@
+{% set activeLink = 'telegram_id' %}
 {% extends 'layouts/master.html' %}
 
 {% block content %}
 
-    <div class="bg-white mb-10 py-6 shadow-sm">
-        <div class="container mx-auto text-center">
-            <h1 class="text-2xl font-bold mx-auto">كيفية الحصول على معرف التلجرام</h1>
-            <a href="/" class="text-blue-700 hover:text-blue-900 inline-block mt-2 md:mt-0">التسجيل</a>
+        <div class="my-3 container">
+            <h1 class="fw-bold text-center">كيفية الحصول على معرف التلجرام</h1>
         </div>
-    </div>
 
     <div class="container mx-auto">
         <p>يمكنك الحصول على معرف التلجرام بإرسال رسالة للبوت الخاص بنا (<a href="https://t.me/loltestwhyBot" target="_blank" class="font-bold">اضغط هنا</a>)</p>
         <p class="mb-2">بعد إرسال رسالة للبوت، سوف تحصل على المعرف الخاص بك كما بالصورة</p>
-        <img src="/img/bot.jpg" class="max-w-100" alt="">
+        <img src="/img/bot.jpg" class="mw-100" alt="">
     </div>
 
 {% endblock %}

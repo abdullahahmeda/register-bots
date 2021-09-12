@@ -1,76 +1,43 @@
-const Telegraf = require('telegraf');
-const utils = require('./utils');
+const Telegraf = require('telegraf')
+const utils = require('./telegram-client/utils')
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN, {
-    username: process.env.TELEGRAM_BOT_USERNAME
-});
-const User = require('./models').User;
+  username: process.env.TELEGRAM_BOT_USERNAME
+})
+const User = require('./models').User
 
-const chatId = process.env.TELEGRAM_CHAT_ID;
+const chatId = process.env.TELEGRAM_CHAT_ID
 
-/* bot.use(async (ctx, next) => {
-    const start = new Date()
-    await next()
-    const ms = new Date() - start
-    console.log('Response time: %sms', ms)
-  }) */
+const { isNil } = require('./utils/helpers')
 
-/* bot.on('new_chat_members', async (ctx) =>  {
-    
-    if (ctx.message.chat.id == chatId) {
-        console.log('new chat member')
-        const newMembers = ctx.message.new_chat_members;
-
-        for (const member of newMembers) {
-            const user = await User.findOne({
-                where: {
-                    telegramId: member.id,
-                    status: 'active'
-                }
-            })
-            if (user == null) {
-                await utils.denyUserToSendMessages(member.id);
-                console.log('denied user')
-            }
-            else {
-                await utils.allowUserToSendMessages(member.id);
-                console.log('allowed user');
-            }
-        }
-    }
-}) */
-
-bot.on('text', async (ctx) => {
-    if (ctx.update.message.chat.type === 'private') {
-        ctx.reply(`
+const replyToPrivateMessage = (context) => {
+  context.reply(`
 للأنضمام لمجموعة الخدمات الطبية الطارئة
 
 اولاً تأكد ان التليجرام عندك محدث لأخر نسخة ثم اتبع التالي :
         
-1- انسخ رقم معرف التليجرام التالي: ${ctx.update.message.from.id} 
+1- انسخ رقم معرف التليجرام التالي: ${context.update.message.from.id} 
         
 2-سجّل لك عضوية من الرابط التالي:
-www.eemsr.com/tgc`);
-    }
-    else if (ctx.update.message.chat.id == chatId) {
-        const messageId = ctx.update.message.message_id;
-        const telegramId = ctx.update.message.from.id;
+www.eemsr.com/tgc`)
+}
 
-        const user = await User.findOne({
-            where: {
-                telegramId,
-                status: 'active'
-            }
-        })
+bot.on('text', async (context) => {
+  if (context.update.message.chat.type === 'private') replyToPrivateMessage(context)
+  else if (`${context.update.message.chat.id}` === `${chatId}`) {
+    const messageId = context.update.message.message_id
+    const senderId = context.update.message.from.id
 
-        if (user == null) {
-            await utils.deleteGroupMessage(messageId);
-        }
+    const user = await User.findOne({
+      where: {
+        senderId,
+        status: 'active'
+      }
+    })
+
+    if (isNil(user)) { // User is not registered
+      await utils.deleteGroupMessage(messageId)
     }
+  }
 })
 
-/* bot.on('left_chat_member', ctx => {
-    console.log('left')
-}) */
-
-
-module.exports = bot;
+module.exports = bot

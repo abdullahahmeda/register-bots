@@ -48,7 +48,8 @@
                         {% elif user.status != 'banned' %}
                           <button class="btn btn-warning btn-sm" onclick="confirmBan({{ user.telegramId }})">حظر</button>
                         {% endif %}
-                        <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ user.telegramId }})">حذف</button>
+                        <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ user.telegramId }})">حذف من قاعدة البيانات</button>
+                        <button class="btn btn-danger btn-sm" onclick="confirmDeleteAndBan({{ user.telegramId }})"> حذف مع الحظر</button>
                     </td>
                 </tr>
             {% endfor %}
@@ -83,93 +84,113 @@
         }
     });
 
+    const commonAlertOptions = {
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'نعم',
+      cancelButtonText: 'لا',
+    }
+
     function confirmBan(telegramId) {
-        Swal.fire({
-            title: 'هل تريد حظر هذا الحساب؟',
-            text: "",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'نعم',
-            cancelButtonText: 'لا',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $.ajax({
-                  method: "POST",
-                  url: `/custom-admin/users/${telegramId}/ban`,
-                  headers: {
-                    'CSRF-Token': "{{ _csrf }}"
-                  },
-                  success: function(res) {
-                    Swal.fire(
-                        res.message,
-                        "",
-                        res.status == '0' ? 'error' : 'success',
-                      ).then(() => { location.reload() })
-                  }
-              })
-            }
-          })
+      Swal.fire({
+          title: 'هل تريد حظر هذا الحساب؟',
+          ...commonAlertOptions
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+                method: "POST",
+                url: `/custom-admin/users/${telegramId}/ban`,
+                headers: {
+                  'CSRF-Token': "{{ _csrf }}"
+                },
+                success: function(res) {
+                  Swal.fire(
+                      res.message,
+                      "",
+                      res.status == '0' ? 'error' : 'success',
+                    ).then(() => { location.reload() })
+                }
+            })
+          }
+        })
     }
 
     function confirmVerify(telegramId) {
-        Swal.fire({
-            title: 'هل تريد تفعيل هذا الحساب؟',
-            text: "",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'نعم',
-            cancelButtonText: 'لا',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $.ajax({
-                  method: "POST",
-                  url: `/custom-admin/users/${telegramId}/verify`,
-                  headers: {
-                    'CSRF-Token': "{{ _csrf }}"
-                  },
-                  success: function(res) {
-                    Swal.fire(
-                        res.message,
-                        "",
-                        res.status == '0' ? 'error' : 'success',
-                      ).then(() => { location.reload() })
-                  }
-              })
-            }
-          })
+      Swal.fire({
+          title: 'هل تريد تفعيل هذا الحساب؟',
+          ...commonAlertOptions
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+                method: "POST",
+                url: `/custom-admin/users/${telegramId}/verify`,
+                headers: {
+                  'CSRF-Token': "{{ _csrf }}"
+                },
+                success: function(res) {
+                  Swal.fire(
+                      res.message,
+                      "",
+                      res.status == '0' ? 'error' : 'success',
+                    ).then(() => { location.reload() })
+                }
+            })
+          }
+        })
     }
+
     function confirmDelete(telegramId) {
-        Swal.fire({
-            title: 'هل تريد حذف هذا الحساب؟',
-            text: "هذا سيؤدي إلى حظره أيضاً",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'نعم',
-            cancelButtonText: 'لا',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $.ajax({
-                  type: "DELETE",
-                  url: `/custom-admin/users/${telegramId}`,
-                  headers: {
-                    'CSRF-Token': "{{ _csrf }}"
-                  },
-                  success: function(res) {
-                    Swal.fire(
-                        res.message,
-                        "",
-                        res.status == '0' ? 'error' : 'success',
-                      ).then(() => { location.reload() })
-                  }
-              })
-            }
+      Swal.fire({
+          title: 'هل تريد حذف هذا الحساب؟',
+          ...commonAlertOptions
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+                type: "DELETE",
+                url: `/custom-admin/users/${telegramId}`,
+                headers: {
+                  'CSRF-Token': "{{ _csrf }}"
+                },
+                success: function(res) {
+                  Swal.fire(
+                      res.message,
+                      "",
+                      res.status == '0' ? 'error' : 'success',
+                    ).then(() => { location.reload() })
+                }
+            })
+          }
+        })
+    }
+
+    function confirmDeleteAndBan(telegramId) {
+    Swal.fire({
+        title: 'هل تريد حذف هذا الحساب؟',
+        text: "هذا سيؤدي إلى حظره أيضاً",
+        ...commonAlertOptions
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+              type: "DELETE",
+              url: `/custom-admin/users/${telegramId}`,
+              headers: {
+                'CSRF-Token': "{{ _csrf }}"
+              },
+              data: {
+                should_ban: true
+              },
+              success: function(res) {
+                Swal.fire(
+                    res.message,
+                    "",
+                    res.status == '0' ? 'error' : 'success',
+                  ).then(() => { location.reload() })
+              }
           })
+        }
+      })
     }
 </script>
 {% endblock %}

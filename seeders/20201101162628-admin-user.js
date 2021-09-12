@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const bcrypt = require('bcryptjs');
-const salt = bcrypt.genSaltSync(10);
+const bcrypt = require('bcryptjs')
+const salt = bcrypt.genSaltSync(10)
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -20,10 +20,10 @@ module.exports = {
       role: 'admin',
       createdAt: new Date(),
       updatedAt: new Date()
-    }]);
+    }])
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Users', null, {});
+    return queryInterface.bulkDelete('Users', null, {})
   }
-};
+}

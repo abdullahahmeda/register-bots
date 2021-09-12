@@ -6,7 +6,5 @@
  **/
 
 $(function () {
-
   'use strict'
-
 })
