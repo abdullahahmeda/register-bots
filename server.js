@@ -52,6 +52,7 @@ app.use((req, res, next) => {
   res.locals._csrf = req.csrfToken()
   res.locals.reqPath = req.path
   res.locals.user = req.session.user
+  res.locals.env = process.env
   res.locals.getDate = function (date) {
     return date.toISOString().split('T')[0]
   }
