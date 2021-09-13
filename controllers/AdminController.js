@@ -5,11 +5,11 @@ const hashString = require('../utils/hashString')
 
 module.exports = {
   index: async function (req, res) {
-    const group_members = await telegram.getChatMembersCount(process.env.TELEGRAM_CHAT_ID)
-    const db_members = await User.count() - 1 // exclude the admin
+    const groupMembers = await telegram.getChatMembersCount(process.env.TELEGRAM_CHAT_ID)
+    const dbMembers = await User.count() - 1 // exclude the admin
     return res.render('admin/index.html', {
-      group_members: group_members,
-      db_members: db_members
+      group_members: groupMembers,
+      db_members: dbMembers
     })
   },
 
