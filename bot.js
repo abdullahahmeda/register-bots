@@ -29,7 +29,7 @@ bot.on('text', async (context) => {
 
     const user = await User.findOne({
       where: {
-        senderId,
+        telegramId: senderId,
         status: 'active'
       }
     })
