@@ -18,7 +18,7 @@ const replyToPrivateMessage = (context) => {
 1- انسخ رقم معرف التليجرام التالي: ${context.update.message.from.id} 
         
 2-سجّل لك عضوية من الرابط التالي:
-www.eemsr.com/tgc`)
+www.eemsr.com/tgr`)
 }
 
 bot.on('text', async (context) => {

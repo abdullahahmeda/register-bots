@@ -18,3 +18,8 @@ button, input, optgroup, select, textarea { font-family: var(--font-family); }
 .brand-logo__image {
   height: 64px;
 }
+
+.register-terms {
+  height: 300px;
+  overflow-y: scroll;
+}

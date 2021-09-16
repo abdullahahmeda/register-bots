@@ -22,14 +22,15 @@
         <label class="form-label" for="name">الاسم</label>
         <input class="form-control" type="text" value="{{ flash.old.name }}" name="name" id="name" required>
         {% if flash.validationError.path == 'name' %}
-        <p class="text-red-600 text-sm">{{ flash.validationError.message }}</p>
+        <p class="text-danger text-sm">{{ flash.validationError.message }}</p>
         {% endif %}
       </div>
       <div class="mb-3">
         <label class="form-label" for="birth">تاريخ الميلاد</label>
-        <input class="form-control" type="date" class="birthdate" value="{{ flash.old.birth }}" name="birth" id="birth" required>
+        <input class="form-control" type="date" class="birthdate" value="{{ flash.old.birth }}" name="birth" id="birth"
+          required>
         {% if flash.validationError.path == 'birth' %}
-        <p class="text-red-600 text-sm">{{ flash.validationError.message }}</p>
+        <p class="text-danger text-sm">{{ flash.validationError.message }}</p>
         {% endif %}
       </div>
 
@@ -538,7 +539,7 @@
             {% if country=="ZW" %} selected {% endif %} {% endif %}>Zimbabwe</option>
         </select>
         {% if flash.validationError.path == 'country' %}
-        <p class="text-red-600 text-sm">{{ flash.validationError.message }}</p>
+        <p class="text-danger text-sm">{{ flash.validationError.message }}</p>
         {% endif %}
       </div>
 
@@ -546,33 +547,36 @@
         <label class="form-label" for="city">المدينة</label>
         <input class="form-control" type="text" value="{{ flash.old.city }}" name="city" id="city" required>
         {% if flash.validationError.path == 'city' %}
-        <p class="text-red-600 text-sm">{{ flash.validationError.message }}</p>
+        <p class="text-danger text-sm">{{ flash.validationError.message }}</p>
         {% endif %}
       </div>
 
       <div class="mb-3">
         <label class="form-label" for="speciality">التخصص العلمي</label>
         <select class="form-select" name="speciality" id="speciality" required>
-          <option {{ 'selected' if flash.old.speciality=='باراميدك أخصائي' else '' }} value="باراميدك أخصائي">باراميدك أخصائي</option>
+          <option {{ 'selected' if flash.old.speciality=='باراميدك أخصائي' else '' }} value="باراميدك أخصائي">باراميدك
+            أخصائي</option>
           <option {{ 'selected' if flash.old.speciality=='باراميدك فني' else '' }} value="باراميدك فني">باراميدك فني
           </option>
           <option {{ 'selected' if flash.old.speciality=='غير ذلك' else '' }} value="غير ذلك">غير ذلك</option>
         </select>
         {% if flash.validationError.path == 'other_speciality' %}
-        <p class="text-red-600 text-sm">{{ flash.validationError.message }}</p>
+        <p class="text-danger text-sm">{{ flash.validationError.message }}</p>
         {% endif %}
         {% if flash.validationError.path == 'speciality' %}
-        <p class="text-red-600 text-sm">{{ flash.validationError.message }}</p>
+        <p class="text-danger text-sm">{{ flash.validationError.message }}</p>
         {% endif %}
-        <input class="form-control mt-3" type="text" name="other_speciality" id="other_speciality" placeholder="اكتب تخصصك">
+        <input class="form-control mt-3" type="text" name="other_speciality" id="other_speciality"
+          placeholder="اكتب تخصصك">
       </div>
 
       <div class="mb-3">
 
         <label class="form-label" for="telegramId">معرف التليجرام</label>
-        <input class="form-control" type="number" value="{{ flash.old.telegramId }}" name="telegramId" id="telegramId" required>
+        <input class="form-control" type="number" value="{{ flash.old.telegramId }}" name="telegramId" id="telegramId"
+          required>
         {% if flash.validationError.path == 'telegramId' %}
-        <p class="text-red-600 text-sm">{{ flash.validationError.message }}</p>
+        <p class="text-danger text-sm">{{ flash.validationError.message }}</p>
         {% endif %}
         <a href="/telegram_id" target="_blank" class="md:mr-2 text-blue-700 hover:text-blue-800">كيف أحصل عليه؟</a>
       </div>
@@ -583,7 +587,7 @@
           <input class="form-control" type="text" value="{{ flash.old.phone }}" name="phone" id="phone"
             placeholder="على سبيل المثال 0501234567" required>
           {% if flash.validationError.path == 'phone' %}
-          <p class="text-red-600 text-sm">{{ flash.validationError.message }}</p>
+          <p class="text-danger text-sm">{{ flash.validationError.message }}</p>
           {% endif %}
           <p class="text-xs mt-1 text-gray-700">سيتم ارسال كود تفعيل للرقم</p>
         </div>
@@ -592,7 +596,57 @@
           <label class="form-label" for="email">الإيميل</label>
           <input class="form-control" type="email" value="{{ flash.old.email }}" name="email" id="email" required>
           {% if flash.validationError.path == 'email' %}
-          <p class="text-red-600 text-sm">{{ flash.validationError.message }}</p>
+          <p class="text-danger text-sm">{{ flash.validationError.message }}</p>
+          {% endif %}
+        </div>
+
+        <div class="border border-gray-400 p-2 text-gray-900 mb-3 register-terms">
+          <p class="text-danger">عدم التزامك بالشروط يعني حظر نهائي !</p>
+          <p class="mb-2">هدف المجموعه: هو مشاركة المعلومات فيما بيننا والتركيز على التحضير لأختبار الهيئة لنجاح اكبر
+            عدد ممكن ان شاء الله..</p>
+
+          <ol>
+            <li class="mb-1">
+              <p>لا يمكنك وممنوع تماماً الأعلان للمدرسين الخصوصيين او الدورات او المؤتمرات او توزيع حسابات التواصل
+                الأجتماعي وأرقام الهواتف او مجموعات وقنوات اخرى.</p>
+            </li>
+            <li class="mb-1">
+              <p>غير مرحب بالمدرسين الخصوصيين معنا بالمجموعه وممنوع منع تااام الأعلان لهم.</p>
+            </li>
+            <li class="mb-1">
+              <p>غير مرحب بالأعضاء من خارج المملكة العربية السعودية.</p>
+            </li>
+            <li class="mb-1">
+              <p>غير مرحب بايي تخصص من خارج دائرة الخدمات الطبيه الطارئة باراميدك اخصائي او فني او غيره.</p>
+            </li>
+            <li class="mb-1">
+              <p>ممنوع النقاشات والمحادثات الجانبيه الخارجه عن هدف تجمعنا، وعنوان المجموعه التحضير لأختبار الهيئة
+                باراميدك،هدف المجموعة هو تخصص الخدمات الطبيه الطارئة.</p>
+            </li>
+            <li class="mb-1">
+              <p>البعد عن الجدالات والسخرية والألفاظ الجارحه وأذيه الأخريين واستفزازهم بالكلام ونشر الأشاعات الكاذبة.
+              </p>
+            </li>
+            <li class="mb-1">
+              <p>ممنوع مضايقه الأخرين برسائلك بالخاص خصوصاً البنات,اذا عندك سؤال اطرحه بالمجموعه،استأذن من الشخص
+                بالمجموعه قبل مراسلته بالخاص، ممنوع تماماً ارسال لأعضاء المجموعه رسائل دعائيه بالخاص.</p>
+            </li>
+            <li class="mb-1">
+              <p>ممنوع منعاً باتاً نشر ايي صور مسربة من أختبارات سابقة,صاحب المجموعة يخلي مسؤوليته التامه, واي مسائلة
+                قانونية تقع على عاتق الشخص الناشر للمخالفة وليس صاحب المجموعة.</p>
+            </li>
+            <li class="mb-1">
+              <p>عند مخالفة احدى هذه النقاط يتم حظر واستبعاد العضو.</p>
+            </li>
+          </ol>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="accept_tos" id="accept_tos" {% if
+            flash.old[0].accept_tos == 'on' %} checked {% endif %}>
+          <label class="form-check-label" for="accept_tos">أوافق على شروط الاستخدام</label>
+          {% if flash.validationError.path == 'accept_tos' %}
+          <p class="text-danger text-sm">{{ flash.validationError.message }}</p>
           {% endif %}
         </div>
 

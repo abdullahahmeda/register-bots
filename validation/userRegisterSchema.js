@@ -1,8 +1,8 @@
 const Joi = require('joi')
 
 const userRegisterSchema = Joi.object({
-  accept_tos: Joi.boolean()
-    .truthy('on'),
+  /* accept_tos: Joi.boolean()
+    .truthy('on'), */
   name: Joi.string()
     .min(3)
     .required()
@@ -54,7 +54,12 @@ const userRegisterSchema = Joi.object({
     .messages({
       'string.email': 'برجاء إدخال الايميل صالح',
       'any.required': 'حقل الايميل إجباري'
-    })
+    }),
+
+  accept_tos: Joi.boolean().truthy('on').required().messages({
+    'any.required': 'يجب الموافقة على الشروط',
+    'any.invalid': 'يجب الموافقة على الشروط'
+  })
 })
 
 module.exports = userRegisterSchema
