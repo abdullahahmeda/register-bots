@@ -45,6 +45,10 @@
                     <td>
                         {% if user.status == 'not verified' %}
                           <button class="btn btn-success btn-sm" onclick="confirmVerify({{ user.telegramId }})">تفعيل</button>
+                        {% elif user.status == 'no quizzes' %}
+                        <button class="btn btn-success btn-sm" onclick="confirmActivate({{ user.id }})">تفعيل حساب الأسئلة</button>
+                        {% elif user.status == 'active' %}
+                        <button class="btn btn-success btn-sm" onclick="confirmDeactivate({{ user.id }})">تعطيل حساب الأسئلة</button>
                         {% elif user.status != 'banned' %}
                           <button class="btn btn-warning btn-sm" onclick="confirmBan({{ user.telegramId }})">حظر</button>
                         {% endif %}
@@ -126,6 +130,54 @@
             $.ajax({
                 method: "POST",
                 url: `/custom-admin/users/${telegramId}/verify`,
+                headers: {
+                  'CSRF-Token': "{{ _csrf }}"
+                },
+                success: function(res) {
+                  Swal.fire(
+                      res.message,
+                      "",
+                      res.status == '0' ? 'error' : 'success',
+                    ).then(() => { location.reload() })
+                }
+            })
+          }
+        })
+    }
+
+    function confirmActivate(userId) {
+      Swal.fire({
+          title: 'هل تريد تفعيل هذا الحساب في سكربت الأسئلة؟',
+          ...commonAlertOptions
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+                method: "POST",
+                url: `/custom-admin/users/${userId}/activate`,
+                headers: {
+                  'CSRF-Token': "{{ _csrf }}"
+                },
+                success: function(res) {
+                  Swal.fire(
+                      res.message,
+                      "",
+                      res.status == '0' ? 'error' : 'success',
+                    ).then(() => { location.reload() })
+                }
+            })
+          }
+        })
+    }
+
+    function confirmDeactivate(userId) {
+      Swal.fire({
+          title: 'هل تريد تعطيل هذا الحساب في سكربت الأسئلة؟',
+          ...commonAlertOptions
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+                method: "POST",
+                url: `/custom-admin/users/${userId}/deactivate`,
                 headers: {
                   'CSRF-Token': "{{ _csrf }}"
                 },

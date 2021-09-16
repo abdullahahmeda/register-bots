@@ -1,3 +1,4 @@
+const { Op } = require('sequelize')
 const { isInChat } = require('../telegram-client/utils')
 const telegram = require('../telegram-client')
 
@@ -8,12 +9,54 @@ module.exports = {
     const users = await User.findAll({
       where: {
         role: 'user',
-        status: 'active'
+        status: {
+          [Op.or]: ['active', 'no quizzes']
+        }
       }
     })
     return res.render('admin/users/index.html', {
       users
     })
+  },
+
+  activate: async (req, res) => {
+    const userId = req.params.userId
+    try {
+      await User.update({ status: 'active' }, {
+        where: {
+          id: userId
+        }
+      })
+      return res.json({
+        status: '1',
+        message: 'تم تفعيل حساب المستخدم بنجاح'
+      })
+    } catch (e) {
+      return res.json({
+        status: '0',
+        message: 'حدث خطأ في تفعيل الحساب'
+      })
+    }
+  },
+
+  deactivate: async (req, res) => {
+    const userId = req.params.userId
+    try {
+      await User.update({ status: 'no quizzes' }, {
+        where: {
+          id: userId
+        }
+      })
+      return res.json({
+        status: '1',
+        message: 'تم تعطيل حساب المستخدم بنجاح'
+      })
+    } catch (e) {
+      return res.json({
+        status: '0',
+        message: 'حدث خطأ في تعطيل الحساب'
+      })
+    }
   },
 
   ban: async function (req, res) {

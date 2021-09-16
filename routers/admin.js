@@ -11,6 +11,8 @@ router.get('/settings', AdminController.edit)
 router.post('/settings', AdminController.update)
 
 router.get('/users', AdminUsersController.index)
+router.post('/users/:userId/activate', AdminUsersController.activate)
+router.post('/users/:userId/deactivate', AdminUsersController.deactivate)
 router.post('/users/:telegramId/ban', AdminUsersController.ban)
 router.post('/users/:telegramId/verify', AdminUsersController.verify)
 router.delete('/users/:telegramId', AdminUsersController.destroy)

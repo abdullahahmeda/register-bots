@@ -1,3 +1,4 @@
+const { Op } = require('sequelize')
 const Telegraf = require('telegraf')
 const utils = require('./telegram-client/utils')
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN, {
@@ -30,7 +31,9 @@ bot.on('text', async (context) => {
     const user = await User.findOne({
       where: {
         telegramId: senderId,
-        status: 'active'
+        status: {
+          [Op.or]: ['active', 'no quizzes']
+        }
       }
     })
 
