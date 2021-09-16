@@ -56,7 +56,7 @@ const userRegisterSchema = Joi.object({
       'any.required': 'حقل الايميل إجباري'
     }),
 
-  accept_tos: Joi.boolean().truthy('on').required().messages({
+  accept_tos: Joi.boolean().valid(true, 'on', 'checked').required().messages({
     'any.required': 'يجب الموافقة على الشروط',
     'any.invalid': 'يجب الموافقة على الشروط'
   })
