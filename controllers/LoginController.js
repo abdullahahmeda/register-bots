@@ -41,6 +41,8 @@ module.exports = {
       })
     }
 
+    console.log(value.password, user.password)
+
     if (!bcrypt.compareSync(value.password, user.password)) {
       return res.render('login', {
         flash: {
