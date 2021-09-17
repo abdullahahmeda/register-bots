@@ -36,15 +36,18 @@ module.exports = {
       return res.redirect('/custom-admin/settings')
     }
 
-    const hash = hashString(value.password, process.env.BCRYPT_ROUNDS)
+    const newObject = {
+      name: value.name,
+      telegramId: value.telegramId,
+      email: value.email
+    }
+    if (value.password && value.password_confirmation) {
+      const hash = hashString(value.password, process.env.BCRYPT_ROUNDS)
+      newObject.password = hash
+    }
 
     try {
-      await User.update({
-        name: value.name,
-        telegramId: value.telegramId,
-        email: value.email,
-        password: hash
-      }, {
+      await User.update(newObject, {
         where: {
           id: req.session.user.id
         }
