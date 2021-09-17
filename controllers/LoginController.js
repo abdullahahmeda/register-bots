@@ -41,6 +41,8 @@ module.exports = {
       })
     }
 
+    user = user.toJSON()
+
     if (!bcrypt.compareSync(value.password, user.password)) {
       return res.render('login', {
         flash: {
@@ -50,8 +52,6 @@ module.exports = {
         }
       })
     }
-
-    user = user.toJSON()
 
     delete user.password
     req.session.user = user

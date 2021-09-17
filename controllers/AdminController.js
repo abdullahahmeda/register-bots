@@ -41,7 +41,7 @@ module.exports = {
       telegramId: value.telegramId,
       email: value.email
     }
-    if (value.password && value.password_confirmation) {
+    if (value.password && value === value.password_confirmation) {
       const hash = hashString(value.password, process.env.BCRYPT_ROUNDS)
       newObject.password = hash
     }
