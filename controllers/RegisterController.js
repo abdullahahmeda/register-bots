@@ -12,16 +12,14 @@ const BannedEmail = require('../models').BannedEmail
 module.exports = {
   index: async function (req, res) {
     const country = await getCountryCode(req.ipAddress)
-    return res.render('register', {
-      country
-    })
+    return res.render('register', { country })
   },
 
   store: async function (req, res) {
     delete req.body._csrf
     const { error: validationError, value: values } = userRegisterSchema.validate(
       req.body,
-      { abortEarly: false }
+      { abortEarly: true }
     )
     if (validationError) {
       return res.render('register', {

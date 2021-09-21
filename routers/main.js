@@ -4,7 +4,7 @@ const LoginController = require('../controllers/LoginController')
 const isLoggedIn = require('../middlewares/isLoggedIn')
 const express = require('express')
 
-router.get('/tgc', async (req, res) => res.redirect('/tgr'))
+router.get('/tgc', RegisterController.index)
 
 router.get('/tgr', RegisterController.index)
 

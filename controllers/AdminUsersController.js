@@ -10,7 +10,7 @@ module.exports = {
       where: {
         role: 'user',
         status: {
-          [Op.or]: ['active', 'no quizzes']
+          [Op.or]: ['active', 'no quizzes', 'banned']
         }
       }
     })

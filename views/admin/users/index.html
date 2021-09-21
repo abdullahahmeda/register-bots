@@ -49,11 +49,12 @@
                         <button class="btn btn-success btn-sm" onclick="confirmActivate({{ user.id }})">تفعيل حساب الأسئلة</button>
                         {% elif user.status == 'active' %}
                         <button class="btn btn-success btn-sm" onclick="confirmDeactivate({{ user.id }})">تعطيل حساب الأسئلة</button>
-                        {% elif user.status != 'banned' %}
-                          <button class="btn btn-warning btn-sm" onclick="confirmBan({{ user.telegramId }})">حظر</button>
                         {% endif %}
                         <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ user.telegramId }})">حذف من قاعدة البيانات</button>
-                        <button class="btn btn-danger btn-sm" onclick="confirmDeleteAndBan({{ user.telegramId }})"> حذف مع الحظر</button>
+                        {% if user.status != 'banned' %}
+                          <button class="btn btn-warning btn-sm" onclick="confirmBan({{ user.telegramId }})">حظر</button>
+                        {% endif %}
+                        {#<button class="btn btn-danger btn-sm" onclick="confirmDeleteAndBan({{ user.telegramId }})"> حذف مع الحظر</button>#}
                     </td>
                 </tr>
             {% endfor %}
