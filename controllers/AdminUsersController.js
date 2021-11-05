@@ -75,6 +75,7 @@ module.exports = {
           message: 'تم حظر المستخدم بنجاح'
         })
       } catch (e) {
+        console.log(e)
         return res.json({
           status: '0',
           message: 'حدث خطأ'
