@@ -36,7 +36,7 @@
     "postcss": "^8.1.4",
     "postcss-cli": "^8.2.0",
     "sequelize-cli": "^6.2.0",
-    "standard": "^16.0.3",
+    "standard": "^16.0.4",
     "tailwindcss": "^1.9.6"
   }
 }
